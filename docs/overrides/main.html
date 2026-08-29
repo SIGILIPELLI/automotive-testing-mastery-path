@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Automotive Testing Mastery Path">
+  <meta property="og:title" content="{{ page.title | default('Automotive Testing Mastery Path') }}">
+  <meta property="og:description" content="A structured, module-wise training program for automotive ECU testing — free, covering CAN bus, Vector CANoe, CAPL scripting, UDS diagnostics and Hardware-in-the-Loop testing.">
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ page.title | default('Automotive Testing Mastery Path') }}">
+  <meta name="twitter:description" content="A structured, module-wise training program for automotive ECU testing — free, covering CAN bus, Vector CANoe, CAPL scripting, UDS diagnostics and Hardware-in-the-Loop testing.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
+     crossorigin="anonymous"></script>
+{% endblock %}

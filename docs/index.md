@@ -1,0 +1,113 @@
+---
+title: "Learn Automotive Testing Free: CAN, CANoe & HIL — Beginner to Master"
+description: "Free automotive ECU testing course: CAN bus, Vector CANoe, CAPL scripting, UDS diagnostics and Hardware-in-the-Loop testing, beginner to master. Part of a 40-course free learning library."
+---
+
+# Automotive Testing Mastery Path
+
+A structured, module-wise training program for **automotive ECU testing** —
+from your first CAN frame to designing a full test strategy for a vehicle
+program. Real CAPL syntax, real UDS service IDs, and real CAN/CANoe/HIL
+concepts in every module.
+
+!!! note "About this track"
+    This course covers specialized commercial tooling — Vector CANoe, CAPL,
+    CANape — and real ECU/HIL test benches. None of that can run on a
+    general-purpose machine the way a programming language can. Every
+    lesson is written and reviewed for technical accuracy against
+    genuinely documented CAN, CAPL, UDS (ISO 14229) and CANoe conventions;
+    nothing here claims to have executed a CAPL script or connected to
+    live hardware.
+
+## How the program is organized
+
+| Level | Focus | Modules |
+|-------|-------|---------|
+| [Level 1 · Entry](level-1/index.md) | What automotive testing is, CAN bus fundamentals, CAN frame structure, Vector CANoe, CAPL scripting basics, UDS diagnostics basics, HIL testing intro, test case design, test standards overview | 9 topics + 1 project |
+| [Level 2 · Intermediate](level-2/index.md) | Advanced CAPL, CANoe test modules, CAN-FD, LIN, DTC deep dive, DBC & signals, automated test sequences, restbus simulation, HIL bench components | 9 topics + 1 project |
+| [Level 3 · Advanced](level-3/index.md) | Advanced HIL automation, CANape, automotive Ethernet, functional safety testing, test automation frameworks, fault injection, regression suites, traceability, SOTIF | 9 topics + 1 project |
+| [Level 4 · Master](level-4/index.md) | Test strategy for vehicle programs, continuous testing, advanced fault injection, cybersecurity testing, test data management, building a team, supplier/OEM collaboration, homologation, career growth | 9 topics + 1 capstone |
+
+## How to use this site
+
+- Work through each level in order — later modules assume earlier ones.
+- Code examples use real **CAPL** syntax and real **CAN/UDS** conventions,
+  labeled clearly wherever a concept is tool-specific to Vector CANoe.
+- Each level ends with a project that combines everything learned in that
+  level.
+- Use the search bar (top of the page) to jump straight to a topic.
+
+New to CAN and automotive embedded systems generally? The
+[S32K Automotive Embedded Mastery Path](https://sigilipelli.github.io/s32k-mastery-path/)
+covers the microcontroller and CAN-peripheral side, and the
+[C/C++ Testing Mastery Path](https://sigilipelli.github.io/cpp-testing-mastery-path/)
+covers general software test methodology — both pair well with this course.
+
+Start here → [Level 1 · Entry](level-1/index.md)
+
+🎥 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube — Shorts and full walkthroughs of these lessons.
+
+## More from the Mastery Path series
+
+Free, structured, module-wise training across 40 other languages, platforms and disciplines:
+
+<div class="mastery-grid-wrap">
+<p class="mastery-grid-category">Languages</p>
+<div class="mastery-grid">
+  <a href="https://sigilipelli.github.io/python-mastery-path/">🐍 Python</a>
+  <a href="https://sigilipelli.github.io/java-mastery-path/">☕ Java</a>
+  <a href="https://sigilipelli.github.io/javascript-mastery-path/">🟨 JavaScript</a>
+  <a href="https://sigilipelli.github.io/typescript-mastery-path/">🔷 TypeScript</a>
+  <a href="https://sigilipelli.github.io/shell-mastery-path/">🐚 Shell/Bash</a>
+  <a href="https://sigilipelli.github.io/powershell-mastery-path/">💻 PowerShell</a>
+  <a href="https://sigilipelli.github.io/c-mastery-path/">🇨 C</a>
+  <a href="https://sigilipelli.github.io/cpp-mastery-path/">➕ C++</a>
+  <a href="https://sigilipelli.github.io/go-mastery-path/">🐹 Go</a>
+  <a href="https://sigilipelli.github.io/rust-mastery-path/">🦀 Rust</a>
+  <a href="https://sigilipelli.github.io/sql-mastery-path/">🗄️ SQL</a>
+  <a href="https://sigilipelli.github.io/ruby-mastery-path/">💎 Ruby</a>
+  <a href="https://sigilipelli.github.io/php-mastery-path/">🐘 PHP</a>
+  <a href="https://sigilipelli.github.io/kotlin-mastery-path/">🟣 Kotlin</a>
+  <a href="https://sigilipelli.github.io/swift-mastery-path/">🐦 Swift</a>
+  <a href="https://sigilipelli.github.io/dart-mastery-path/">🎯 Dart</a>
+  <a href="https://sigilipelli.github.io/scala-mastery-path/">🔴 Scala</a>
+  <a href="https://sigilipelli.github.io/r-mastery-path/">📊 R</a>
+</div>
+<p class="mastery-grid-category">Testing & QA</p>
+<div class="mastery-grid">
+  <a href="https://sigilipelli.github.io/java-testing-mastery-path/">🧪 Java Testing</a>
+  <a href="https://sigilipelli.github.io/cpp-testing-mastery-path/">🧪 C/C++ Testing</a>
+  <a href="https://sigilipelli.github.io/python-testing-mastery-path/">🧪 Python Testing</a>
+</div>
+<p class="mastery-grid-category">Cloud Platforms</p>
+<div class="mastery-grid">
+  <a href="https://sigilipelli.github.io/aws-mastery-path/">☁️ AWS</a>
+  <a href="https://sigilipelli.github.io/azure-mastery-path/">☁️ Azure</a>
+  <a href="https://sigilipelli.github.io/gcp-mastery-path/">☁️ GCP</a>
+  <a href="https://sigilipelli.github.io/ibm-cloud-mastery-path/">☁️ IBM Cloud</a>
+  <a href="https://sigilipelli.github.io/adobe-mastery-path/">🎨 Adobe</a>
+</div>
+<p class="mastery-grid-category">AI / ML / LLM</p>
+<div class="mastery-grid">
+  <a href="https://sigilipelli.github.io/ai-ml-mastery-path/">🤖 AI/ML</a>
+  <a href="https://sigilipelli.github.io/llm-dev-mastery-path/">🧠 LLM Dev</a>
+  <a href="https://sigilipelli.github.io/rag-mastery-path/">📚 RAG</a>
+  <a href="https://sigilipelli.github.io/edge-ai-mastery-path/">📱 Edge AI</a>
+</div>
+<p class="mastery-grid-category">Embedded Systems</p>
+<div class="mastery-grid">
+  <a href="https://sigilipelli.github.io/s32k-mastery-path/">🚗 S32K Automotive</a>
+  <a href="https://sigilipelli.github.io/embedded-mastery-path/">🔌 Embedded</a>
+  <a href="https://sigilipelli.github.io/embedded-linux-mastery-path/">🐧 Embedded Linux</a>
+  <a href="https://sigilipelli.github.io/embedded-python-mastery-path/">🐍 Embedded Python</a>
+  <a href="https://sigilipelli.github.io/freertos-mastery-path/">⏱️ FreeRTOS</a>
+</div>
+<p class="mastery-grid-category">Leadership & Management</p>
+<div class="mastery-grid">
+  <a href="https://sigilipelli.github.io/product-manager-mastery-path/">📋 Product Manager</a>
+  <a href="https://sigilipelli.github.io/product-lead-mastery-path/">🧭 Product Lead</a>
+  <a href="https://sigilipelli.github.io/project-manager-mastery-path/">📅 Project Manager</a>
+  <a href="https://sigilipelli.github.io/ai-manager-mastery-path/">🤖 AI Manager</a>
+  <a href="https://sigilipelli.github.io/servant-leadership-mastery-path/">🤝 Servant Leadership</a>
+</div>
+</div>
