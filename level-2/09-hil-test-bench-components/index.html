@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#basic-hil-test-bench-components" class="md-skip">
+        <a href="#09-basic-hil-test-bench-components" class="md-skip">
           Skip to content
         </a>
       
@@ -1166,6 +1166,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic HIL Test Bench Components
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1182,6 +1200,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-hil-exists-as-a-distinct-test-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why HIL exists as a distinct test tier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components-of-a-hil-rig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core components of a HIL rig
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal-path-from-model-to-ecu-and-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signal path: from model to ECU and back
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-interface-layer-same-tooling-real-transceivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAN interface layer: same tooling, real transceivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-time-determinism-the-property-pure-simulation-doesnt-need" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-time determinism: the property pure simulation doesn't need
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-hil-exists-as-a-distinct-test-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why HIL exists as a distinct test tier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components-of-a-hil-rig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core components of a HIL rig
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal-path-from-model-to-ecu-and-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signal path: from model to ECU and back
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#can-interface-layer-same-tooling-real-transceivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAN interface layer: same tooling, real transceivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-time-determinism-the-property-pure-simulation-doesnt-need" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-time determinism: the property pure simulation doesn't need
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2208,210 @@
   
 
 
-<h1 id="basic-hil-test-bench-components">Basic HIL Test Bench Components<a class="headerlink" href="#basic-hil-test-bench-components" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="09-basic-hil-test-bench-components">09 · Basic HIL Test Bench Components<a class="headerlink" href="#09-basic-hil-test-bench-components" title="Permanent link">&para;</a></h1>
+<p>Everything through Module 8 has run against pure bus simulation — no
+physical ECU, no real wiring, all CAPL and CANoe. <strong>Hardware-in-the-Loop
+(HIL)</strong> testing puts a real, physical ECU on a bench, wired to
+simulated versions of everything <em>around</em> it (sensors, actuators, other
+ECUs' signals), so the ECU's actual embedded software runs on its
+actual silicon while the rest of the world is emulated. This module
+maps the components of a typical HIL rig conceptually, ahead of Level
+3's deeper automation work.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>The component roles and architecture described below reflect
+standard, documented HIL practice across common platforms (dSPACE,
+NI, Vector VT System). No specific rig was used to produce this
+content, and CANoe/CAPL are shown only where they're the genuine
+interface layer — treat every claim about a specific vendor's
+exact configuration as something to verify against that vendor's
+documentation.</p>
+</div>
+<h2 id="why-hil-exists-as-a-distinct-test-tier">Why HIL exists as a distinct test tier<a class="headerlink" href="#why-hil-exists-as-a-distinct-test-tier" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>What's real</th>
+<th>What's simulated</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pure simulation (Modules 1–8)</td>
+<td>Nothing physical</td>
+<td>Everything, including the "ECU"</td>
+<td>Fast logic/protocol tests, run constantly</td>
+</tr>
+<tr>
+<td>HIL</td>
+<td>The ECU itself (its real hardware and embedded software)</td>
+<td>Sensors, actuators, other ECUs, the physical plant</td>
+<td>Real embedded-software validation without a real vehicle</td>
+</tr>
+<tr>
+<td>Vehicle test</td>
+<td>Everything</td>
+<td>Nothing</td>
+<td>Final validation, most expensive and slowest tier</td>
+</tr>
+</tbody>
+</table>
+<p>HIL sits deliberately in the middle: catches defects that only show up
+in the real embedded binary (timing, memory, real ADC/DAC behavior,
+real CAN transceiver quirks) without the cost, safety risk, and
+scheduling bottleneck of a full vehicle.</p>
+<h2 id="core-components-of-a-hil-rig">Core components of a HIL rig<a class="headerlink" href="#core-components-of-a-hil-rig" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Real-time simulation computer</strong></td>
+<td>Runs the plant model (e.g. engine dynamics, vehicle dynamics) in hard real time — must complete each simulation step within its fixed time budget, every time, or the ECU sees discontinuous/invalid physics</td>
+</tr>
+<tr>
+<td><strong>I/O interface hardware</strong></td>
+<td>Converts between the simulation computer's digital model values and the real electrical signals the ECU expects — analog voltages, PWM, digital I/O, resistor/load emulation</td>
+</tr>
+<tr>
+<td><strong>ECU under test</strong></td>
+<td>The real, physical target — unmodified production or pre-production hardware and software</td>
+</tr>
+<tr>
+<td><strong>Bus interface (CAN/CAN-FD/LIN/Ethernet)</strong></td>
+<td>Connects the ECU's real bus interfaces to the simulation, often via the same CANoe/CAPL tooling used in pure simulation, now driving physical transceivers</td>
+</tr>
+<tr>
+<td><strong>Power supply &amp; load emulation</strong></td>
+<td>Provides the ECU's actual operating voltage/current profile, including realistic transients (cranking dip, load dump) the ECU's power-management logic must survive</td>
+</tr>
+<tr>
+<td><strong>Fault-injection unit</strong></td>
+<td>Hardware relays/switches capable of injecting real electrical faults — opens, shorts to ground/battery — onto real wiring, not just simulated bus values (Level 3 Module 6 covers this in depth)</td>
+</tr>
+<tr>
+<td><strong>Test automation host</strong></td>
+<td>Runs the actual test scripts/sequences, orchestrating the simulation computer, I/O, and bus interface together</td>
+</tr>
+</tbody>
+</table>
+<h2 id="signal-path-from-model-to-ecu-and-back">Signal path: from model to ECU and back<a class="headerlink" href="#signal-path-from-model-to-ecu-and-back" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[Plant model, real-time computer]
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        │  (digital values, every fixed timestep)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        ▼
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>[I/O interface: DAC / PWM / digital out]
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        │  (real electrical signals)
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        ▼
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>[ECU under test — reads sensors, runs its embedded software]
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        │  (real electrical signals: actuator commands, CAN frames)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        ▼
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>[I/O interface: ADC / digital in]  +  [CAN/LIN transceiver]
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        ▼
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>[Plant model, real-time computer]  (closes the loop)
+</code></pre></div>
+<p>The word "loop" matters: a HIL rig is a <strong>closed loop</strong> — the ECU's
+outputs feed back into the plant model, which changes the next set of
+inputs the ECU sees. A test rig that only injects fixed, pre-recorded
+inputs regardless of the ECU's own outputs is open-loop, and open-loop
+rigs cannot test genuine feedback-control behavior (e.g. an ABS ECU
+whose braking commands should change the simulated wheel-speed signals
+it then reads back).</p>
+<h2 id="can-interface-layer-same-tooling-real-transceivers">CAN interface layer: same tooling, real transceivers<a class="headerlink" href="#can-interface-layer-same-tooling-real-transceivers" title="Permanent link">&para;</a></h2>
+<p>The CAPL/CANoe layer you've used throughout this level doesn't
+disappear on a HIL rig — it typically becomes the bus-side test
+interface, now talking to a real CAN transceiver connected to the real
+ECU, instead of a purely simulated bus:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Identical CAPL pattern to Module 8's restbus, now driving a real</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// transceiver toward a physical ECU on the bench</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">on</span><span class="w"> </span><span class="n">start</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="n">setTimer</span><span class="p">(</span><span class="n">txWheelSpeed</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">on</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="n">txWheelSpeed</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">{</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="n">wheelSpeedMsg</span><span class="p">.</span><span class="n">FL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ReadPlantModelSignal</span><span class="p">(</span><span class="s">"WheelSpeed_FL"</span><span class="p">);</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="n">output</span><span class="p">(</span><span class="n">wheelSpeedMsg</span><span class="p">);</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="n">setTimer</span><span class="p">(</span><span class="n">txWheelSpeed</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>The conceptual shift is that <code>ReadPlantModelSignal()</code> now pulls from a
+real-time physics simulation running on separate hardware rather than
+a value your test script set arbitrarily — which is exactly why HIL
+catches timing and closed-loop defects that pure bus simulation
+structurally cannot.</p>
+<h2 id="real-time-determinism-the-property-pure-simulation-doesnt-need">Real-time determinism: the property pure simulation doesn't need<a class="headerlink" href="#real-time-determinism-the-property-pure-simulation-doesnt-need" title="Permanent link">&para;</a></h2>
+<p>Pure CANoe/CAPL simulation runs on a general-purpose OS with no hard
+real-time guarantee — acceptable because nothing downstream depends on
+a simulated signal arriving within a guaranteed microsecond window. A
+HIL plant model <strong>must</strong> complete its physics calculation within each
+fixed timestep (commonly 1ms or faster for engine/vehicle dynamics) or
+the ECU under test receives a stale or skipped value at a moment when
+its own control loop is running at full speed — producing artifacts
+that look like ECU defects but are actually simulation-fidelity
+failures. This is why HIL simulation computers run dedicated real-time
+operating systems rather than the same machine that runs your test
+scripts.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Analogy to pure simulation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real-time simulation computer</td>
+<td>Replaces "the rest of the world exists only as CAPL logic" with actual physics</td>
+</tr>
+<tr>
+<td>I/O interface hardware</td>
+<td>New — pure simulation has no real electrical signals at all</td>
+</tr>
+<tr>
+<td>ECU under test</td>
+<td>The one thing that was previously <em>also</em> simulated, now real</td>
+</tr>
+<tr>
+<td>Bus interface</td>
+<td>Same CANoe/CAPL concepts as Modules 1–8, now on a real transceiver</td>
+</tr>
+<tr>
+<td>Fault-injection unit</td>
+<td>New — real electrical faults, not simulated bad values</td>
+</tr>
+<tr>
+<td>Closed loop</td>
+<td>The defining property distinguishing HIL from open-loop bench testing</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>You're scoping a HIL rig to test an electronic power-steering ECU. The
+ECU needs: a simulated steering-wheel torque sensor input (analog
+voltage), a simulated motor position feedback (digital pulse train),
+real CAN traffic for <code>VehicleSpeed</code> and <code>EngineRunning</code>, and its actual
+power-assist output must feed back into a simulated steering-rack model
+so subsequent torque-sensor readings reflect the assist actually given.</p>
+<ol>
+<li>Map each of the four I/O needs above to the correct HIL component
+   category from the table.</li>
+<li>Explain, specifically for the "power-assist output feeds back into
+   the steering-rack model" requirement, why this rig cannot be
+   open-loop and what would go wrong functionally if it were.</li>
+<li>Identify one property of the real-time simulation computer that
+   would need to be verified (not assumed) before trusting a test that
+   measures the ECU's steering-response latency to within a few
+   milliseconds.</li>
+</ol>
 
 
 

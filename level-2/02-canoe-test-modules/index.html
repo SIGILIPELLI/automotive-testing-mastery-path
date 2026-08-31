@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#canoe-test-modules-test-cases" class="md-skip">
+        <a href="#02-canoe-test-modules-test-cases" class="md-skip">
           Skip to content
         </a>
       
@@ -970,6 +970,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CANoe Test Modules & Test Cases
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -986,6 +1004,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-test-modules-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why test modules exist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anatomy-of-a-test-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomy of a test module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verdicts-and-the-verdict-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verdicts and the verdict hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preconditions-and-test-case-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preconditions and test case ordering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-test-modules-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why test modules exist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anatomy-of-a-test-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomy of a test module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verdicts-and-the-verdict-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verdicts and the verdict hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preconditions-and-test-case-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preconditions and test case ordering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2208,189 @@
   
 
 
-<h1 id="canoe-test-modules-test-cases">CANoe Test Modules &amp; Test Cases<a class="headerlink" href="#canoe-test-modules-test-cases" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="02-canoe-test-modules-test-cases">02 · CANoe Test Modules &amp; Test Cases<a class="headerlink" href="#02-canoe-test-modules-test-cases" title="Permanent link">&para;</a></h1>
+<p>Everything in Level 1 was a <strong>simulation</strong> — CAPL nodes that send,
+receive, and react, but never formally declare pass/fail. A <strong>test
+module</strong> is CANoe's structured alternative: an explicit sequence of test
+cases, each producing a verdict, rolled up into a report. This is how
+CAN testing actually scales past "watch the Write window and eyeball
+it."</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>The test-module structure, verdict functions, and report concepts
+below are genuine, documented CANoe/CAPL features. No test module
+here was executed against real CANoe — every example is a reviewed
+reference for the syntax and structure.</p>
+</div>
+<h2 id="why-test-modules-exist">Why test modules exist<a class="headerlink" href="#why-test-modules-exist" title="Permanent link">&para;</a></h2>
+<p>A plain CAPL simulation node can call <code>write()</code> when something looks
+wrong, but "wrong" is just text in a log — there is no structured
+verdict, no report, and no way for a CI pipeline (Level 3-4) to ask
+"did it pass?" without parsing free-text output. A test module instead
+produces a structured <strong>test report</strong> with a verdict (Pass/Fail/Inconclusive)
+per test case and per step, which is what makes automotive test suites
+auditable and machine-consumable.</p>
+<h2 id="anatomy-of-a-test-module">Anatomy of a test module<a class="headerlink" href="#anatomy-of-a-test-module" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">variables</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">testcase</span><span class="w"> </span><span class="n">TC_EngineStartupSequence</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">{</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"Engine startup: coolant sensor reports valid value within 500 ms"</span><span class="p">);</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="n">testStep</span><span class="p">(</span><span class="s">"Wait for SensorNodeStatus after ignition-on"</span><span class="p">);</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w">   </span><span class="c1">// block up to 500 ms waiting for the next assertion</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SensorNodeStatus</span><span class="o">::</span><span class="n">SensorValid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="n">testStepPass</span><span class="p">(</span><span class="s">"SensorValid=1 observed before timeout"</span><span class="p">);</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="k">else</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">testStepFail</span><span class="p">(</span><span class="s">"SensorValid never went to 1 within 500 ms"</span><span class="p">);</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="p">}</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">testcase</span><span class="w"> </span><span class="n">TC_CoolantTempInRange</span><span class="p">()</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">{</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"Coolant temperature is within calibration range"</span><span class="p">);</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span><span class="n">testStep</span><span class="p">(</span><span class="s">"Check current CoolantTemp signal value"</span><span class="p">);</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SensorNodeStatus</span><span class="o">::</span><span class="n">CoolantTemp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">-400</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">SensorNodeStatus</span><span class="o">::</span><span class="n">CoolantTemp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1500</span><span class="p">)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="n">testStepPass</span><span class="p">(</span><span class="s">"CoolantTemp within [-40.0, 150.0] C"</span><span class="p">);</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">  </span><span class="k">else</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="n">testStepFail</span><span class="p">(</span><span class="n">str_printf</span><span class="p">(</span><span class="s">"CoolantTemp out of range: %d"</span><span class="p">,</span><span class="w"> </span><span class="n">SensorNodeStatus</span><span class="o">::</span><span class="n">CoolantTemp</span><span class="p">));</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="p">}</span>
+</code></pre></div>
+<p>Each <code>testcase</code> function is one independently reportable unit. Inside it,
+<code>testStep()</code> documents what's being checked (shows up in the report as a
+labeled row), and <code>testStepPass()</code>/<code>testStepFail()</code> record the verdict
+for that step. A test case's overall verdict is typically the worst
+verdict of its steps — one failed step fails the whole case.</p>
+<h2 id="verdicts-and-the-verdict-hierarchy">Verdicts and the verdict hierarchy<a class="headerlink" href="#verdicts-and-the-verdict-hierarchy" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Verdict</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pass</strong></td>
+<td>Every step in the test case passed</td>
+</tr>
+<tr>
+<td><strong>Fail</strong></td>
+<td>At least one step explicitly failed</td>
+</tr>
+<tr>
+<td><strong>Inconclusive</strong></td>
+<td>The test couldn't reach a definite answer (e.g., a precondition timed out before the actual check could run)</td>
+</tr>
+<tr>
+<td><strong>None/Not run</strong></td>
+<td>The test case was skipped entirely (e.g., a prior setup step failed)</td>
+</tr>
+</tbody>
+</table>
+<p>Inconclusive is not the same as Fail — it flags "this test didn't prove
+anything either way," which matters a great deal in a report someone
+will triage: a genuine functional failure and "the rig wasn't ready"
+should never look identical.</p>
+<h2 id="preconditions-and-test-case-ordering">Preconditions and test case ordering<a class="headerlink" href="#preconditions-and-test-case-ordering" title="Permanent link">&para;</a></h2>
+<p>Real test modules almost always need setup/teardown around each case:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">TC_ObstructionReversal</span><span class="p">()</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"Power window reverses on obstruction (Level 1 Module 1 requirement)"</span><span class="p">);</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="n">testStep</span><span class="p">(</span><span class="s">"Precondition: window fully closed"</span><span class="p">);</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="c1">// ... commands to close the window, wait, verify closed state ...</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="n">testStep</span><span class="p">(</span><span class="s">"Simulate obstruction: motor current step to 9 A for 60 ms"</span><span class="p">);</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="c1">// ... drive the plant/simulation to the fault condition ...</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="n">testStep</span><span class="p">(</span><span class="s">"Verify reversal begins within 200 ms"</span><span class="p">);</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">WindowStatus</span><span class="o">::</span><span class="n">MotorDirection</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">eDIRECTION_DOWN</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="n">testStepPass</span><span class="p">(</span><span class="s">"Reversal direction observed"</span><span class="p">);</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="k">else</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="n">testStepFail</span><span class="p">(</span><span class="s">"No reversal observed within 200 ms window"</span><span class="p">);</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="p">}</span>
+</code></pre></div>
+<p>Test modules run their test cases in a defined order (by default, the
+order they're listed), and CANoe's test module editor lets you group
+related cases, mark some as dependent on others, and reuse setup logic
+across cases — the practical unit for the "automated test sequence"
+Module 7 builds on.</p>
+<h2 id="reports">Reports<a class="headerlink" href="#reports" title="Permanent link">&para;</a></h2>
+<p>Running a test module produces a report (HTML/XML by default) listing
+every test case, every step, its verdict, and a timestamp — the
+artifact that gets archived, attached to a build, or fed into a
+regression dashboard (Level 3 Module 7). This structured, exportable
+report is the single biggest practical difference between "a simulation
+node that logs text" and "a test module."</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>testcase name() { }</code></td>
+<td>One independently reportable test unit</td>
+</tr>
+<tr>
+<td><code>testCaseTitle("...")</code></td>
+<td>Human-readable title shown in the report</td>
+</tr>
+<tr>
+<td><code>testStep("...")</code></td>
+<td>Documents/labels one check within a test case</td>
+</tr>
+<tr>
+<td><code>testStepPass("...")</code>, <code>testStepFail("...")</code></td>
+<td>Record a step's verdict</td>
+</tr>
+<tr>
+<td><code>testWaitForTimeout(ms)</code></td>
+<td>Blocks until a timeout, used to bound how long a check waits</td>
+</tr>
+<tr>
+<td>Pass / Fail / Inconclusive / Not run</td>
+<td>The four verdict states, not interchangeable</td>
+</tr>
+<tr>
+<td>Report (HTML/XML)</td>
+<td>Structured, machine-consumable output of a test module run</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Write two <code>testcase</code> functions for a simulated seatbelt-warning ECU:</p>
+<ol>
+<li><code>TC_SeatbeltWarningOnStart</code> — verifies that if <code>SeatbeltStatus ==
+   UNBUCKLED</code> and vehicle speed exceeds 15 km/h, a <code>SeatbeltWarningLamp</code>
+   signal goes active within 3 seconds; use <code>testWaitForTimeout</code> and give
+   it a clear <code>testCaseTitle</code>.</li>
+<li><code>TC_SeatbeltWarningClearsOnBuckle</code> — verifies that once buckled, the
+   warning lamp signal goes inactive within 1 second.</li>
+</ol>
+<p>For each, write at least one step that could plausibly return
+<strong>Inconclusive</strong> rather than Fail, and explain in a sentence why that
+distinction matters to whoever triages the report.</p>
 
 
 

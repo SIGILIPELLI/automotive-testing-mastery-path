@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fault-injection-testing" class="md-skip">
+        <a href="#06-fault-injection-testing" class="md-skip">
           Skip to content
         </a>
       
@@ -1456,6 +1456,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fault Injection Testing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1472,6 +1490,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-fault-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The fault taxonomy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#communication-level-fault-injection-in-capl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Communication-level fault injection in CAPL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-electrical-level-faults-need-real-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why electrical-level faults need real hardware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fault-injection-campaigns-coverage-over-one-off-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fault injection campaigns: coverage over one-off checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2094,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-fault-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The fault taxonomy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#communication-level-fault-injection-in-capl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Communication-level fault injection in CAPL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-electrical-level-faults-need-real-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why electrical-level faults need real hardware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fault-injection-campaigns-coverage-over-one-off-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fault injection campaigns: coverage over one-off checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2186,203 @@
   
 
 
-<h1 id="fault-injection-testing">Fault Injection Testing<a class="headerlink" href="#fault-injection-testing" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 3 · Advanced.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="06-fault-injection-testing">06 · Fault Injection Testing<a class="headerlink" href="#06-fault-injection-testing" title="Permanent link">&para;</a></h1>
+<p>Module 4 tested safety mechanisms by manipulating signal <em>values</em> on
+the bus — a valid technique, but it can't reach every fault class a
+real ECU must survive. This module covers the broader taxonomy of
+fault injection — electrical, communication, and software-level — and
+where each technique's limits are, especially the limits of what CAPL
+alone can simulate.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>No physical fault-injection hardware (relay boxes, breakout boxes,
+programmable power supplies) was used to produce this content. The
+taxonomy and CAPL patterns below reflect documented HIL/fault-
+injection practice — treat every snippet as an architectural
+reference, and note explicitly where real hardware is required and
+CAPL cannot substitute.</p>
+</div>
+<h2 id="the-fault-taxonomy">The fault taxonomy<a class="headerlink" href="#the-fault-taxonomy" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Example</th>
+<th>Can CAPL alone inject it?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signal-level (message content)</td>
+<td>A CAN signal reports an implausible value</td>
+<td>Yes — <code>setSignal()</code> on the simulated node</td>
+</tr>
+<tr>
+<td>Communication-level</td>
+<td>A frame stops arriving, arrives late, or is malformed (bad CRC, bad DLC)</td>
+<td>Partially — CANoe can suppress/delay frames and corrupt payload; some corruption (physical-layer bit errors) needs a real network fault injector</td>
+</tr>
+<tr>
+<td>Electrical-level</td>
+<td>A sensor line opens (open circuit), shorts to ground, shorts to battery voltage</td>
+<td>No — needs a physical relay/switch box (a "breakout box") wired between the ECU and its harness</td>
+</tr>
+<tr>
+<td>Power-level</td>
+<td>Voltage sag, brownout, ignition-cycle glitch during a write operation</td>
+<td>No — needs a programmable power supply capable of scripted voltage profiles</td>
+</tr>
+<tr>
+<td>Software/timing-level</td>
+<td>A task misses its deadline, a watchdog isn't fed</td>
+<td>Sometimes, if the ECU exposes a debug/test hook; otherwise needs instrumented target debugging, out of scope for bus-level testing</td>
+</tr>
+</tbody>
+</table>
+<p>The taxonomy matters because a test plan that only ever exercises
+signal-level faults (the easiest to script) can systematically miss
+entire classes of real-world failure — an open sensor wire behaves
+very differently from that same sensor reporting an implausible value,
+and a safety mechanism designed for one may not catch the other.</p>
+<h2 id="communication-level-fault-injection-in-capl">Communication-level fault injection in CAPL<a class="headerlink" href="#communication-level-fault-injection-in-capl" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Illustrative — CANoe's fault-injection block/CAPL functions vary</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// by version; verify exact function names against your installation.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">tc_MissingFrameTriggersTimeout</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"ECU flags communication loss when expected frame stops arriving"</span><span class="p">);</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="n">dword</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="n">BlockMessage</span><span class="p">(</span><span class="n">WheelSpeedFL</span><span class="p">);</span><span class="w"> </span><span class="c1">// suppress transmission entirely, simulating a dead sender</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="n">t0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timeNowNS</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="p">;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="n">testWaitForSignal</span><span class="p">(</span><span class="n">CommTimeoutFault_WheelSpeedFL</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timeNowNS</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="p">;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"comm timeout fault flagged within spec"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="n">UnblockMessage</span><span class="p">(</span><span class="n">WheelSpeedFL</span><span class="p">);</span><span class="w"> </span><span class="c1">// always restore normal traffic before the next testcase</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">}</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">tc_CorruptedDlcRejected</span><span class="p">()</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">{</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"Frame with wrong DLC vs. DBC definition is rejected, not misparsed"</span><span class="p">);</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="n">message</span><span class="w"> </span><span class="n">WheelSpeedFL</span><span class="w"> </span><span class="n">msg</span><span class="p">;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="n">msg</span><span class="p">.</span><span class="n">DLC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="c1">// DBC defines 8 — deliberately wrong</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">  </span><span class="n">msg</span><span class="p">.</span><span class="kt">byte</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="n">output</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"no valid wheel speed update accepted from malformed frame"</span><span class="p">,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">                 </span><span class="n">getSignal</span><span class="p">(</span><span class="n">WheelSpeedFL_Value</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">gLastKnownGoodValue</span><span class="p">);</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>tc_MissingFrameTriggersTimeout</code> restores normal traffic explicitly at
+the end — the same "always undo what you injected" discipline as
+Module 4's calibration restore, generalized to any fault-injection
+technique: leaving a blocked message in place corrupts every
+subsequent testcase in the run.</p>
+<h2 id="why-electrical-level-faults-need-real-hardware">Why electrical-level faults need real hardware<a class="headerlink" href="#why-electrical-level-faults-need-real-hardware" title="Permanent link">&para;</a></h2>
+<p>A sensor reporting <code>0xFF 0xFF</code> (an implausible value CAPL can easily
+simulate) and a sensor whose signal wire has physically opened produce
+different electrical symptoms an ECU's front-end circuitry may
+distinguish — pull-up/pull-down behavior, voltage rail sag, ADC
+saturation versus floating input. A safety mechanism specifically
+designed to detect an open circuit via electrical characteristics
+(not just implausible values) cannot be validated by CAPL signal
+manipulation alone — it requires a breakout box or fault-injection
+relay bank physically wired into the ECU's harness, under HIL rig
+control, to open/short/ground specific pins on command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Typical breakout-box fault types (hardware-level, NOT reachable from CAPL):
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  - Open circuit      (pin disconnected)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  - Short to ground   (pin pulled to 0V)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  - Short to battery  (pin pulled to Vbatt, ~12V/24V)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  - Short to adjacent pin (cross-short between two harness pins)
+</code></pre></div>
+<p>A well-structured HIL test plan (Module 10) explicitly separates test
+cases that a CAPL-only rig can execute from those that require this
+class of hardware, so gaps in physical fault-injection coverage are
+visible and tracked rather than silently absent.</p>
+<h2 id="fault-injection-campaigns-coverage-over-one-off-checks">Fault injection campaigns: coverage over one-off checks<a class="headerlink" href="#fault-injection-campaigns-coverage-over-one-off-checks" title="Permanent link">&para;</a></h2>
+<p>A mature fault-injection practice doesn't test faults ad hoc — it
+maintains a <strong>fault matrix</strong>: every safety-relevant signal or
+interface, crossed with every applicable fault type, with a tracked
+pass/fail/not-yet-tested status:</p>
+<table>
+<thead>
+<tr>
+<th>Signal/Interface</th>
+<th>Implausible value</th>
+<th>Frame timeout</th>
+<th>Open circuit</th>
+<th>Short to ground</th>
+<th>Short to battery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WheelSpeedFL</td>
+<td>Tested — Pass</td>
+<td>Tested — Pass</td>
+<td>Not yet tested</td>
+<td>Not yet tested</td>
+<td>Not yet tested</td>
+</tr>
+<tr>
+<td>BrakePedalPosition</td>
+<td>Tested — Pass</td>
+<td>Tested — Fail (bug filed)</td>
+<td>Tested — Pass</td>
+<td>Not yet tested</td>
+<td>N/A (digital signal)</td>
+</tr>
+</tbody>
+</table>
+<p>This matrix is itself a traceability artifact (Module 8) and typically
+maps directly to entries in the safety case's FMEA (Failure Mode and
+Effects Analysis) — each cell should trace back to a specific failure
+mode the FMEA identified as needing a detection mechanism.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Key point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fault taxonomy</td>
+<td>Signal, communication, electrical, power, software/timing — each needs different tooling</td>
+</tr>
+<tr>
+<td>CAPL's ceiling</td>
+<td>Signal and much communication-level faults; not electrical or power-level</td>
+</tr>
+<tr>
+<td>Restore after injecting</td>
+<td>Every fault injection needs an explicit undo before the next testcase</td>
+</tr>
+<tr>
+<td>Fault matrix</td>
+<td>Track signal × fault-type coverage explicitly, tied to the FMEA</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<ol>
+<li>For <code>BrakePedalPosition</code> in the fault matrix, explain why "short to
+   ground" and "short to battery" are meaningful hardware-level faults
+   to test but "N/A" is marked for one of them if the signal is
+   digital (0/1) rather than analog — under what physical
+   circumstance would a digital signal's short-to-battery still be
+   meaningful to test?</li>
+<li><code>tc_CorruptedDlcRejected</code> assumes <code>gLastKnownGoodValue</code> is tracked
+   elsewhere. Write the CAPL to maintain it correctly (updated only on
+   an ECU-<em>acknowledged</em> valid frame, not merely a well-formed one).</li>
+<li>Given the taxonomy table, design a one-page test plan section
+   listing, for a fictional tire-pressure-sensor ECU, which fault
+   types you'd request breakout-box hardware for and which you can
+   cover with CAPL alone — with a one-line justification per row.</li>
+</ol>
 
 
 

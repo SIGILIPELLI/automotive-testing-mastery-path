@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#homologation-compliance-testing-overview" class="md-skip">
+        <a href="#08-homologation-compliance-testing-overview" class="md-skip">
           Skip to content
         </a>
       
@@ -1886,6 +1886,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Homologation & Compliance Testing Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1902,6 +1920,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#homologation-vs-internal-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Homologation vs. internal validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-cancanoehil-testing-supports-but-doesnt-replace-homologation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where CAN/CANoe/HIL testing supports (but doesn't replace) homologation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-worked-example-modeling-an-anticipated-regulatory-scenario-in-hil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A worked example: modeling an anticipated regulatory scenario in HIL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance-documentation-what-a-dossier-typically-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance documentation: what a dossier typically needs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2094,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#homologation-vs-internal-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Homologation vs. internal validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-cancanoehil-testing-supports-but-doesnt-replace-homologation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where CAN/CANoe/HIL testing supports (but doesn't replace) homologation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-worked-example-modeling-an-anticipated-regulatory-scenario-in-hil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A worked example: modeling an anticipated regulatory scenario in HIL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance-documentation-what-a-dossier-typically-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance documentation: what a dossier typically needs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2186,197 @@
   
 
 
-<h1 id="homologation-compliance-testing-overview">Homologation &amp; Compliance Testing Overview<a class="headerlink" href="#homologation-compliance-testing-overview" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="08-homologation-compliance-testing-overview">08 · Homologation &amp; Compliance Testing Overview<a class="headerlink" href="#08-homologation-compliance-testing-overview" title="Permanent link">&para;</a></h1>
+<p>Everything so far validated that an ECU meets an OEM's own
+requirements. Homologation is a different gate entirely: proving to a
+regulatory authority that a vehicle (and the ECUs that implement
+regulated functions) meets legally mandated standards before it can be
+sold in a given market. This module gives a test engineer's-eye
+overview of what that involves and how it connects to the testing
+skillset already built.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>This module is a general overview based on publicly documented
+regulatory frameworks (UN ECE regulations, FMVSS) — it is not
+legal or regulatory compliance advice, and any real homologation
+program must be run by qualified regulatory/compliance
+specialists with jurisdiction-specific expertise.</p>
+</div>
+<h2 id="homologation-vs-internal-validation">Homologation vs. internal validation<a class="headerlink" href="#homologation-vs-internal-validation" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Internal test strategy (Level 4 Module 1)</th>
+<th>Homologation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who defines the requirement</td>
+<td>The OEM (informed by market/competitive needs)</td>
+<td>A regulatory body (UN ECE, NHTSA/FMVSS, regional equivalents)</td>
+</tr>
+<tr>
+<td>Consequence of failure</td>
+<td>Program delay, rework</td>
+<td>Vehicle cannot be legally sold/registered in that market</td>
+</tr>
+<tr>
+<td>Evidence formality</td>
+<td>Internal review standards</td>
+<td>Often requires accredited test labs, specific approved procedures, government-witnessed testing</td>
+</tr>
+<tr>
+<td>Applies to</td>
+<td>Whatever the OEM chooses to build</td>
+<td>Specific regulated functions only (braking, lighting, emissions, certain ADAS functions in some markets)</td>
+</tr>
+</tbody>
+</table>
+<p>Not every ECU or feature is homologation-relevant — a courtesy-light
+control module's timing has no regulatory test requirement, while an
+AEB system's activation performance may be directly regulated in
+markets that mandate it (e.g., under relevant UN ECE regulations for
+advanced emergency braking systems).</p>
+<h2 id="where-cancanoehil-testing-supports-but-doesnt-replace-homologation">Where CAN/CANoe/HIL testing supports (but doesn't replace) homologation<a class="headerlink" href="#where-cancanoehil-testing-supports-but-doesnt-replace-homologation" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Role of this course's skillset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-homologation internal validation</td>
+<td>HIL scenario testing (Level 3) against the <em>anticipated</em> regulatory test procedure, to catch failures before the costly formal test</td>
+</tr>
+<tr>
+<td>Regression after a late software change</td>
+<td>Confirming a change doesn't regress previously-homologated behavior, using the same regression-suite discipline (Level 3 Module 7)</td>
+</tr>
+<tr>
+<td>Supporting evidence for a compliance dossier</td>
+<td>Internal test reports and traceability (Level 3 Module 8) often form supporting technical documentation, even though they don't substitute for the formal regulatory test itself</td>
+</tr>
+<tr>
+<td>The formal homologation test</td>
+<td>Typically performed by or witnessed by an accredited/government-recognized test facility, following a specific mandated procedure — outside the scope of an internal CANoe/HIL rig</td>
+</tr>
+</tbody>
+</table>
+<p>The practical value of Level 3's HIL skillset here is <strong>derisking</strong>: a
+team that has already run a AEB HIL scenario matrix closely modeled on
+the anticipated regulatory test procedure walks into the formal,
+expensive, hard-to-repeat homologation test with far higher confidence
+of passing on the first attempt.</p>
+<h2 id="a-worked-example-modeling-an-anticipated-regulatory-scenario-in-hil">A worked example: modeling an anticipated regulatory scenario in HIL<a class="headerlink" href="#a-worked-example-modeling-an-anticipated-regulatory-scenario-in-hil" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Illustrative -- an internal HIL scenario modeled after a publicly</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// documented AEB regulatory test scenario category (a lead vehicle</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// decelerating scenario), for PRE-homologation internal confidence</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// only. This is NOT a substitute for the actual accredited</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// regulatory test procedure, which specifies exact vehicle/target</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1">// parameters, approach speeds, and pass criteria in far more detail</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// than this simplified sketch.</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">tc_PreHomologation_LeadVehicleDecelerationScenario</span><span class="p">()</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">{</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"[PRE-HOMOL-AEB-03] Internal rehearsal of anticipated lead-vehicle deceleration AEB scenario"</span><span class="p">);</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="n">HilSetParameter</span><span class="p">(</span><span class="s">"EgoSpeed_kph"</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">);</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="n">HilSetParameter</span><span class="p">(</span><span class="s">"LeadVehicleSpeed_kph"</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">);</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="n">HilSetParameter</span><span class="p">(</span><span class="s">"LeadVehicleDeceleration_mps2"</span><span class="p">,</span><span class="w"> </span><span class="mf">-6.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// sudden hard braking ahead</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"AEB activated before simulated collision point"</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">                 </span><span class="n">getSignal</span><span class="p">(</span><span class="n">AEB_BrakeCommand</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="c1">// Real homologation pass criteria are typically speed-reduction or</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="c1">// collision-avoidance thresholds defined precisely by the regulation</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="c1">// -- this internal rehearsal should mirror those thresholds as</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="c1">// closely as the team's regulatory-affairs function can specify,</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="c1">// not invent its own.</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">}</span>
+</code></pre></div>
+<p>The comment matters more than the code here: the single biggest risk
+in "internal rehearsal" testing is quietly drifting from the actual
+regulatory procedure and pass criteria, producing false confidence.
+The internal test's parameters should be sourced from and reviewed by
+whoever on the program owns actual regulatory-affairs expertise, not
+assumed or approximated by the test team alone.</p>
+<h2 id="compliance-documentation-what-a-dossier-typically-needs">Compliance documentation: what a dossier typically needs<a class="headerlink" href="#compliance-documentation-what-a-dossier-typically-needs" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Content</th>
+<th>Relationship to earlier modules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Type-approval technical file</td>
+<td>Design description, test results, conformity evidence</td>
+<td>Traceability matrix (Module 8) often feeds directly into this</td>
+</tr>
+<tr>
+<td>Declaration of conformity</td>
+<td>A formal statement the vehicle/system meets the applicable regulation</td>
+<td>Signed off by regulatory/quality function, not test engineering alone</td>
+</tr>
+<tr>
+<td>Test reports from accredited facility</td>
+<td>The actual homologation test results</td>
+<td>Distinct from and not replaceable by internal CANoe/HIL reports</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Key point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Homologation vs. internal validation</td>
+<td>Regulatory-mandated, legally consequential, distinct from OEM-internal requirements</td>
+</tr>
+<tr>
+<td>Not every feature is regulated</td>
+<td>Homologation applies to specific mandated functions, not the whole vehicle equally</td>
+</tr>
+<tr>
+<td>HIL's role</td>
+<td>Pre-homologation derisking/rehearsal, never a substitute for the formal accredited test</td>
+</tr>
+<tr>
+<td>Drift risk</td>
+<td>Internal rehearsal scenarios must be sourced from actual regulatory-affairs expertise, not approximated by the test team</td>
+</tr>
+<tr>
+<td>Dossier</td>
+<td>Traceability and internal test evidence often support, but don't replace, the formal compliance documentation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Explain in your own words why a passing result on
+   <code>tc_PreHomologation_LeadVehicleDecelerationScenario</code> should never
+   be reported to program leadership as "AEB homologation passed" —
+   what specific gap exists between this test and an actual formal
+   regulatory test?</li>
+<li>Identify two ECUs on a typical vehicle program (one clearly
+   homologation-relevant, one clearly not), and justify the
+   distinction using the "specific regulated functions only" point
+   above.</li>
+<li>Draft the traceability link (in the Level 3 Module 8 tagging style)
+   connecting an internal pre-homologation testcase to both an
+   internal software requirement AND a named external regulation
+   reference, and explain why both links are useful to different
+   audiences (engineering vs. regulatory-affairs).</li>
+</ol>
 
 
 

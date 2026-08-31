@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lin-bus-basics" class="md-skip">
+        <a href="#04-lin-bus-basics" class="md-skip">
           Skip to content
         </a>
       
@@ -1026,6 +1026,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LIN Bus Basics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1042,6 +1060,119 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#masterslave-not-peer-to-peer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Master/slave, not peer-to-peer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-anatomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frame anatomy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frame anatomy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checksum-classic-vs-enhanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checksum: classic vs. enhanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capl-for-lin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPL for LIN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ldf-vs-dbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LDF vs. DBC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test implications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2122,108 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#masterslave-not-peer-to-peer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Master/slave, not peer-to-peer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-anatomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frame anatomy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frame anatomy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checksum-classic-vs-enhanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checksum: classic vs. enhanced
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capl-for-lin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPL for LIN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ldf-vs-dbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LDF vs. DBC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test implications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2242,255 @@
   
 
 
-<h1 id="lin-bus-basics">LIN Bus Basics<a class="headerlink" href="#lin-bus-basics" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="04-lin-bus-basics">04 · LIN Bus Basics<a class="headerlink" href="#04-lin-bus-basics" title="Permanent link">&para;</a></h1>
+<p>Not every signal in a car needs CAN's arbitration, error handling, or
+wiring cost. Window lifters, mirror motors, seat controllers, rain
+sensors — low-speed, low-criticality, cost-sensitive nodes — typically
+sit on <strong>LIN</strong> (Local Interconnect Network), a single-wire,
+master/slave bus that trades CAN's peer-to-peer arbitration for a much
+cheaper physical layer. This module covers LIN's frame model and the
+CAPL/tooling differences from the CAN work in Level 1 and this level's
+earlier modules.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>LIN 2.x frame structure, checksum rules, and the CAPL syntax below
+are genuine, documented behavior (LIN Specification 2.2A). Nothing
+here was captured from a live LIN bus — treat every snippet as a
+reviewed reference and verify against your own hardware.</p>
+</div>
+<h2 id="masterslave-not-peer-to-peer">Master/slave, not peer-to-peer<a class="headerlink" href="#masterslave-not-peer-to-peer" title="Permanent link">&para;</a></h2>
+<p>CAN nodes all arbitrate for the bus independently. LIN has exactly one
+<strong>master</strong> node, which owns a <strong>schedule table</strong> of when every message
+gets sent, and one or more <strong>slave</strong> nodes that only ever respond when
+the master asks. There is no arbitration, no collision handling, and no
+node priority beyond "whatever order the master's schedule puts it in."</p>
+<p>This has direct test consequences: you cannot "just transmit" a LIN
+frame the way you can a CAN frame from a test node — you either <em>are</em>
+the master (running the schedule) or you're a slave responding to a
+header the master sends, and CANoe's LIN interface models this
+distinction explicitly (Master simulation vs. Slave simulation nodes).</p>
+<h2 id="frame-anatomy">Frame anatomy<a class="headerlink" href="#frame-anatomy" title="Permanent link">&para;</a></h2>
+<p>A LIN frame is two parts sent by two different roles:</p>
+<ol>
+<li><strong>Header</strong> (always sent by the master): break field, sync byte,
+   protected identifier (PID).</li>
+<li><strong>Response</strong> (sent by whichever node — master or a slave — owns
+   that identifier): 1–8 data bytes, then a checksum.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Sent by</th>
+<th>Size</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Break</td>
+<td>Master</td>
+<td>≥13 bit-times low</td>
+<td>Signals start of frame</td>
+</tr>
+<tr>
+<td>Sync</td>
+<td>Master</td>
+<td>0x55</td>
+<td>Lets slaves calibrate their baud rate</td>
+</tr>
+<tr>
+<td>Protected ID (PID)</td>
+<td>Master</td>
+<td>6-bit ID + 2 parity bits</td>
+<td>Identifies which frame; parity catches bit errors on the ID itself</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Header owner</td>
+<td>1–8 bytes</td>
+<td>The payload</td>
+</tr>
+<tr>
+<td>Checksum</td>
+<td>Same node as data</td>
+<td>1 byte</td>
+<td>Classic (data-only) or enhanced (data+PID), depending on LIN version</td>
+</tr>
+</tbody>
+</table>
+<h3 id="checksum-classic-vs-enhanced">Checksum: classic vs. enhanced<a class="headerlink" href="#checksum-classic-vs-enhanced" title="Permanent link">&para;</a></h3>
+<p>LIN 1.x used a <strong>classic checksum</strong> (sum of data bytes only). LIN 2.x
+introduced the <strong>enhanced checksum</strong>, which folds the protected ID into
+the sum as well, catching a class of errors the classic checksum
+missed. A LIN network with mixed-version nodes must configure each
+frame's checksum type individually to match what that frame's
+publisher/subscriber pair actually implements — a very common
+integration bug is one node using enhanced and another expecting
+classic for the same frame ID, which silently drops every frame as a
+checksum failure.</p>
+<h2 id="capl-for-lin">CAPL for LIN<a class="headerlink" href="#capl-for-lin" title="Permanent link">&para;</a></h2>
+<p>CAPL treats LIN messages similarly to CAN messages but through
+LIN-specific objects (<code>linFrame</code>, <code>on linFrame</code>, <code>LinFrameSendRequest</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">variables</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="n">linFrame</span><span class="w"> </span><span class="n">MirrorControl</span><span class="w"> </span><span class="n">mcFrame</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">on</span><span class="w"> </span><span class="n">preStart</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">{</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="c1">// As LIN master simulation: request this frame be sent by the schedule</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="n">LinFrameSendRequest</span><span class="p">(</span><span class="n">mcFrame</span><span class="p">);</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">on</span><span class="w"> </span><span class="n">linFrame</span><span class="w"> </span><span class="n">MirrorControl</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">{</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="n">write</span><span class="p">(</span><span class="s">"MirrorControl: X=%d, Y=%d, checksum_ok=%d"</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="n">this</span><span class="p">.</span><span class="kt">byte</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">this</span><span class="p">.</span><span class="kt">byte</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">this</span><span class="p">.</span><span class="n">CheckSumOK</span><span class="p">);</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">}</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">on</span><span class="w"> </span><span class="n">linSchedulerModeChange</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">{</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="n">write</span><span class="p">(</span><span class="s">"Schedule table changed to: %d"</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="p">.</span><span class="n">mode</span><span class="p">);</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">}</span>
+</code></pre></div>
+<p>Key differences from the CAN handlers in Level 1 Module 5 and this
+level's Module 1:</p>
+<ul>
+<li><code>this.CheckSumOK</code> is a LIN-specific flag your test scripts should
+  assert on directly — a frame with a bad checksum still arrives at the
+  <code>on linFrame</code> handler, unlike a CAN frame that fails CRC (which is
+  typically dropped at the controller level before your script sees it).</li>
+<li>LIN frames are driven by a <strong>schedule table</strong>, configured separately
+  from the CAPL script (in the LDF — LIN Description File — and CANoe's
+  scheduler configuration), not by ad-hoc <code>output()</code> calls at arbitrary
+  times.</li>
+</ul>
+<h2 id="ldf-vs-dbc">LDF vs. DBC<a class="headerlink" href="#ldf-vs-dbc" title="Permanent link">&para;</a></h2>
+<p>LIN's equivalent of a DBC is the <strong>LDF</strong> (LIN Description File) —
+similar goal (signals, frames, scaling, nodes) but LIN-specific syntax
+and mandatory schedule-table definitions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>LIN_description_file;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>LIN_protocol_version = "2.2A";
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>LIN_language_version = "2.2";
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>LIN_speed = 19.2 kbps;
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Nodes {
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  Master: BodyControlModule, 5 ms, 0.1 ms;
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  Slaves: MirrorLeft, MirrorRight;
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>}
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Signals {
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  MirrorX: 8, 0, MirrorLeft, BodyControlModule;
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>  MirrorY: 8, 0, MirrorLeft, BodyControlModule;
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>}
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>Frames {
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>  MirrorControl: 0x10, MirrorLeft, 2 {
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    MirrorX, 0;
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    MirrorY, 8;
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>  }
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>}
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>Schedule_tables {
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>  Normal {
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    MirrorControl delay 10 ms;
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>  }
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>}
+</code></pre></div>
+<p>A test suite that reads a DBC but ignores the corresponding LDF for a
+LIN sub-network will miss schedule-table timing entirely — the LDF is
+the source of truth for <em>when</em> a LIN signal actually updates, which a
+DBC has no concept of.</p>
+<h2 id="test-implications">Test implications<a class="headerlink" href="#test-implications" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Cause</th>
+<th>Test approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Silent data drop between mismatched nodes</td>
+<td>Classic vs. enhanced checksum mismatch</td>
+<td>Assert <code>CheckSumOK</code> on every received frame in a restbus/simulation test, not just decode the bytes</td>
+</tr>
+<tr>
+<td>Slave not responding</td>
+<td>Slave not present in the active schedule table, or wrong sleep/wake state</td>
+<td>Verify schedule table membership and node wake state before asserting on a slave's response</td>
+</tr>
+<tr>
+<td>Wrong signal timing assumption</td>
+<td>LDF schedule interval treated like a CAN cycle time</td>
+<td>Confirm actual update interval against the LDF's schedule table, not an assumed fixed rate</td>
+</tr>
+<tr>
+<td>Bus stuck after a slave error</td>
+<td>LIN has weaker built-in error recovery than CAN</td>
+<td>Include a wake-up/sleep-cycle test (<code>go-to-sleep</code> frame ID <code>0x3C</code>, wake-up via bus activity) in your test plan</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>CAN</th>
+<th>LIN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bus access</td>
+<td>Multi-master, arbitration</td>
+<td>Single master, schedule-driven</td>
+</tr>
+<tr>
+<td>Physical layer</td>
+<td>2-wire differential</td>
+<td>1-wire, ground-referenced</td>
+</tr>
+<tr>
+<td>Frame structure</td>
+<td>ID + DLC + data + CRC</td>
+<td>Break/Sync/PID (master) + data + checksum (header owner)</td>
+</tr>
+<tr>
+<td>Database file</td>
+<td>DBC</td>
+<td>LDF</td>
+</tr>
+<tr>
+<td>Checksum types</td>
+<td>Single (15-bit CRC)</td>
+<td>Classic vs. Enhanced (version-dependent)</td>
+</tr>
+<tr>
+<td>CAPL object</td>
+<td><code>message</code></td>
+<td><code>linFrame</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>A body-control LIN network has a <code>WindowControl</code> frame owned by the
+<code>WindowMotor</code> slave, LIN 2.1 enhanced checksum, on a 10 ms schedule
+slot.</p>
+<ol>
+<li>Explain, in terms of header vs. response, exactly which bytes the
+   master sends and which bytes the slave sends for this frame.</li>
+<li>A field report says <code>WindowControl</code> values are read correctly about
+   half the time and drop the rest. List two plausible causes rooted in
+   this module (checksum type, schedule table, wake state) and how you
+   would distinguish between them using <code>CheckSumOK</code> and schedule-table
+   inspection.</li>
+<li>Write a CAPL <code>on linFrame WindowControl</code> handler that counts and
+   reports the checksum failure rate over a 1000-frame sample.</li>
+</ol>
 
 
 

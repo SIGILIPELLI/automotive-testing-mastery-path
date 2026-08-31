@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#test-data-management-at-scale" class="md-skip">
+        <a href="#05-test-data-management-at-scale" class="md-skip">
           Skip to content
         </a>
       
@@ -1802,6 +1802,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Data Management at Scale
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1818,6 +1836,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-has-to-be-versioned-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What has to be versioned together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-control-for-non-code-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version control for non-code artifacts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-result-data-what-to-retain-and-for-how-long" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test result data: what to retain, and for how long
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-results-database-schema-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A results database schema sketch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2094,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-has-to-be-versioned-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What has to be versioned together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-control-for-non-code-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version control for non-code artifacts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-result-data-what-to-retain-and-for-how-long" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test result data: what to retain, and for how long
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-results-database-schema-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A results database schema sketch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2186,191 @@
   
 
 
-<h1 id="test-data-management-at-scale">Test Data Management at Scale<a class="headerlink" href="#test-data-management-at-scale" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="05-test-data-management-at-scale">05 · Test Data Management at Scale<a class="headerlink" href="#05-test-data-management-at-scale" title="Permanent link">&para;</a></h1>
+<p>A single test suite has a handful of DBC files, one A2L, and a
+spreadsheet of scenario data. A vehicle program has dozens of ECU
+variants, software builds shipping monthly, and years of accumulated
+test results — and none of that is useful if nobody can answer "which
+exact DBC version, A2L, and software build produced this specific
+passing result six months ago?" This module covers versioning,
+configuration management, and results-data practice at program scale.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>No specific ALM/data-management platform was used to produce this
+content. The versioning and configuration-management patterns
+below reflect common industry practice building on the DBC/A2L
+pairing concerns raised in Levels 2–3 — adapt to your program's
+actual tooling.</p>
+</div>
+<h2 id="what-has-to-be-versioned-together">What has to be versioned together<a class="headerlink" href="#what-has-to-be-versioned-together" title="Permanent link">&para;</a></h2>
+<p>The single biggest test-data-management failure mode at scale is
+<strong>version skew</strong> between artifacts that must match exactly:</p>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Must match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DBC file</td>
+<td>The exact CAN network/signal definition the ECU software build implements</td>
+</tr>
+<tr>
+<td>A2L file</td>
+<td>The exact software build's memory layout (Level 3 Module 2)</td>
+</tr>
+<tr>
+<td>ECU software build</td>
+<td>The specific binary flashed to the rig</td>
+</tr>
+<tr>
+<td>Test case source (CAPL)</td>
+<td>The requirement version it was written against (Level 3 Module 8)</td>
+</tr>
+<tr>
+<td>Fault-injection matrix</td>
+<td>The FMEA revision it traces to (Level 3 Module 6)</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>configuration baseline</strong> — a single record naming the exact
+version of every one of these that belongs together — is the artifact
+that makes "reproduce this result" possible at all:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Baseline: AEB-DomainController-v2.4.1-baseline
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  ECU software build:      2.4.1-rc3
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  DBC:                     ADAS_Network_v18.dbc  (checksum: a1b2c3...)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  A2L:                     AEB_DC_2.4.1.a2l      (checksum: d4e5f6...)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  CAPL test suite tag:     test-suite-v2.4.1-align
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  Requirements baseline:   SW-REQ-set-2024-Q3-rev4
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  FMEA revision:           FMEA-AEB-rev7
+</code></pre></div>
+<p>Without this record, a test result from six months ago is nearly
+worthless as evidence — you cannot tell an assessor (Level 3 Module 8)
+what, precisely, was tested.</p>
+<h2 id="version-control-for-non-code-artifacts">Version control for non-code artifacts<a class="headerlink" href="#version-control-for-non-code-artifacts" title="Permanent link">&para;</a></h2>
+<p>DBC, A2L, and CAPL test source are all text-ish or structured-binary
+files that benefit from the same discipline as software source code —
+version control, code review, and a clear branching/tagging model —
+but teams sometimes treat them as loose files on a shared drive
+instead, which is the single most common root cause of the skew
+problem above.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Illustrative -- tagging a configuration baseline in a repo that</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># holds DBC/A2L/CAPL artifacts alongside the ECU software build ID.</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span><span class="s2">"AEB-DomainController-v2.4.1-baseline"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>-m<span class="w"> </span><span class="s2">"DBC=ADAS_Network_v18, A2L=AEB_DC_2.4.1, SW=2.4.1-rc3"</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span><span class="s2">"AEB-DomainController-v2.4.1-baseline"</span>
+</code></pre></div>
+<p>Checksumming the DBC/A2L files (as in the baseline record above) adds
+a cheap integrity check: a test orchestration script (Level 3 Module
+5) can verify the checksum of the DBC actually loaded into CANoe
+matches the baseline's recorded checksum before running anything,
+catching an accidental substitution immediately rather than producing
+silently wrong results.</p>
+<h2 id="test-result-data-what-to-retain-and-for-how-long">Test result data: what to retain, and for how long<a class="headerlink" href="#test-result-data-what-to-retain-and-for-how-long" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Data class</th>
+<th>Retention driver</th>
+<th>Typical retention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raw signal/bus traces from failed tests</td>
+<td>Root-cause investigation</td>
+<td>Until the defect is closed, often longer for safety-relevant failures</td>
+</tr>
+<tr>
+<td>Pass/fail verdicts + baseline reference</td>
+<td>Traceability/audit evidence (Level 3 Module 8)</td>
+<td>Program lifetime, often beyond — safety cases can be revisited years later</td>
+</tr>
+<tr>
+<td>Full raw traces from passing tests</td>
+<td>Storage cost vs. value — rarely needed once passing</td>
+<td>Short retention, or summary-only, is common</td>
+</tr>
+<tr>
+<td>Calibration/CHARACTERISTIC values used during a test (Level 3 Module 2)</td>
+<td>Reproducibility of any test that swept a tunable value</td>
+<td>Same as the pass/fail verdict retention — a passing threshold-sweep result is meaningless without the exact values swept</td>
+</tr>
+</tbody>
+</table>
+<p>The asymmetry in the table (keep failure traces longer/richer than
+passing-test traces) is a deliberate storage-cost trade-off — full bus
+traces from thousands of passing HIL runs are expensive to retain
+indefinitely and rarely re-examined, while a failure's trace is often
+the only evidence available for root-causing an intermittent defect
+weeks later.</p>
+<h2 id="a-results-database-schema-sketch">A results database schema sketch<a class="headerlink" href="#a-results-database-schema-sketch" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- Illustrative minimal schema linking a result to its full context.</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">test_result</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="n">testcase_name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="n">requirement_ids</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">          </span><span class="c1">-- e.g. "SW-REQ-201,SW-REQ-202"</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="n">baseline_tag</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">    </span><span class="c1">-- e.g. "AEB-DomainController-v2.4.1-baseline"</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="n">verdict</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">         </span><span class="c1">-- Passed / Failed / Inconclusive</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="n">run_timestamp</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="n">trace_file_path</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span><span class="w">          </span><span class="c1">-- NULL if not retained (e.g., a routine pass)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="n">rig_id</span><span class="w"> </span><span class="nb">TEXT</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">);</span>
+</code></pre></div>
+<p>A query like "show every Failed result for any requirement under ASIL
+D, in the last 90 days, across all rigs" becomes a straightforward
+join against this table plus the requirements/ASIL table from Level 3
+Module 8 — the kind of program-level visibility a spreadsheet of
+loose result files cannot realistically provide.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Key point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Version skew</td>
+<td>The most common test-data failure — DBC/A2L/software/test-source drifting out of alignment</td>
+</tr>
+<tr>
+<td>Configuration baseline</td>
+<td>One record naming the exact matched version of every artifact involved in a test run</td>
+</tr>
+<tr>
+<td>Version control for non-code artifacts</td>
+<td>DBC/A2L/CAPL deserve the same discipline as source code, not loose shared-drive files</td>
+</tr>
+<tr>
+<td>Checksum verification</td>
+<td>Cheap, automatable guard against accidental artifact substitution</td>
+</tr>
+<tr>
+<td>Asymmetric retention</td>
+<td>Keep failure evidence rich and long; passing-test raw traces can be pruned aggressively</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<ol>
+<li>A test run six months ago is cited in a safety audit, but the DBC
+   file referenced no longer exists on the shared drive it was loaded
+   from at the time. Using the configuration-baseline concept, design
+   the minimum set of fields that would have prevented this from being
+   unrecoverable.</li>
+<li>Extend the <code>test_result</code> schema to also record the specific
+   CHARACTERISTIC values used in a threshold-sweep test (Level 3
+   Module 2's XCP calibration sweep), and explain why a single
+   <code>trace_file_path</code> column isn't sufficient for that case.</li>
+<li>Propose a concrete checksum-verification step to add to the Level
+   3 Module 5 Python orchestration script, that fails the job loudly
+   (not silently) if the DBC actually loaded doesn't match the
+   baseline's recorded checksum.</li>
+</ol>
 
 
 

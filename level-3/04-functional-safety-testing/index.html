@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#functional-safety-testing-iso-26262" class="md-skip">
+        <a href="#04-functional-safety-testing-iso-26262" class="md-skip">
           Skip to content
         </a>
       
@@ -1400,6 +1400,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Safety Testing (ISO 26262)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1416,6 +1434,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#asil-risk-graded-requirements-not-a-passfail-badge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASIL: risk-graded requirements, not a pass/fail badge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safety-mechanisms-what-youre-actually-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety mechanisms: what you're actually testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capl-driven-fault-injection-for-a-safety-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPL-driven fault injection for a safety mechanism
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostic-coverage-and-single-point-vs-latent-faults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic coverage and single-point vs. latent faults
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traceability-why-every-safety-test-needs-a-requirement-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traceability: why every safety test needs a requirement ID
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#asil-risk-graded-requirements-not-a-passfail-badge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASIL: risk-graded requirements, not a pass/fail badge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safety-mechanisms-what-youre-actually-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety mechanisms: what you're actually testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capl-driven-fault-injection-for-a-safety-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAPL-driven fault injection for a safety mechanism
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostic-coverage-and-single-point-vs-latent-faults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic coverage and single-point vs. latent faults
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traceability-why-every-safety-test-needs-a-requirement-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traceability: why every safety test needs a requirement ID
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2208,232 @@
   
 
 
-<h1 id="functional-safety-testing-iso-26262">Functional Safety Testing (ISO 26262)<a class="headerlink" href="#functional-safety-testing-iso-26262" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 3 · Advanced.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="04-functional-safety-testing-iso-26262">04 · Functional Safety Testing (ISO 26262)<a class="headerlink" href="#04-functional-safety-testing-iso-26262" title="Permanent link">&para;</a></h1>
+<p>Everything so far has tested <em>whether an ECU does the right thing</em>.
+ISO 26262 asks a different, harder question: what happens when
+something goes wrong — a sensor fails, a microcontroller bit-flips, a
+communication link drops — and does the system fail into a safe state
+rather than a dangerous one? This module covers the ASIL model, the
+safety lifecycle's testing implications, and how fault-injection style
+thinking connects to the CAPL patterns already built.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>No certified safety-case tooling or physical fault-injection rig
+was used to produce this content. The ASIL/safety-lifecycle model
+and CAPL patterns below reflect the documented ISO 26262 standard
+and common practice — a real safety case requires a qualified
+safety engineer and traceable evidence, which this module does not
+substitute for.</p>
+</div>
+<h2 id="asil-risk-graded-requirements-not-a-passfail-badge">ASIL: risk-graded requirements, not a pass/fail badge<a class="headerlink" href="#asil-risk-graded-requirements-not-a-passfail-badge" title="Permanent link">&para;</a></h2>
+<p>ISO 26262 assigns an <strong>Automotive Safety Integrity Level</strong> (QM, A, B,
+C, D — D is the strictest) to each hazard based on three factors:</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Severity (S0–S3)</td>
+<td>How bad is the injury if the hazard occurs?</td>
+</tr>
+<tr>
+<td>Exposure (E0–E4)</td>
+<td>How often is the vehicle in the situation where this hazard could occur?</td>
+</tr>
+<tr>
+<td>Controllability (C0–C3)</td>
+<td>Can the driver/system reasonably avoid harm once the hazard starts?</td>
+</tr>
+</tbody>
+</table>
+<p>A steering-assist ECU losing torque request capability at highway
+speed might be ASIL D (high severity, common exposure, low
+controllability); a courtesy-light ECU failing might be QM (no safety
+relevance at all — regular quality management is sufficient). The
+ASIL doesn't attach to the whole ECU — it attaches to specific
+<strong>safety goals</strong>, and different functions on the same ECU can carry
+different ASILs.</p>
+<p><strong>Testing implication:</strong> the rigor, independence, and coverage
+expected of a test scales with the ASIL of the safety goal under test.
+An ASIL D safety mechanism needs traceable, reviewed, often
+independently-verified test evidence; a QM function can be tested with
+the lighter-weight practices from earlier modules.</p>
+<h2 id="safety-mechanisms-what-youre-actually-testing">Safety mechanisms: what you're actually testing<a class="headerlink" href="#safety-mechanisms-what-youre-actually-testing" title="Permanent link">&para;</a></h2>
+<p>A safety goal is met through <strong>safety mechanisms</strong> — specific,
+identifiable pieces of design meant to detect a fault and force a safe
+reaction. Common patterns:</p>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Detects</th>
+<th>Safe reaction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range check</td>
+<td>Sensor value outside physically plausible bounds</td>
+<td>Ignore reading, fall back to default/degraded mode</td>
+</tr>
+<tr>
+<td>Plausibility/cross-check</td>
+<td>Two independent sensors disagree beyond tolerance</td>
+<td>Flag both suspect, degrade</td>
+</tr>
+<tr>
+<td>Watchdog timeout</td>
+<td>Software task hangs or stops running</td>
+<td>Force ECU reset</td>
+</tr>
+<tr>
+<td>E2E (end-to-end) protection</td>
+<td>CAN/CAN-FD message corrupted, stale, or out of sequence</td>
+<td>Reject message, treat signal as invalid</td>
+</tr>
+<tr>
+<td>Diagnostic coverage via redundant computation</td>
+<td>A calculation's result diverges from a redundant/simplified check</td>
+<td>Trip a fault, transition to safe state</td>
+</tr>
+</tbody>
+</table>
+<p>Functional safety testing is, concretely, <strong>testing that these
+mechanisms fire correctly when the fault they're designed for actually
+happens</strong> — not testing the nominal function again.</p>
+<h2 id="capl-driven-fault-injection-for-a-safety-mechanism">CAPL-driven fault injection for a safety mechanism<a class="headerlink" href="#capl-driven-fault-injection-for-a-safety-mechanism" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Illustrative — CAPL fault-injection idioms for a plausibility check.</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// The two "independent" sensor signals are simulated on the bus;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// real systems may also require electrical-level fault injection</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// (open/short) that CAPL alone cannot produce — see Module 6.</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">tc_WheelSpeedPlausibilityFaultDetected</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">{</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"Diverging wheel-speed sensors trigger plausibility fault within spec"</span><span class="p">);</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="n">dword</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="n">setSignal</span><span class="p">(</span><span class="n">WheelSpeedFL</span><span class="p">,</span><span class="w"> </span><span class="mf">60.0</span><span class="p">);</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="n">setSignal</span><span class="p">(</span><span class="n">WheelSpeedFR</span><span class="p">,</span><span class="w"> </span><span class="mf">60.0</span><span class="p">);</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span><span class="w"> </span><span class="c1">// let the ECU settle on plausible baseline</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="n">t0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timeNowNS</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="p">;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="n">setSignal</span><span class="p">(</span><span class="n">WheelSpeedFR</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// inject an implausible divergence</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="n">testWaitForSignal</span><span class="p">(</span><span class="n">PlausibilityFault_WheelSpeed</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timeNowNS</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="p">;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"fault flagged within 500ms of divergence"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"ECU entered degraded mode"</span><span class="p">,</span><span class="w"> </span><span class="n">getSignal</span><span class="p">(</span><span class="n">SteeringAssistMode</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DEGRADED</span><span class="p">);</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">}</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">tc_PlausibilityFaultClearsOnRecovery</span><span class="p">()</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">{</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"Fault clears once sensors agree again, per the safety concept's recovery rule"</span><span class="p">);</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="n">setSignal</span><span class="p">(</span><span class="n">WheelSpeedFL</span><span class="p">,</span><span class="w"> </span><span class="mf">60.0</span><span class="p">);</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="n">setSignal</span><span class="p">(</span><span class="n">WheelSpeedFR</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">);</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">  </span><span class="n">testWaitForSignal</span><span class="p">(</span><span class="n">PlausibilityFault_WheelSpeed</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">);</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="n">setSignal</span><span class="p">(</span><span class="n">WheelSpeedFR</span><span class="p">,</span><span class="w"> </span><span class="mf">60.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// sensors agree again</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">  </span><span class="n">testWaitForSignal</span><span class="p">(</span><span class="n">PlausibilityFault_WheelSpeed</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"fault cleared per recovery timing spec"</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="p">}</span>
+</code></pre></div>
+<p>The second testcase matters as much as the first: a safety mechanism
+that never clears a fault (or clears it too eagerly, before the fault
+condition is genuinely gone) is its own defect, and the recovery
+behavior is usually spelled out explicitly in the safety concept
+document, not left to inference.</p>
+<h2 id="diagnostic-coverage-and-single-point-vs-latent-faults">Diagnostic coverage and single-point vs. latent faults<a class="headerlink" href="#diagnostic-coverage-and-single-point-vs-latent-faults" title="Permanent link">&para;</a></h2>
+<p>ISO 26262 distinguishes:</p>
+<table>
+<thead>
+<tr>
+<th>Fault class</th>
+<th>Meaning</th>
+<th>Test relevance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-point fault</td>
+<td>A fault with no independent safety mechanism protecting against it — directly violates the safety goal</td>
+<td>Highest testing priority; the mechanism protecting it (if any) must be proven to work</td>
+</tr>
+<tr>
+<td>Multi-point fault</td>
+<td>Requires a second, independent fault to become dangerous</td>
+<td>Test the combination, not just each fault alone, where feasible</td>
+</tr>
+<tr>
+<td>Latent fault</td>
+<td>A fault that doesn't manifest immediately but defeats a safety mechanism silently (e.g., the plausibility checker's own comparator is broken)</td>
+<td>Needs periodic self-test evidence, not just reactive fault injection</td>
+</tr>
+</tbody>
+</table>
+<p>A latent-fault example: if the plausibility checker in the example
+above has a bug that always reports "plausible" regardless of input,
+<code>tc_WheelSpeedPlausibilityFaultDetected</code> catches it directly — but a
+checker that <em>usually</em> works and fails only under a specific timing
+race needs a dedicated latent-fault test, often a self-test or built-in
+diagnostic the ECU runs on its own schedule.</p>
+<h2 id="traceability-why-every-safety-test-needs-a-requirement-id">Traceability: why every safety test needs a requirement ID<a class="headerlink" href="#traceability-why-every-safety-test-needs-a-requirement-id" title="Permanent link">&para;</a></h2>
+<p>Unlike a Level 1 exploratory test, a functional-safety test is
+worthless as <em>safety evidence</em> unless it traces to a specific safety
+requirement, and that requirement traces to a specific safety goal.
+Module 8 covers traceability tooling in depth; the safety-specific
+addition is that the trace must also record <strong>which ASIL</strong> the
+requirement carries, since audit and assessment activities scale with
+ASIL.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Key point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASIL</td>
+<td>Attaches to a safety goal (via S/E/C), not to a whole ECU; drives required test rigor</td>
+</tr>
+<tr>
+<td>Safety mechanism</td>
+<td>The specific design element that detects a fault and forces a safe reaction — the actual test target</td>
+</tr>
+<tr>
+<td>Recovery testing</td>
+<td>Test fault-clear behavior explicitly, not just fault-detect</td>
+</tr>
+<tr>
+<td>Single-point vs. latent fault</td>
+<td>Latent faults need periodic self-test evidence, not just one-shot fault injection</td>
+</tr>
+<tr>
+<td>Traceability</td>
+<td>Every safety test needs a requirement ID and its ASIL recorded</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Classify a brake-pedal-position sensor failing to a fixed
+   mid-travel value (rather than an obviously out-of-range value) as a
+   single-point, multi-point, or latent fault risk, and explain what
+   safety mechanism would need to exist to catch it.</li>
+<li><code>tc_PlausibilityFaultClearsOnRecovery</code> above has a weak assertion
+   (<code>1 == 1</code>) after the <code>testWaitForSignal</code> call. Rewrite it with a
+   meaningful check, and explain why relying solely on
+   <code>testWaitForSignal</code>'s built-in timeout-as-pass/fail is a common but
+   fragile pattern.</li>
+<li>Pick a safety mechanism from the table above other than
+   plausibility checking, and write one testcase (detection) and one
+   testcase (recovery) for it, stating what ASIL you'd assume and why
+   that changes how rigorously you'd document the result.</li>
+</ol>
 
 
 

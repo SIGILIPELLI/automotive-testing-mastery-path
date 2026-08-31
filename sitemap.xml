@@ -2,186 +2,186 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/privacy/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/01-what-is-automotive-testing/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/02-can-bus-fundamentals/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/03-can-frame-structure/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/04-introduction-to-canoe/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/05-capl-scripting-basics/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/06-uds-diagnostics-basics/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/07-introduction-to-hil-testing/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/08-test-case-design-for-ecus/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/09-automotive-test-standards-overview/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-1/10-project-capl-test-script/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/01-advanced-capl-scripting/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/02-canoe-test-modules/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/03-can-fd-basics/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/04-lin-bus-basics/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/05-dtc-deep-dive/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/06-dbc-signal-definitions/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/07-automated-test-sequences/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/08-restbus-simulation/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/09-hil-test-bench-components/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-2/10-project-can-signal-validation/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/01-advanced-hil-automation/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/02-canape-measurement-calibration/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/03-automotive-ethernet-basics/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/04-functional-safety-testing/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/05-test-automation-frameworks/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/06-fault-injection-testing/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/07-regression-test-suites/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/08-requirements-based-traceability/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/09-sotif-autonomous-testing/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-3/10-project-hil-test-plan/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/01-test-strategy-vehicle-programs/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/02-continuous-testing-automotive/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/03-advanced-fault-injection/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/04-cybersecurity-testing/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/05-test-data-management/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/06-building-test-automation-team/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/07-supplier-oem-collaboration/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/08-homologation-compliance-testing/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/09-career-growth/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/automotive-testing-mastery-path/level-4/10-capstone-ecu-test-strategy/</loc>
-         <lastmod>2026-08-29</lastmod>
+         <lastmod>2026-08-31</lastmod>
     </url>
 </urlset>

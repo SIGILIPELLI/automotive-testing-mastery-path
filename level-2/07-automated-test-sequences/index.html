@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#automated-test-sequences-in-canoe" class="md-skip">
+        <a href="#07-automated-test-sequences-in-canoe" class="md-skip">
           Skip to content
         </a>
       
@@ -1110,6 +1110,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automated Test Sequences in CANoe
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1126,6 +1144,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#test-module-structure-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test module structure, end to end
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordering-and-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering and independence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reporting-and-passfail-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting and pass/fail semantics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-sequence-across-multiple-test-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building a sequence across multiple test modules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xmlreport-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XML/report output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#test-module-structure-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test module structure, end to end
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordering-and-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering and independence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reporting-and-passfail-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting and pass/fail semantics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-sequence-across-multiple-test-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building a sequence across multiple test modules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xmlreport-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XML/report output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2208,238 @@
   
 
 
-<h1 id="automated-test-sequences-in-canoe">Automated Test Sequences in CANoe<a class="headerlink" href="#automated-test-sequences-in-canoe" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="07-automated-test-sequences-in-canoe">07 · Automated Test Sequences in CANoe<a class="headerlink" href="#07-automated-test-sequences-in-canoe" title="Permanent link">&para;</a></h1>
+<p>Module 2 introduced CANoe's Test Module structure (<code>testcase</code>,
+<code>testfunction</code>) for individual checks. Real suites chain dozens of
+these into ordered <strong>test sequences</strong> with shared setup, teardown, and
+pass/fail reporting that survives a single case failing without
+aborting the whole run. This module covers that orchestration layer.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>The CAPL test-sequence constructs, XML test report structure, and
+execution-control APIs below are genuine, documented CANoe
+behavior. Nothing here was captured from a live CANoe session —
+treat every snippet as a reviewed reference and verify exact
+report formatting against your installed CANoe version.</p>
+</div>
+<h2 id="test-module-structure-end-to-end">Test module structure, end to end<a class="headerlink" href="#test-module-structure-end-to-end" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">variables</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">gSetupOk</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">testpreparation</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">{</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="n">gSetupOk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="c1">// Runs once, before any testcase in this module</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">InitBusSimulation</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">gSetupOk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">testcase</span><span class="w"> </span><span class="n">tc_CoolantOverheatBoundary</span><span class="p">()</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">{</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"Coolant overheat activates above 120C, not at/below"</span><span class="p">);</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gSetupOk</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="n">testStepFail</span><span class="p">(</span><span class="s">"Preparation failed, skipping"</span><span class="p">);</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="n">testStep</span><span class="p">(</span><span class="s">"Set CoolantTemp=120.0"</span><span class="p">);</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span><span class="n">SetSignalValue</span><span class="p">(</span><span class="s">"CoolantTemp"</span><span class="p">,</span><span class="w"> </span><span class="mf">120.0</span><span class="p">);</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"OverheatWarning stays 0"</span><span class="p">,</span><span class="w"> </span><span class="n">GetSignalValue</span><span class="p">(</span><span class="s">"OverheatWarning"</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="n">testStep</span><span class="p">(</span><span class="s">"Set CoolantTemp=120.1"</span><span class="p">);</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="n">SetSignalValue</span><span class="p">(</span><span class="s">"CoolantTemp"</span><span class="p">,</span><span class="w"> </span><span class="mf">120.1</span><span class="p">);</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"OverheatWarning goes to 1"</span><span class="p">,</span><span class="w"> </span><span class="n">GetSignalValue</span><span class="p">(</span><span class="s">"OverheatWarning"</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="p">}</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">testcase</span><span class="w"> </span><span class="n">tc_LowFuelHysteresis</span><span class="p">()</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="p">{</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"Low fuel warning hysteresis 10%/15%"</span><span class="p">);</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">  </span><span class="c1">// ... independent test body, order-independent of tc_CoolantOverheatBoundary</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="p">}</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="n">testcasefinalization</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="p">{</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">  </span><span class="c1">// Runs once after all testcases, regardless of individual pass/fail</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">  </span><span class="n">ResetBusSimulation</span><span class="p">();</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="p">}</span>
+</code></pre></div>
+<p>The structural rule that matters most: <strong><code>testpreparation</code> and
+<code>testcasefinalization</code> always run exactly once per module execution</strong>,
+while every <code>testcase</code> function runs independently and a failure in
+one must not prevent the others from executing — CANoe's test module
+runner already guarantees this as long as you don't hand-roll your own
+early-exit logic that skips sibling testcases.</p>
+<h2 id="ordering-and-independence">Ordering and independence<a class="headerlink" href="#ordering-and-independence" title="Permanent link">&para;</a></h2>
+<p>A frequent design mistake is writing testcases that depend on each
+other's side effects (e.g. <code>tc_02</code> assumes <code>tc_01</code> left a DTC set).
+This breaks the moment someone reorders the module, runs a single
+testcase in isolation for debugging, or a test-selection tool runs a
+subset in CI (Level 4's continuous-testing module). Each <code>testcase</code>
+should:</p>
+<ul>
+<li>Establish its own preconditions explicitly (even if that duplicates
+  a <code>SetSignalValue</code> call another testcase also makes).</li>
+<li>Clean up any state it changed that isn't already handled by
+  <code>testcasefinalization</code>, if that state could leak into a differently
+  ordered run.</li>
+</ul>
+<h2 id="reporting-and-passfail-semantics">Reporting and pass/fail semantics<a class="headerlink" href="#reporting-and-passfail-semantics" title="Permanent link">&para;</a></h2>
+<p>CANoe's test report distinguishes several outcome levels per step, not
+just pass/fail:</p>
+<table>
+<thead>
+<tr>
+<th>Step API</th>
+<th>Meaning</th>
+<th>Effect on testcase result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>testStepPass(msg)</code></td>
+<td>Explicit pass</td>
+<td>Testcase passes if all steps pass</td>
+</tr>
+<tr>
+<td><code>testStepFail(msg)</code></td>
+<td>Explicit fail</td>
+<td>Testcase fails, execution of <em>that</em> testcase can continue or <code>return</code></td>
+</tr>
+<tr>
+<td><code>testStepCheck(msg, cond)</code></td>
+<td>Pass/fail based on <code>cond</code></td>
+<td>Same as above, condition-driven</td>
+</tr>
+<tr>
+<td><code>testCaseFatalError(msg)</code></td>
+<td>Unrecoverable for this testcase</td>
+<td>Aborts the testcase immediately, module continues</td>
+</tr>
+<tr>
+<td><code>testCaseInconclusive(msg)</code></td>
+<td>Neither pass nor fail</td>
+<td>Common for skipped/preconditions-not-met tests, kept out of pass-rate stats</td>
+</tr>
+</tbody>
+</table>
+<p>Using <code>testCaseInconclusive</code> correctly matters for CI dashboards
+(Level 4): a testcase that couldn't run because bench hardware wasn't
+present should never silently count as either a pass (false confidence)
+or a fail (false alarm) — inconclusive is the honest third option.</p>
+<h2 id="building-a-sequence-across-multiple-test-modules">Building a sequence across multiple test modules<a class="headerlink" href="#building-a-sequence-across-multiple-test-modules" title="Permanent link">&para;</a></h2>
+<p>CANoe's <strong>Test Configuration</strong> (<code>.testcfg</code> / Test Environment)
+orders multiple test modules and controls whether a module's failure
+halts the whole configuration or just gets recorded and moves on. The
+two common patterns:</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Configuration</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fail-fast</td>
+<td>Configuration halts on first module failure</td>
+<td>Smoke tests, gating a build before spending time on the full suite</td>
+</tr>
+<tr>
+<td>Fail-forward</td>
+<td>All modules run regardless of earlier failures</td>
+<td>Full regression run (Level 3 Module 7) where you want a complete picture in one pass</td>
+</tr>
+</tbody>
+</table>
+<p>A well-organized suite usually runs a small fail-fast smoke sequence
+first, then the full fail-forward regression sequence only if the smoke
+sequence passes — avoiding a 45-minute full run against a build that's
+obviously broken in the first two minutes.</p>
+<h2 id="xmlreport-output">XML/report output<a class="headerlink" href="#xmlreport-output" title="Permanent link">&para;</a></h2>
+<p>CANoe test modules can export results as XML (and HTML) reports
+suitable for CI ingestion:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;TestModule</span><span class="w"> </span><span class="na">name=</span><span class="s">"CoolantAndFuelTests"</span><span class="nt">&gt;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&lt;TestCase</span><span class="w"> </span><span class="na">name=</span><span class="s">"tc_CoolantOverheatBoundary"</span><span class="w"> </span><span class="na">verdict=</span><span class="s">"passed"</span><span class="nt">&gt;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&lt;TestStep</span><span class="w"> </span><span class="na">title=</span><span class="s">"Set CoolantTemp=120.0"</span><span class="w"> </span><span class="na">verdict=</span><span class="s">"passed"</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&lt;TestStep</span><span class="w"> </span><span class="na">title=</span><span class="s">"Set CoolantTemp=120.1"</span><span class="w"> </span><span class="na">verdict=</span><span class="s">"passed"</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&lt;/TestCase&gt;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&lt;TestCase</span><span class="w"> </span><span class="na">name=</span><span class="s">"tc_LowFuelHysteresis"</span><span class="w"> </span><span class="na">verdict=</span><span class="s">"failed"</span><span class="nt">&gt;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&lt;TestStep</span><span class="w"> </span><span class="na">title=</span><span class="s">"Verify warning off at 16%"</span><span class="w"> </span><span class="na">verdict=</span><span class="s">"failed"</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">              </span><span class="na">detail=</span><span class="s">"Expected 0, got 1"</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">&lt;/TestCase&gt;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nt">&lt;/TestModule&gt;</span>
+</code></pre></div>
+<p>This structure is exactly what a CI pipeline (Level 4 Module 2) parses
+to compute pass rates and flag regressions — designing testcase titles
+and step messages to be self-explanatory in this report is what makes
+a failed nightly run debuggable without re-running it locally first.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Construct</th>
+<th>Runs</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>testpreparation</code></td>
+<td>Once, before all testcases</td>
+<td>Shared setup</td>
+</tr>
+<tr>
+<td><code>testcase</code></td>
+<td>Once each, order-independent</td>
+<td>The actual check</td>
+</tr>
+<tr>
+<td><code>testcasefinalization</code></td>
+<td>Once, after all testcases</td>
+<td>Shared teardown</td>
+</tr>
+<tr>
+<td><code>testStepCheck</code></td>
+<td>Per assertion</td>
+<td>Condition-driven pass/fail</td>
+</tr>
+<tr>
+<td><code>testCaseInconclusive</code></td>
+<td>On unmet preconditions</td>
+<td>Keeps skipped tests out of pass/fail stats</td>
+</tr>
+<tr>
+<td>Fail-fast vs. fail-forward</td>
+<td>Test Configuration level</td>
+<td>Smoke vs. full regression strategy</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>You're assembling a nightly sequence with three existing test modules:
+<code>SmokeTests</code> (5 basic sanity testcases, ~1 minute), <code>CANSignalSuite</code>
+(40 testcases, ~10 minutes), and <code>DTCLifecycleSuite</code> (15 testcases,
+~15 minutes, requires a bench with real hardware that's occasionally
+unavailable).</p>
+<ol>
+<li>Propose an ordering and a fail-fast/fail-forward policy for these
+   three modules, explaining your reasoning for each choice.</li>
+<li><code>DTCLifecycleSuite</code> sometimes can't run because the bench is
+   occupied by another team. Which CAPL construct from this module
+   should its testcases use in that situation, and why is it wrong to
+   have them report a hard pass or fail instead?</li>
+<li>Sketch (as pseudocode, not full CAPL) one <code>testcase</code> from
+   <code>CANSignalSuite</code> that demonstrates proper independence — i.e., it
+   sets up its own preconditions rather than assuming a prior testcase
+   already did.</li>
+</ol>
 
 
 

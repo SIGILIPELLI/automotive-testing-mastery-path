@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ethernetautomotive-ethernet-basics" class="md-skip">
+        <a href="#03-ethernetautomotive-ethernet-basics" class="md-skip">
           Skip to content
         </a>
       
@@ -1372,6 +1372,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ethernet/Automotive Ethernet Basics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1388,6 +1406,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-ethernet-and-whats-different" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Ethernet, and what's different
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#someip-the-service-layer-test-engineers-actually-touch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SOME/IP: the service layer test engineers actually touch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-capl-side-someip-style-test-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A CAPL-side SOME/IP-style test sketch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-and-timing-level-differences-from-can-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frame- and timing-level differences from CAN testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2094,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-ethernet-and-whats-different" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Ethernet, and what's different
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#someip-the-service-layer-test-engineers-actually-touch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SOME/IP: the service layer test engineers actually touch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-capl-side-someip-style-test-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A CAPL-side SOME/IP-style test sketch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-and-timing-level-differences-from-can-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frame- and timing-level differences from CAN testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2186,209 @@
   
 
 
-<h1 id="ethernetautomotive-ethernet-basics">Ethernet/Automotive Ethernet Basics<a class="headerlink" href="#ethernetautomotive-ethernet-basics" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 3 · Advanced.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="03-ethernetautomotive-ethernet-basics">03 · Ethernet/Automotive Ethernet Basics<a class="headerlink" href="#03-ethernetautomotive-ethernet-basics" title="Permanent link">&para;</a></h1>
+<p>Modern ECUs — ADAS domain controllers, infotainment head units,
+gateways — increasingly carry Ethernet alongside or instead of CAN.
+This module covers what's actually different about automotive
+Ethernet versus office Ethernet, the SOME/IP service layer test
+engineers meet most often, and how frame-level testing habits from CAN
+carry over.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>No physical Ethernet-equipped ECU or SOME/IP stack was used to
+produce this content. The frame formats, timing figures, and
+SOME/IP concepts below reflect documented IEEE 802.3/AUTOSAR/
+SOME/IP standards — verify exact configuration and vendor-specific
+tooling against your project's actual network design.</p>
+</div>
+<h2 id="why-ethernet-and-whats-different">Why Ethernet, and what's different<a class="headerlink" href="#why-ethernet-and-whats-different" title="Permanent link">&para;</a></h2>
+<p>CAN tops out around 1 Mbit/s (5 Mbit/s for CAN-FD's data phase);
+Ethernet in a vehicle runs 100 Mbit/s to multi-gigabit — needed for
+camera/radar/lidar data volumes ADAS and surround-view systems produce
+that CAN/CAN-FD simply cannot carry. But vehicle wiring, EMI, and cost
+constraints mean automotive Ethernet is not the same physical layer as
+an office switch:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Office Ethernet</th>
+<th>Automotive Ethernet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Physical layer</td>
+<td>100BASE-TX (2-pair, RJ45)</td>
+<td>100BASE-T1 / 1000BASE-T1 (single unshielded twisted pair)</td>
+</tr>
+<tr>
+<td>Topology</td>
+<td>Star, switches everywhere</td>
+<td>Star or daisy-chained via switches; often one link per ECU pair</td>
+</tr>
+<tr>
+<td>Wiring cost/weight driver</td>
+<td>Not a concern</td>
+<td>Single-pair wiring specifically to cut harness weight/cost</td>
+</tr>
+<tr>
+<td>Typical protocols riding on top</td>
+<td>TCP/IP, arbitrary</td>
+<td>SOME/IP, DoIP (diagnostics), AVB/TSN for time-sync media</td>
+</tr>
+</tbody>
+</table>
+<p>The single-pair physical layer (<code>BroadR-Reach</code>, standardized as
+100BASE-T1/1000BASE-T1) is the headline automotive-specific piece —
+same Ethernet frame format above it, different electrical signaling
+below it.</p>
+<h2 id="someip-the-service-layer-test-engineers-actually-touch">SOME/IP: the service layer test engineers actually touch<a class="headerlink" href="#someip-the-service-layer-test-engineers-actually-touch" title="Permanent link">&para;</a></h2>
+<p>Where CAN signals are static (a DBC defines every frame up front),
+Ethernet-based ECU communication is frequently <strong>service-oriented</strong>:
+an ECU offers a named service, other ECUs discover and subscribe to
+it, and requests/responses or eventing happen at that service level.
+SOME/IP (Scalable service-Oriented MiddlewarE over IP) is the
+AUTOSAR-standard protocol for this.</p>
+<p>Core SOME/IP concepts:</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service</td>
+<td>A named capability an ECU offers (e.g., "climate control state")</td>
+</tr>
+<tr>
+<td>Method</td>
+<td>An RPC-style call — request, get a response</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>A one-way notification, typically as part of an eventgroup</td>
+</tr>
+<tr>
+<td>Eventgroup</td>
+<td>A named bundle of events a client subscribes to as a unit</td>
+</tr>
+<tr>
+<td>SOME/IP-SD (Service Discovery)</td>
+<td>The sub-protocol for offering/finding/subscribing to services dynamically over UDP multicast</td>
+</tr>
+</tbody>
+</table>
+<p>This is a meaningfully different test mental model from CAN's "every
+signal is always on the bus at its configured rate": a SOME/IP event
+only arrives if something has subscribed, and a method call needs the
+service to have been <em>discovered</em> first. A test that sends a subscribe
+request but never sees any events may be failing at the discovery
+step, not the eventing step — the two need to be verified separately.</p>
+<h2 id="a-capl-side-someip-style-test-sketch">A CAPL-side SOME/IP-style test sketch<a class="headerlink" href="#a-capl-side-someip-style-test-sketch" title="Permanent link">&para;</a></h2>
+<p>CANoe supports Ethernet and SOME/IP test modules; the syntax differs
+from pure CAPL CAN but the testcase structure is familiar:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Illustrative — exact SOME/IP CAPL API surface depends on your</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// CANoe Ethernet/SOME/IP option version and .fibex/service description.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">tc_ClimateStateEventDelivered</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"Subscribing to ClimateState eventgroup yields an event within spec"</span><span class="p">);</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="n">dword</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="n">SomeIpSdSubscribeEventgroup</span><span class="p">(</span><span class="s">"ClimateControlService"</span><span class="p">,</span><span class="w"> </span><span class="s">"ClimateStateGroup"</span><span class="p">);</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="n">t0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timeNowNS</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="p">;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="n">testWaitForSomeIpEvent</span><span class="p">(</span><span class="s">"ClimateControlService"</span><span class="p">,</span><span class="w"> </span><span class="s">"ClimateStateChanged"</span><span class="p">,</span><span class="w"> </span><span class="mi">2000</span><span class="p">);</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timeNowNS</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="p">;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"event received within 2000ms of subscription"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2000</span><span class="p">);</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">}</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">tc_ServiceDiscoveredBeforeSubscribe</span><span class="p">()</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">{</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"Service must be offered/discovered before a subscribe can succeed"</span><span class="p">);</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"service currently offered"</span><span class="p">,</span><span class="w"> </span><span class="n">SomeIpSdIsServiceAvailable</span><span class="p">(</span><span class="s">"ClimateControlService"</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">}</span>
+</code></pre></div>
+<p>Note the split into two testcases: discovery availability is checked
+independently of eventgroup delivery, the same "test one thing per
+testcase" discipline from Level 1 applied to a protocol where the
+setup step (discovery) has its own well-defined failure mode.</p>
+<h2 id="frame-and-timing-level-differences-from-can-testing">Frame- and timing-level differences from CAN testing<a class="headerlink" href="#frame-and-timing-level-differences-from-can-testing" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>CAN habit</th>
+<th>Ethernet/SOME-IP adjustment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Is it on the bus at all"</td>
+<td>Check frame ID present at expected cycle time</td>
+<td>Check service <em>offered</em> via SD before checking method/event traffic</td>
+</tr>
+<tr>
+<td>Payload inspection</td>
+<td>Fixed DBC-defined bit layout</td>
+<td>Often serialized (SOME/IP payload serialization rules) — needs the service description, not just a byte offset guess</td>
+</tr>
+<tr>
+<td>Timing budget</td>
+<td>Frame cycle time from DBC</td>
+<td>Service discovery has its own timers (initial delay, repetition, cyclic offer) separate from application-level event rate</td>
+</tr>
+<tr>
+<td>Loss/retransmission</td>
+<td>CAN handles at hardware/arbitration level</td>
+<td>UDP-based SOME/IP has no built-in reliability — a dropped event is simply gone, so test for it explicitly if reliability matters</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Key point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100BASE-T1</td>
+<td>Single-pair physical layer for automotive Ethernet; same frame format above it</td>
+</tr>
+<tr>
+<td>SOME/IP</td>
+<td>Service-oriented middleware: services, methods, events, eventgroups</td>
+</tr>
+<tr>
+<td>SOME/IP-SD</td>
+<td>Discovery/offer/subscribe sub-protocol — verify separately from eventing</td>
+</tr>
+<tr>
+<td>No built-in reliability</td>
+<td>SOME/IP over UDP can silently drop events — test for loss explicitly if it matters</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<ol>
+<li>A test subscribes to an eventgroup and waits 2000ms for an event
+   with no result. List the three distinct failure points (discovery,
+   subscription, event delivery) and, for each, one way to
+   distinguish it from the others in a test log.</li>
+<li>Explain why a fixed byte-offset assumption from CAN DBC habits is
+   unsafe when reading a SOME/IP payload, and what artifact (analogous
+   to a DBC) you'd need instead.</li>
+<li>SOME/IP events ride over UDP with no automatic retransmission.
+   Design a test that specifically checks for event loss under a
+   simulated burst of 100 rapid state changes, and state what
+   pass/fail threshold you'd choose and why.</li>
+</ol>
 
 
 

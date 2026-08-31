@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#database-files-dbc-signal-definitions" class="md-skip">
+        <a href="#06-database-files-dbc-signal-definitions" class="md-skip">
           Skip to content
         </a>
       
@@ -1082,6 +1082,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Files (DBC) & Signal Definitions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1098,6 +1116,119 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#anatomy-of-a-dbc-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomy of a DBC file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decoding-a-signal-by-hand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decoding a signal by hand
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decoding a signal by hand">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#byte-order-is-the-most-common-decode-mistake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Byte order is the most common decode mistake
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-checklist-for-a-new-or-changed-dbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review checklist for a new or changed DBC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal-overlap-a-concrete-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signal overlap: a concrete bug
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-dbc-directly-in-a-test-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the DBC directly in a test script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2122,108 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#anatomy-of-a-dbc-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomy of a DBC file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decoding-a-signal-by-hand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decoding a signal by hand
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decoding a signal by hand">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#byte-order-is-the-most-common-decode-mistake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Byte order is the most common decode mistake
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-checklist-for-a-new-or-changed-dbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review checklist for a new or changed DBC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal-overlap-a-concrete-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signal overlap: a concrete bug
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-dbc-directly-in-a-test-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the DBC directly in a test script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2242,267 @@
   
 
 
-<h1 id="database-files-dbc-signal-definitions">Database Files (DBC) &amp; Signal Definitions<a class="headerlink" href="#database-files-dbc-signal-definitions" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 2 · Intermediate.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="06-database-files-dbc-signal-definitions">06 · Database Files (DBC) &amp; Signal Definitions<a class="headerlink" href="#06-database-files-dbc-signal-definitions" title="Permanent link">&para;</a></h1>
+<p>Every module so far has referenced "the DBC" as the source of truth for
+signal names, scaling, and ranges without dissecting the file itself.
+This module opens it up: the actual syntax, the fields most likely to
+be misread, and the review checklist that catches the DBC bugs which
+cause the most confusing downstream test failures.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>The DBC syntax below matches Vector's widely-adopted (if informally
+specified) DBC format, as consumed by CANoe, CANdb++, and most
+open-source parsers (e.g. <code>cantools</code>). Nothing here was generated
+from a live tool session — cross-check against your actual DBC
+editor's export before relying on exact formatting.</p>
+</div>
+<h2 id="anatomy-of-a-dbc-file">Anatomy of a DBC file<a class="headerlink" href="#anatomy-of-a-dbc-file" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>VERSION ""
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>NS_ :
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  NS_DESC_
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  CM_
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  BA_DEF_
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>BS_:
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>BU_: BCM ECU_ENGINE ECU_ABS
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>BO_ 256 EngineStatus: 8 ECU_ENGINE
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a> SG_ EngineRPM : 0|16@1+ (0.25,0) [0|16383.75] "rpm" BCM
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a> SG_ CoolantTemp : 16|8@1+ (1,-40) [-40|215] "degC" BCM,ECU_ABS
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a> SG_ EngineRunning : 24|1@1+ (1,0) [0|1] "" Vector__XXX
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>BO_ 512 BrakeStatus: 4 ECU_ABS
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a> SG_ BrakePressure : 0|12@1+ (0.1,0) [0|409.5] "bar" BCM
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>CM_ SG_ 256 EngineRPM "Crankshaft speed, updated every 10ms.";
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>CM_ BO_ 256 "Engine status broadcast, cycle time 10ms.";
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>BA_DEF_ SG_ "GenSigStartValue" FLOAT 0 100000;
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>BA_ "GenSigStartValue" SG_ 256 EngineRPM 0;
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>VAL_ 256 EngineRunning 0 "Off" 1 "Running";
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BU_</code></td>
+<td>Node (ECU) list</td>
+</tr>
+<tr>
+<td><code>BO_</code></td>
+<td>Message: ID, name, DLC, transmitting node</td>
+</tr>
+<tr>
+<td><code>SG_</code></td>
+<td>Signal: start bit, length, byte order, sign, scale/offset, min/max, unit, receiving node(s)</td>
+</tr>
+<tr>
+<td><code>CM_</code></td>
+<td>Comments — often carries the <em>real</em> spec (units caveats, update conditions) that the raw fields don't capture</td>
+</tr>
+<tr>
+<td><code>BA_DEF_</code> / <code>BA_</code></td>
+<td>Custom attributes (cycle time, start value, FD frame format from Module 3)</td>
+</tr>
+<tr>
+<td><code>VAL_</code></td>
+<td>Enumeration — maps raw integer values to human-readable states</td>
+</tr>
+</tbody>
+</table>
+<h2 id="decoding-a-signal-by-hand">Decoding a signal by hand<a class="headerlink" href="#decoding-a-signal-by-hand" title="Permanent link">&para;</a></h2>
+<p>Take <code>CoolantTemp : 16\|8@1+ (1,-40) [-40\|215] "degC"</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start bit</td>
+<td>16</td>
+<td>Bit 16 of the 64-bit (8-byte) frame</td>
+</tr>
+<tr>
+<td>Length</td>
+<td>8</td>
+<td>8 bits wide</td>
+</tr>
+<tr>
+<td>Byte order</td>
+<td><code>@1</code></td>
+<td>Little-endian (Intel); <code>@0</code> would be big-endian (Motorola)</td>
+</tr>
+<tr>
+<td>Sign</td>
+<td><code>+</code></td>
+<td>Unsigned</td>
+</tr>
+<tr>
+<td>Scale, offset</td>
+<td><code>(1, -40)</code></td>
+<td>physical = raw × 1 + (−40)</td>
+</tr>
+<tr>
+<td>Range</td>
+<td><code>[-40\|215]</code></td>
+<td>Valid physical range, for validation/plausibility checks</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td><code>"degC"</code></td>
+<td>Celsius</td>
+</tr>
+</tbody>
+</table>
+<p>A raw byte value of <code>0x64</code> (100 decimal) at bit 16 decodes to
+<code>100 × 1 + (−40) = 60 °C</code>. This is exactly the calculation Level 1's
+coolant boundary test (equivalence partitioning module) depended on
+without spelling out the arithmetic — now you can derive any test
+vector's raw bytes directly from a target physical value instead of
+guessing.</p>
+<h3 id="byte-order-is-the-most-common-decode-mistake">Byte order is the most common decode mistake<a class="headerlink" href="#byte-order-is-the-most-common-decode-mistake" title="Permanent link">&para;</a></h3>
+<p><code>@1+</code> (Intel/little-endian) and <code>@0+</code> (Motorola/big-endian) place the
+same start-bit number in physically different locations within the
+frame's byte layout. Hand-decoding a Motorola signal using Intel rules
+(or vice versa) produces a value that's wrong but often still
+<em>plausible-looking</em> — the classic false-negative trap where a test
+"passes" by coincidence on one value and silently breaks on another.
+Always decode via your DBC-aware tool (CANoe, <code>cantools</code>), never by
+manual bit-shifting, once byte order is in play.</p>
+<h2 id="review-checklist-for-a-new-or-changed-dbc">Review checklist for a new or changed DBC<a class="headerlink" href="#review-checklist-for-a-new-or-changed-dbc" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Every signal's <code>[min\|max]</code> matches its documented physical spec</td>
+<td>A mismatched range makes plausibility-check tests (Level 1) meaningless</td>
+</tr>
+<tr>
+<td>Scale/offset arithmetic round-trips cleanly at the range boundaries</td>
+<td>Catches off-by-one rounding at exactly the min/max raw values</td>
+</tr>
+<tr>
+<td>No two signals in the same message overlap start-bit ranges</td>
+<td>A silent overlap corrupts both signals' decoded values</td>
+</tr>
+<tr>
+<td>Byte order is consistent with the transmitting ECU's documented convention</td>
+<td>Mixed byte orders within one supplier's messages is a frequent copy-paste error</td>
+</tr>
+<tr>
+<td><code>VAL_</code> enumerations cover every raw value the signal can actually carry</td>
+<td>An undocumented raw value (e.g. <code>0b11</code> meaning "invalid/error") left out of <code>VAL_</code> gets silently treated as data by naive tooling</td>
+</tr>
+<tr>
+<td>Comments (<code>CM_</code>) describe update conditions, not just restate the signal name</td>
+<td>"CoolantTemp" as a comment says nothing; "Updated only when EngineRunning=1" is the note that prevents someone from writing a test that reads it at the wrong time</td>
+</tr>
+<tr>
+<td>Cycle time attribute matches the transmitting node's actual schedule</td>
+<td>A stale cycle-time attribute breaks timing-based test assertions (Level 1's <code>&gt;= 100ms</code> example)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="signal-overlap-a-concrete-bug">Signal overlap: a concrete bug<a class="headerlink" href="#signal-overlap-a-concrete-bug" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>BO_ 768 BadExample: 8 Vector__XXX
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a> SG_ SignalA : 0|12@1+ (1,0) [0|4095] "" Vector__XXX
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> SG_ SignalB : 8|12@1+ (1,0) [0|4095] "" Vector__XXX
+</code></pre></div>
+<p><code>SignalA</code> occupies bits 0–11, <code>SignalB</code> occupies bits 8–19 — they
+overlap on bits 8–11. Any write to one corrupts the other. This is
+exactly the kind of defect that a <strong>bit-map review</strong> (laying every
+signal in a message out against its byte/bit grid before sign-off)
+catches immediately but a value-only spot-check test completely misses,
+because each signal can still decode to a plausible-looking number in
+isolation.</p>
+<h2 id="using-the-dbc-directly-in-a-test-script">Using the DBC directly in a test script<a class="headerlink" href="#using-the-dbc-directly-in-a-test-script" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// CAPL: signals are addressed by name, but always cross-check</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">// against the DBC's declared scale/offset when computing expected raw values</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">on</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="n">EngineStatus</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">coolantC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">this</span><span class="p">.</span><span class="n">CoolantTemp</span><span class="p">;</span><span class="w">      </span><span class="c1">// CAPL applies scale/offset automatically</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">coolantC</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">-40</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">coolantC</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">215</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="n">testStepFail</span><span class="p">(</span><span class="s">"CoolantTemp out of DBC-declared physical range"</span><span class="p">);</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">}</span>
+</code></pre></div>
+<p>Relying on CAPL's automatic scaling (rather than hand-computing raw
+bytes) is safer for day-to-day test logic — but understanding the raw
+math above is still necessary whenever you're constructing bus-level
+test data manually (bit-banging a malformed frame for negative testing,
+for instance), since a deliberately invalid frame often needs raw byte
+values that no signal-aware API will let you set "incorrectly" on
+purpose.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>DBC element</th>
+<th>Test relevance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SG_</code> start bit + length + byte order</td>
+<td>Must match exactly to decode/encode a signal correctly</td>
+</tr>
+<tr>
+<td>Scale/offset</td>
+<td>physical = raw × scale + offset — derive test vectors from this</td>
+</tr>
+<tr>
+<td><code>[min\|max]</code></td>
+<td>Drives plausibility/boundary test partitions</td>
+</tr>
+<tr>
+<td><code>VAL_</code></td>
+<td>Enumerated states — verify every raw value is either mapped or explicitly "reserved"</td>
+</tr>
+<tr>
+<td><code>CM_</code></td>
+<td>Often the only place real update-timing/precondition info lives</td>
+</tr>
+<tr>
+<td>Bit-map overlap</td>
+<td>Not caught by value-only tests — needs an explicit layout review</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Given <code>SG_ FuelLevel : 32|8@1+ (0.5,0) [0|100] "%" Vector__XXX</code> in an
+8-byte message:</p>
+<ol>
+<li>Compute the raw byte value that encodes a physical fuel level of
+   37.5%.</li>
+<li>The signal's declared range is <code>[0|100]</code> with scale 0.5 — what is
+   the maximum raw value that stays within range, and what physical
+   value would an 8-bit field's true maximum raw value (255) decode to?
+   Explain why that out-of-declared-range possibility is exactly what a
+   plausibility test (Level 1) needs to guard against.</li>
+<li>A colleague proposes adding a second signal
+   <code>SG_ FuelLevelValid : 40|1@1+ (1,0) [0|1] ""</code> starting at bit 40.
+   Confirm there's no bit overlap with <code>FuelLevel</code> (bits 32–39) and
+   explain, referencing the review checklist above, one more DBC-level
+   check you'd still want to run before approving this addition.</li>
+</ol>
 
 
 

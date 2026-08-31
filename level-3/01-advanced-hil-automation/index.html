@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#advanced-hil-test-automation" class="md-skip">
+        <a href="#01-advanced-hil-test-automation" class="md-skip">
           Skip to content
         </a>
       
@@ -1316,6 +1316,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced HIL Test Automation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1332,6 +1350,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-orchestration-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The orchestration split
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario-scripting-parameterize-dont-hardcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario scripting: parameterize, don't hardcode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-time-synchronization-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-time synchronization pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closed-loop-validation-proving-the-loop-is-actually-closed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Closed-loop validation: proving the loop is actually closed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2094,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-orchestration-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The orchestration split
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario-scripting-parameterize-dont-hardcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario scripting: parameterize, don't hardcode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-time-synchronization-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-time synchronization pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closed-loop-validation-proving-the-loop-is-actually-closed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Closed-loop validation: proving the loop is actually closed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2186,174 @@
   
 
 
-<h1 id="advanced-hil-test-automation">Advanced HIL Test Automation<a class="headerlink" href="#advanced-hil-test-automation" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 3 · Advanced.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="01-advanced-hil-test-automation">01 · Advanced HIL Test Automation<a class="headerlink" href="#01-advanced-hil-test-automation" title="Permanent link">&para;</a></h1>
+<p>Level 2 Module 9 mapped the physical components of a HIL rig. This
+module covers how you actually automate test execution against one —
+scenario scripting, real-time synchronization concerns, and the
+practical differences from the pure-CAPL automation you've built so
+far once a real-time simulation computer is in the loop.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>The automation patterns and API shapes below (CAPL-driven
+orchestration talking to a real-time simulation host) reflect
+genuine, documented practice across common HIL platforms. No
+specific rig was used to produce this content — treat every
+snippet as an architectural reference to adapt to your actual
+platform's real API, not a captured run.</p>
+</div>
+<h2 id="the-orchestration-split">The orchestration split<a class="headerlink" href="#the-orchestration-split" title="Permanent link">&para;</a></h2>
+<p>A HIL test automation stack usually has two cooperating layers:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Responsibility</th>
+<th>Typical tooling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Real-time layer</strong></td>
+<td>Runs the plant model deterministically, every fixed timestep, no exceptions</td>
+<td>dSPACE/NI real-time OS, model built from Simulink or similar</td>
+</tr>
+<tr>
+<td><strong>Test orchestration layer</strong></td>
+<td>Decides <em>what</em> scenario to run, sets model parameters, reads results, makes pass/fail calls</td>
+<td>CAPL/CANoe, Python, or vendor test-automation frameworks, running non-real-time</td>
+</tr>
+</tbody>
+</table>
+<p>The orchestration layer never touches the real-time loop's internals
+directly — it reads and writes named <strong>parameters</strong> and <strong>signals</strong>
+exposed by the real-time model through a defined interface, exactly
+the same "don't poke internals directly" discipline as Level 2 Module
+8's <code>export</code>ed restbus control functions, just one layer further out.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// CAPL orchestration talking to a HIL real-time model's parameter interface</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// (illustrative — the real API name/shape depends on your platform's CANoe integration)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">on</span><span class="w"> </span><span class="n">start</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="n">HilSetParameter</span><span class="p">(</span><span class="s">"VehicleSpeed_Setpoint"</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="n">HilSetParameter</span><span class="p">(</span><span class="s">"RoadFriction_Coefficient"</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">);</span><span class="w">   </span><span class="c1">// dry asphalt</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">testcase</span><span class="w"> </span><span class="n">tc_AbsActivatesOnLowFriction</span><span class="p">()</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">{</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"ABS ECU activates within spec when friction drops sharply"</span><span class="p">);</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="n">HilSetParameter</span><span class="p">(</span><span class="s">"VehicleSpeed_Setpoint"</span><span class="p">,</span><span class="w"> </span><span class="mf">80.0</span><span class="p">);</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span><span class="w">   </span><span class="c1">// allow the plant model to reach steady state</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="n">HilSetParameter</span><span class="p">(</span><span class="s">"RoadFriction_Coefficient"</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15</span><span class="p">);</span><span class="w">  </span><span class="c1">// simulated ice</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="n">HilApplyBrakePedal</span><span class="p">(</span><span class="mf">0.8</span><span class="p">);</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"ABS active flag set"</span><span class="p">,</span><span class="w"> </span><span class="n">HilGetSignal</span><span class="p">(</span><span class="s">"ABS_Active"</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="scenario-scripting-parameterize-dont-hardcode">Scenario scripting: parameterize, don't hardcode<a class="headerlink" href="#scenario-scripting-parameterize-dont-hardcode" title="Permanent link">&para;</a></h2>
+<p>Every HIL testcase worth keeping should separate <strong>scenario
+parameters</strong> (speed, friction, load, ambient temperature) from the
+<strong>test logic</strong> that drives and checks them, so the same testcase body
+can run a matrix of conditions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">RunAbsActivationScenario</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">speedKph</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">friction</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">pedalForce</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">expectedMaxMs</span><span class="p">)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="n">dword</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="n">HilSetParameter</span><span class="p">(</span><span class="s">"VehicleSpeed_Setpoint"</span><span class="p">,</span><span class="w"> </span><span class="n">speedKph</span><span class="p">);</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="n">HilSetParameter</span><span class="p">(</span><span class="s">"RoadFriction_Coefficient"</span><span class="p">,</span><span class="w"> </span><span class="n">friction</span><span class="p">);</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="n">HilApplyBrakePedal</span><span class="p">(</span><span class="n">pedalForce</span><span class="p">);</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="n">t0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timeNowNS</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="p">;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="n">testWaitForSignal</span><span class="p">(</span><span class="s">"ABS_Active"</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timeNowNS</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="p">;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"ABS activation within spec time"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">t1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">expectedMaxMs</span><span class="p">);</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">}</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">tc_AbsMatrix</span><span class="p">()</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">{</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"ABS activation across speed/friction matrix"</span><span class="p">);</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="n">RunAbsActivationScenario</span><span class="p">(</span><span class="mf">60.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">);</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="n">RunAbsActivationScenario</span><span class="p">(</span><span class="mf">120.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">250</span><span class="p">);</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="n">RunAbsActivationScenario</span><span class="p">(</span><span class="mf">60.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">);</span><span class="w">   </span><span class="c1">// near-ice, slightly relaxed spec</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="p">}</span>
+</code></pre></div>
+<p>This is the same "cheat sheet" discipline as Level 1's exercise
+technique (equivalence partitioning applied to scenario space, not just
+signal values) — a matrix of representative operating points, not an
+exhaustive and impractical sweep.</p>
+<h2 id="real-time-synchronization-pitfalls">Real-time synchronization pitfalls<a class="headerlink" href="#real-time-synchronization-pitfalls" title="Permanent link">&para;</a></h2>
+<p>| Pitfall | Cause | Mitigation |
+<br>|---|---|---|
+| Reading a signal mid-update | Orchestration layer polls at a moment between the real-time step writing a new value and it becoming "settled" | Read on a model-step-boundary event/callback rather than an arbitrary wall-clock timer, if your platform exposes one |
+| Setting a parameter that only takes effect next step | Parameter writes are often latched, not applied instantaneously | Always wait at least one model timestep after a parameter write before asserting dependent behavior |
+| Wall-clock test timeouts drifting from simulation time | Orchestration host isn't itself real-time; its clock can lag under load | Prefer waiting on model-reported simulation time or explicit signal conditions over fixed wall-clock sleeps where the platform allows it |
+| Overlapping scenarios | A new scenario's setpoints applied before the previous scenario's transients settle | Always include an explicit settle/return-to-baseline step between scenarios, as in <code>RunAbsActivationScenario</code>'s initial 2000ms speed-settle wait |</p>
+<h2 id="closed-loop-validation-proving-the-loop-is-actually-closed">Closed-loop validation: proving the loop is actually closed<a class="headerlink" href="#closed-loop-validation-proving-the-loop-is-actually-closed" title="Permanent link">&para;</a></h2>
+<p>Level 2 Module 9 stressed that HIL must be closed-loop. Advanced
+automation should include an explicit <strong>loop-closure sanity check</strong> as
+a standing testcase, not just assume the rig is wired correctly:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">tc_ClosedLoopSanityCheck</span><span class="p">()</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="n">testCaseTitle</span><span class="p">(</span><span class="s">"ECU's actuator output measurably changes plant model feedback"</span><span class="p">);</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">before</span><span class="p">,</span><span class="w"> </span><span class="n">after</span><span class="p">;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="n">before</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HilGetSignal</span><span class="p">(</span><span class="s">"SteeringRackPosition"</span><span class="p">);</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="n">HilInjectTorqueCommand</span><span class="p">(</span><span class="mf">5.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// command the ECU to request 5Nm of assist</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="n">testWaitForTimeout</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="n">after</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HilGetSignal</span><span class="p">(</span><span class="s">"SteeringRackPosition"</span><span class="p">);</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="n">testStepCheck</span><span class="p">(</span><span class="s">"rack position changed in response to ECU command"</span><span class="p">,</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">before</span><span class="p">);</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">}</span>
+</code></pre></div>
+<p>Running this before every scenario suite catches a mis-wired or
+mis-configured rig (open-loop by accident) immediately, rather than
+producing a suite full of misleadingly "passing" tests that never
+actually exercised the ECU's control behavior at all.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Key point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Two-layer split</td>
+<td>Real-time plant model vs. non-real-time orchestration</td>
+</tr>
+<tr>
+<td>Parameter/signal interface</td>
+<td>Orchestration never touches model internals directly</td>
+</tr>
+<tr>
+<td>Scenario parameterization</td>
+<td>One testcase body, many representative operating points</td>
+</tr>
+<tr>
+<td>Settle waits</td>
+<td>Always wait for transients before asserting or starting the next scenario</td>
+</tr>
+<tr>
+<td>Loop-closure sanity check</td>
+<td>A standing testcase proving the rig is actually closed-loop</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<ol>
+<li><code>RunAbsActivationScenario</code> above waits a fixed 1000ms for
+   <code>ABS_Active</code> regardless of scenario. Rewrite its signature and body
+   to make that timeout itself a parameter, and explain why a single
+   fixed timeout across a friction matrix (0.05 to 0.9) is a design
+   smell.</li>
+<li>Design a <code>tc_ClosedLoopSanityCheck</code>-style test for a simulated
+   engine-cooling HIL rig, where the real ECU commands a cooling-fan
+   duty cycle that should measurably change a simulated coolant
+   temperature over time. Name the two signals/parameters involved and
+   the settle time you'd choose, with reasoning.</li>
+<li>Explain, using the synchronization pitfalls table, what could go
+   wrong if a testcase reads <code>ABS_Active</code> on a plain 10ms wall-clock
+   polling loop instead of a model-step-boundary event, on a heavily
+   loaded orchestration host.</li>
+</ol>
 
 
 

@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#continuous-testing-in-automotive" class="md-skip">
+        <a href="#02-continuous-testing-in-automotive" class="md-skip">
           Skip to content
         </a>
       
@@ -1718,6 +1718,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Continuous Testing in Automotive
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1734,6 +1752,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-automotive-ci-differs-from-pure-software-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why automotive CI differs from pure software CI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-pipeline-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The pipeline stages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rig-scheduling-the-automotive-specific-bottleneck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rig scheduling: the automotive-specific bottleneck
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handling-flash-time-and-rig-state-between-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling flash time and rig state between runs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feedback-speed-vs-thoroughness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feedback speed vs. thoroughness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1991,6 +2105,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-automotive-ci-differs-from-pure-software-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why automotive CI differs from pure software CI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-pipeline-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The pipeline stages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rig-scheduling-the-automotive-specific-bottleneck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rig scheduling: the automotive-specific bottleneck
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handling-flash-time-and-rig-state-between-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling flash time and rig state between runs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feedback-speed-vs-thoroughness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feedback speed vs. thoroughness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2009,9 +2208,215 @@
   
 
 
-<h1 id="continuous-testing-in-automotive">Continuous Testing in Automotive<a class="headerlink" href="#continuous-testing-in-automotive" title="Permanent link">&para;</a></h1>
-<p>This module is part of Level 4 · Master.</p>
-<p>More lessons are on the way — check back soon.</p>
+<h1 id="02-continuous-testing-in-automotive">02 · Continuous Testing in Automotive<a class="headerlink" href="#02-continuous-testing-in-automotive" title="Permanent link">&para;</a></h1>
+<p>Level 3 Module 5 built a framework wrapping CAPL/CANoe for
+orchestration; Level 3 Module 7 built a tiered regression suite. This
+module covers what changes when those pieces are wired into an
+always-on CI/CD pipeline against real (or virtual) ECU targets — the
+biggest addition being that "the hardware" is now a shared, contended
+resource that software CI pipelines don't normally have to think
+about.</p>
+<div class="admonition note">
+<p class="admonition-title">About this module</p>
+<p>No specific CI platform or physical rig farm was used to produce
+this content. The pipeline structure and rig-scheduling patterns
+below reflect common industry practice adapting standard CI/CD
+concepts to automotive HIL constraints — verify exact tooling
+against your project's actual CI system.</p>
+</div>
+<h2 id="why-automotive-ci-differs-from-pure-software-ci">Why automotive CI differs from pure software CI<a class="headerlink" href="#why-automotive-ci-differs-from-pure-software-ci" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pure software CI</th>
+<th>Automotive HIL-involved CI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A build runs on a cheap, disposable, instantly-scalable VM</td>
+<td>A HIL rig is expensive, physical, and cannot be trivially cloned</td>
+</tr>
+<tr>
+<td>Tests are naturally parallelizable across many workers</td>
+<td>Rig time is a bottleneck — parallelism is capped by the number of physical rigs</td>
+</tr>
+<tr>
+<td>A "flaky" failure is almost always a test/code problem</td>
+<td>A flaky failure can be a test problem, a rig wiring problem, or a genuine ECU timing issue — Level 3 Module 7's triage gets harder</td>
+</tr>
+<tr>
+<td>Rollback = revert a commit</td>
+<td>Rollback may mean re-flashing an ECU to a prior software build, a slower and more deliberate operation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-pipeline-stages">The pipeline stages<a class="headerlink" href="#the-pipeline-stages" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Commit
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  -&gt; Static analysis / build (compile the ECU software, MISRA checks)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  -&gt; Software-in-the-loop (SIL) smoke tests (no hardware — fast, first gate)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  -&gt; Flash to a shared HIL rig pool
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  -&gt; Smoke tier (Level 3 Module 7) on real/HIL-simulated hardware
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  -&gt; Functional tier (scheduled — rig capacity allows only so many
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>     concurrent full runs)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  -&gt; Nightly/weekly full regression + fault injection
+</code></pre></div>
+<p>SIL testing before any hardware step matters specifically for
+automotive CI: if the same CAPL/CANoe test logic can run against a
+<strong>simulated</strong> ECU model before ever touching a physical rig, most
+basic defects get caught in the cheap, infinitely-parallel SIL stage,
+reserving scarce rig time for what actually needs real hardware
+(timing-sensitive, electrical-level, or genuinely HIL-only checks).</p>
+<h2 id="rig-scheduling-the-automotive-specific-bottleneck">Rig scheduling: the automotive-specific bottleneck<a class="headerlink" href="#rig-scheduling-the-automotive-specific-bottleneck" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Illustrative — a minimal rig-reservation scheduler concept for</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># a CI pipeline with more commits than available physical rigs.</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">RigPool</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rig_ids</span><span class="p">):</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">available</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">rig_ids</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">reserved</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">reserve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_id</span><span class="p">,</span> <span class="n">ecu_variant</span><span class="p">):</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="c1"># Match the job to a rig actually wired for that ECU variant --</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="c1"># not every rig in the pool carries every harness configuration.</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">available</span> <span class="k">if</span> <span class="n">rig_supports</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ecu_variant</span><span class="p">)]</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">candidates</span><span class="p">:</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>            <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># job queues, does not fail -- capacity, not a defect</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="n">rig</span> <span class="o">=</span> <span class="n">candidates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">available</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">rig</span><span class="p">)</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">reserved</span><span class="p">[</span><span class="n">job_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">rig</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="k">return</span> <span class="n">rig</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_id</span><span class="p">):</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        <span class="n">rig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reserved</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">available</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rig</span><span class="p">)</span>
+</code></pre></div>
+<p>The key design point: a job that can't get rig time should <strong>queue</strong>,
+not report a false failure — conflating "no rig capacity right now"
+with "the test failed" is a common and confusing automotive CI defect
+that erodes the same trust Level 3 Module 7 warned about for flaky
+tests.</p>
+<h2 id="handling-flash-time-and-rig-state-between-runs">Handling flash time and rig state between runs<a class="headerlink" href="#handling-flash-time-and-rig-state-between-runs" title="Permanent link">&para;</a></h2>
+<p>Unlike a software VM that resets to a known state trivially, a
+physical ECU's flash memory and a HIL rig's fault-injection relays
+(Level 3 Module 6) can carry state between jobs if not explicitly
+reset:</p>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Job N leaves a fault-injection relay open; job N+1 runs against a mis-wired rig</td>
+<td>Every job's teardown step must explicitly restore all relays to nominal, verified by a rig self-check before the next job starts</td>
+</tr>
+<tr>
+<td>Wrong software build left flashed from a previous, unrelated job</td>
+<td>Every job's setup step re-flashes and verifies the build ID via UDS <code>ReadDataByIdentifier</code> before running any test</td>
+</tr>
+<tr>
+<td>Two jobs interleaved on the same rig due to a scheduler bug</td>
+<td>Rig reservation must be atomic/locked, not just advisory</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// CAPL setup-step build verification, run before every CI job's</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">// actual test suite begins.</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">testcase</span><span class="w"> </span><span class="nf">tc_Setup_VerifyCorrectSoftwareBuildFlashed</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">expectedBuildId</span><span class="p">[])</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="n">DiagRequest</span><span class="w"> </span><span class="n">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">DiagReadDataByIdentifier</span><span class="p">(</span><span class="mh">0xF1F0</span><span class="p">);</span><span class="w"> </span><span class="c1">// illustrative DID for build ID</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="n">DiagSendRequest</span><span class="p">(</span><span class="n">req</span><span class="p">);</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="n">testWaitForDiagResponse</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="n">testStepFail_IfNot</span><span class="p">(</span><span class="s">"correct build flashed"</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">                      </span><span class="n">strncmp</span><span class="p">(</span><span class="n">DiagGetResponseData</span><span class="p">(</span><span class="n">req</span><span class="p">),</span><span class="w"> </span><span class="n">expectedBuildId</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">expectedBuildId</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">}</span>
+</code></pre></div>
+<p>Failing loudly here — before running a single functional test — turns
+a "why did 40 testcases fail mysteriously" investigation into a single
+clear, immediate signal.</p>
+<h2 id="feedback-speed-vs-thoroughness">Feedback speed vs. thoroughness<a class="headerlink" href="#feedback-speed-vs-thoroughness" title="Permanent link">&para;</a></h2>
+<p>Continuous testing lives or dies on how fast a developer gets useful
+feedback:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Target feedback time</th>
+<th>What it can afford to skip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIL smoke</td>
+<td>Minutes</td>
+<td>Anything needing real timing/electrical behavior</td>
+</tr>
+<tr>
+<td>HIL smoke</td>
+<td>Tens of minutes</td>
+<td>Full fault-injection matrix</td>
+</tr>
+<tr>
+<td>Full HIL regression</td>
+<td>Hours (nightly)</td>
+<td>Nothing — this is the thorough pass</td>
+</tr>
+</tbody>
+</table>
+<p>A developer who has to wait for the nightly full regression to learn
+their commit broke smoke-level behavior will simply stop trusting or
+watching CI — the tiering from Level 3 Module 7 is what makes fast
+feedback and thorough coverage coexist instead of trading off against
+each other.</p>
+<h2 id="cheat-sheet">Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Key point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIL-before-HIL</td>
+<td>Catch cheap defects in simulation before spending scarce rig time</td>
+</tr>
+<tr>
+<td>Rig as bottleneck</td>
+<td>Physical rig capacity, not compute, caps parallelism — schedule, don't just queue-and-hope</td>
+</tr>
+<tr>
+<td>Queue vs. fail</td>
+<td>No rig capacity is a scheduling state, never a false test failure</td>
+</tr>
+<tr>
+<td>State reset between jobs</td>
+<td>Explicit relay/build-verification teardown and setup on every job, not assumed</td>
+</tr>
+<tr>
+<td>Feedback tiering</td>
+<td>Fast SIL/smoke feedback for developers; thorough nightly regression for full confidence</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<ol>
+<li>A CI dashboard shows a job as "Failed" but the actual cause was no
+   rig being available for two hours. Redesign the <code>RigPool.reserve</code>
+   logic above so this state is visibly distinct from a genuine test
+   failure in the CI UI.</li>
+<li>Design the rig self-check testcase that should run at the START of
+   every CI job (before <code>tc_Setup_VerifyCorrectSoftwareBuildFlashed</code>)
+   to confirm all fault-injection relays are in their nominal
+   (non-faulted) state, referencing Level 3 Module 6's fault types.</li>
+<li>A team wants to add a 45-minute fault-injection matrix to the
+   per-commit (not nightly) pipeline stage because "it caught a real
+   bug once." Using the feedback-speed table, argue for or against
+   this change, and propose an alternative that preserves fast
+   feedback while still increasing fault-injection frequency.</li>
+</ol>
 
 
 
