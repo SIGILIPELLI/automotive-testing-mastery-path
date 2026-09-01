@@ -5,7 +5,7 @@ control units (ECUs)** — the 70-150+ small computers in a modern vehicle
 that manage everything from the engine and brakes to the infotainment
 system and power windows. Every general testing principle you might
 already know still applies (see the
-[C/C++ Testing Mastery Path](https://sigilipelli.github.io/cpp-testing-mastery-path/)
+[C/C++ Testing Mastery Path](https://sigilipelli.github.io/cpp-testing-skillmastery/)
 for those fundamentals) — but automotive adds three things that change
 how testing is actually done: a network of ECUs talking over shared
 buses, hardware in the loop, and safety standards with legal teeth.
