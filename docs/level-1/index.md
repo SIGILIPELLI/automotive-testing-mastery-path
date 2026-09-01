@@ -41,8 +41,8 @@ cases for ECU signals using equivalence partitioning and boundary
 analysis, and connect ASPICE/ISO 26262 to concrete testing obligations.
 
 New to CAN from the embedded-firmware side? The
-[S32K Automotive Embedded Mastery Path](https://sigilipelli.github.io/s32k-skillmastery/)
+[S32K Automotive Embedded Mastery Path](https://sigilipelli.github.io/s32k-mastery-path/)
 covers the CAN peripheral and ECU firmware itself. New to software testing
 in general? The
-[C/C++ Testing Mastery Path](https://sigilipelli.github.io/cpp-testing-skillmastery/)
+[C/C++ Testing Mastery Path](https://sigilipelli.github.io/cpp-testing-mastery-path/)
 covers universal test methodology in depth.

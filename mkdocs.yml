@@ -1,8 +1,8 @@
 site_name: Automotive Testing Mastery Path
 site_description: A structured, module-wise training program for automotive ECU testing — CAN bus, Vector CANoe, CAPL scripting, UDS diagnostics and Hardware-in-the-Loop, entry level to master level.
-site_url: https://sigilipelli.github.io/automotive-testing-skillmastery/
-repo_url: https://github.com/SIGILIPELLI/automotive-testing-skillmastery
-repo_name: automotive-testing-skillmastery
+site_url: https://sigilipelli.github.io/automotive-testing-mastery-path/
+repo_url: https://github.com/SIGILIPELLI/automotive-testing-mastery-path
+repo_name: automotive-testing-mastery-path
 
 theme:
   name: material
