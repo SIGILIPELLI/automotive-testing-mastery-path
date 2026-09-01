@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sigilipelli.github.io/automotive-testing-skillmastery/sitemap.xml
+Sitemap: https://sigilipelli.github.io/automotive-testing-mastery-path/sitemap.xml
