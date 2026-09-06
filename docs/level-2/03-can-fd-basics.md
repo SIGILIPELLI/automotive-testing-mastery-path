@@ -159,6 +159,44 @@ and Module 10 of this level.
 | DBC tagging | implicit | `BA_ "VFrameFormat"` attribute |
 | CAPL access | `msg.byte(n)`, `msg.dlc` | adds `msg.fdf`, `msg.brs`, `msg.esi` |
 
+## How It Actually Works: how a frame can legally change speed mid-transmission
+
+Switching bit rate partway through a single frame sounds like it should
+break the bit-timing/sample-point mechanism from Level 1 Module 2 — and
+it would, if it happened anywhere arbitrary. It doesn't: the switch is
+only permitted at two precisely defined, fixed points, and CAN-FD adds
+extra **resynchronization edges** exactly there to make the transition
+safe.
+
+The BRS bit itself is transmitted at the *arbitration* rate, immediately
+followed by a fixed-stuff bit and the **FD CRC delimiter's leading
+edge**, which every receiver uses as a hard resynchronization point
+before sampling the first data-phase bit — this is why the standard
+mandates that edge be non-stuffable and always present, unlike ordinary
+bit-stuffing which is content-dependent. The reverse transition, back
+down to the arbitration rate for the ACK/EOF/IFS fields at the end of
+the frame, gets the same treatment at the CRC delimiter on the way out.
+Between those two edges, every node on the bus — including one that
+lost arbitration and is only listening — has already agreed on exactly
+where the data phase begins and ends, because arbitration itself
+(Level 1 Module 3) only ever happens at the slower, common rate; by the
+time BRS appears, exactly one node is driving the bus and the receivers
+have nothing left to arbitrate, only to stay synchronized to.
+
+The wider CRC (17-bit for payloads ≤16 bytes, 21-bit above that,
+computed with different generator polynomials than classic CAN's 15-bit
+one) exists because burst-error detection guarantees scale with message
+length: a 15-bit CRC's protection weakens on a 64-byte payload relative
+to an 8-byte one, so CAN-FD widens the check specifically to hold the
+same practical undetected-error probability at the much larger frame
+sizes Module 3's payload table allows. This is the concrete reason a
+"BRS requested but not achieved" fault (this module's test-implications
+table) is dangerous specifically at the data-phase/arbitration-phase
+boundary: a transceiver or wiring length that can't actually settle to
+the higher rate in time corrupts bits right around that resynchronization
+edge, and the wider CRC is what still catches it when a shorter classic
+CRC might not.
+
 ## Exercise
 
 A supplier hands you a DBC with a new message `BO_ 2048 BatteryPackStatus`

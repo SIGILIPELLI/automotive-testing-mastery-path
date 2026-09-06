@@ -140,6 +140,53 @@ ASIL.
 | Single-point vs. latent fault | Latent faults need periodic self-test evidence, not just one-shot fault injection |
 | Traceability | Every safety test needs a requirement ID and its ASIL recorded |
 
+## How It Actually Works: the FMEDA math a test's pass/fail actually feeds
+
+ISO 26262's ASIL-specific rigor isn't just a documentation requirement —
+it traces to actual numeric metrics computed in a **FMEDA** (Failure
+Modes, Effects, and Diagnostic Analysis) that a safety case must satisfy
+with concrete thresholds per ASIL, and every fault-injection test in
+this module is generating one of the inputs to that calculation.
+
+The core metric relevant here is **diagnostic coverage (DC)** for a
+given failure mode:
+
+```text
+DC = (failure rate of faults detected by a safety mechanism)
+     / (total failure rate of that failure mode)
+```
+
+When `tc_WheelSpeedPlausibilityFaultDetected` proves the plausibility
+checker fires within 500 ms for a wheel-speed divergence, it is
+supplying empirical evidence toward the *numerator* of this ratio for
+the "wheel speed sensor gives an implausible reading" failure mode — the
+safety case cites this kind of test result (or a statistical sample of
+many injected fault variants, not just one) as justification for the
+DC percentage claimed for that mechanism. ISO 26262 sets minimum DC
+targets per ASIL for the **Single-Point Fault Metric (SPFM)** and
+**Latent Fault Metric (LFM)** — roughly, ASIL D targets require ≥99%
+coverage of single-point faults and ≥90% of latent faults, ASIL C/B
+progressively less — which is the concrete, numeric reason ASIL D
+testing must be far more exhaustive across fault *variants* (not just
+one clean divergence value, but boundary-adjacent divergences, slowly
+drifting divergences, intermittent ones) than a QM-level function ever
+needs: each additional fault variant tested (or formally analyzed, when
+exhaustive testing is impractical) either supports or undermines the DC
+percentage the safety case is claiming.
+
+This also explains precisely why the latent-fault row in this module's
+table is qualitatively different work: a latent fault, by definition,
+doesn't get detected by the mechanism under normal operation — proving
+its coverage requires either a dedicated self-test the ECU runs
+periodically (whose own execution needs to be tested independently,
+since a self-test that silently stops running is itself a latent fault
+one level up) or an argued analysis rather than a single fault-injection
+testcase, which is why "test the checker's own comparator" can't be
+satisfied the same way `tc_WheelSpeedPlausibilityFaultDetected` satisfies
+single-point coverage — there's no external signal to watch that proves
+the checker itself is still alive without instrumenting the checker's
+self-test path directly.
+
 ## Exercise
 
 1. Classify a brake-pedal-position sensor failing to a fixed

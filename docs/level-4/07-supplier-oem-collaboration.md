@@ -124,6 +124,55 @@ Milestone: Software Release Candidate Test Complete
 | Dispute resolution | Always check configuration baseline match first — the most common real cause of "different results" |
 | Contractual milestones | Named entry/exit criteria gate program progression, mirroring Level 3 Module 10's plan structure at supplier-relationship scale |
 
+## How It Actually Works
+
+**Why "same test, different result" is usually a configuration
+problem, mechanically, not a testing-competence problem.** When an
+OEM and a supplier each claim to run "the same" CAPL testcase against
+"the same" ECU and get different verdicts, the actual CAPL source
+files can be byte-identical and still produce different results if
+the DBC signal scaling loaded on either side differs even slightly
+(Level 4 Module 5) — a `setSignal(ForwardDistance_m, 15.0)` call
+writes a genuinely different raw CAN payload value depending on which
+DBC's scaling factor is active, so the ECU under test is receiving a
+different physical stimulus than either side believes. This is why
+Step 1 of the dispute flow — comparing configuration baselines field
+by field — resolves most disputes before any actual root-cause
+investigation begins: the two "identical" tests were frequently never
+actually identical below the CAPL source level.
+
+**Why "test technique described, source withheld" still gives an
+assessor enough to certify against.** An ASPICE SWE.6 or ISO 26262-8
+independent review needs to confirm specific things about a test: that
+it exercises boundary values, that it traces to a requirement, that a
+qualified reviewer other than the author checked its adequacy. None of
+that inherently requires reading the CAPL statements themselves — a
+supplier can satisfy the requirement with a structured technique
+description (e.g., "requirement SW-REQ-202 verified via equivalence
+partitioning and boundary analysis on ForwardDistance_m; independent
+review completed by [named reviewer] on [date]; verdict Passed")
+alongside the traceability matrix, because what's being assessed is
+whether the *method* was rigorous and independently checked, not
+whether the OEM personally re-derives the test logic. The OEM's real
+leverage point if it doubts the description's honesty isn't demanding
+the source — it's requesting a live demonstration or witnessed
+re-execution of the test, which proves the technique was genuinely
+applied without requiring IP disclosure.
+
+**Why milestone entry criteria have to be checked before exit criteria
+are even attempted.** A milestone like "Software Release Candidate
+Test Complete" listing "no open ASIL C/D defects" as an *entry*
+criterion (not just exit) is a deliberate ordering: if a supplier
+starts the release-candidate test campaign while ASIL C/D defects are
+still open, every test result produced during that campaign is
+evidence about a software state that's about to change again once
+those defects are fixed — meaning some or all of the campaign's
+evidence becomes stale and has to be re-run against the fixed build.
+Structuring entry criteria to block starting the expensive, formal
+test campaign until the software is actually in a stable, defect-clear
+state (for the ASIL tiers that matter most) is what prevents wasted
+program-scale test effort, not just a compliance formality.
+
 ## Exercise
 
 1. An OEM integration test shows an intermittent failure the supplier

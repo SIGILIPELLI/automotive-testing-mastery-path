@@ -114,6 +114,38 @@ layer (Level 3).
 | Scripting language | CAPL — C-like, event-driven (Module 5) |
 | Portability | Same config can run against bench hardware, HIL, or pure offline simulation |
 
+## How It Actually Works: how the trace window gets its timestamps
+
+The Vector interface hardware (VN16xx/VN50xx) has its own onboard clock
+and CAN controller — it timestamps every frame **in hardware, at the
+moment the frame's EOF is detected on the wire**, not when the PC's USB
+driver happens to get around to reading it. This is the detail that
+makes CANoe usable as a timing-measurement instrument rather than just a
+log viewer: USB transfer, OS scheduling, and CANoe's own GUI redraw all
+introduce variable latency on the *PC* side, but none of that latency
+ever reaches the timestamp value itself, because the timestamp was
+already fixed before the frame left the interface.
+
+This separation matters directly for two things you'll rely on
+throughout the course. First, **measuring inter-frame timing** (is this
+ECU really transmitting every 20 ms, or drifting?) is only trustworthy
+because the timestamps come from the interface's hardware clock, not
+from PC wall-clock time sampled per-frame — a software-timestamped trace
+would show jitter that's really just USB/OS scheduling noise, not real
+bus behavior. Second, when CANoe runs **offline** against a recorded
+trace file (`.asc`/`.blf`), it replays frames using those *original*
+hardware timestamps to reconstruct real bus timing exactly, including
+the original inter-frame gaps and bursts — which is why a CAPL test
+module written against a live bus behaves identically when re-run
+against a captured log, and why a "reproduce this intermittent bug from
+a field trace" workflow is possible at all: the recorded timestamps are
+close enough to ground truth to preserve the exact conditions (a burst
+of messages arriving within a few hundred microseconds of each other,
+say) that triggered the original fault. A tester who assumes CANoe
+timestamps are just "when the GUI saw it" will systematically
+underestimate how precisely they can attribute a timing-related failure
+to a specific frame.
+
 ## Exercise
 
 You're handed a CANoe configuration for testing a new instrument cluster

@@ -152,6 +152,70 @@ This test plan is considered executed and closeable when:
 | Known gaps | Honest, dated, risk-accepted — never hidden |
 | Exit criteria | An unambiguous definition of "done" for the plan itself |
 
+## How It Actually Works
+
+**`HilSetParameter` doesn't write a CAN frame — it writes a plant-model input.**
+On a real rig, `ForwardDistance_m` and `ClosingSpeed_kph` are not CAN
+signals you inject directly; they're inputs to a real-time plant model
+(often a Simulink/dSPACE or NI VeriStand model running on the HIL's
+real-time target) that itself computes and transmits the radar-object
+CAN/Ethernet frames the ECU actually receives. `HilSetParameter` writes
+into that model's parameter memory over the HIL vendor's own backplane
+(e.g. XCP-on-Ethernet from the CANoe/CANape PC to the real-time target),
+and the model integrates the new value on its next fixed-step tick —
+typically 1ms or 5ms. That step time is why `testWaitForSignal`'s 150ms
+budget in `tc_AebActivatesWithinSpec` has to be generous relative to the
+ECU's own logic latency: it must absorb at least one plant-model tick of
+parameter-propagation delay plus the CAN frame's own transmission and
+the ECU's input-debounce/plausibility filtering, none of which is "AEB
+decision time" but all of which the wall-clock measurement includes.
+
+**`testWaitForSignal` is a polling primitive, not an interrupt.** Under
+the hood CAPL's test module runtime re-evaluates the signal's current
+value against the target on every CAN/bus event and on a background
+timer tick (commonly every 1ms in CANoe's test scheduler), returning as
+soon as a match occurs or the ms timeout elapses. This means the
+measured `t1 - t0` in `tc_AebActivatesWithinSpec` has an inherent
+sampling jitter bounded by that tick rate — a 150ms spec measured this
+way effectively has a resolution floor of a few milliseconds, not
+true edge-triggered nanosecond precision. A test plan that needs
+tighter timing accuracy (e.g. proving 150ms with 5ms margin) needs to
+say explicitly which oscilloscope- or logic-analyzer-based measurement
+backs it up, because the CAPL-level stopwatch alone can't prove a bound
+that tight — this is exactly the kind of measurement-method gap that
+belongs in Section 6 next to the electrical fault-injection gap.
+
+**Why "implausible negative distance" is a real class of bug, not a
+contrived one.** `ForwardDistance_m = -5.0` in `tc_AebIgnoresImplausibleDistance`
+is testing the ECU's own input plausibility check — a required
+mechanism under ISO 26262 for any ASIL D input, because a physical
+radar sensor's raw output is an unsigned range-bin measurement; a
+negative value can only reach the ECU through a corrupted CAN payload,
+a signal encoding/scaling bug in the DBC (e.g. a signed vs. unsigned
+mismatch, or a wrong offset in the linear scaling `physical =
+raw * factor + offset`), or the HIL plant model itself being
+misconfigured. The safety mechanism this test proves isn't "does AEB
+ignore an obviously wrong number" — it's "does the ECU's range/rate
+plausibility filter reject a value outside physically possible bounds
+before it ever reaches the AEB decision logic," which is the actual
+ISO 26262 Table-referenced technique (range checks / plausibility
+checks on safety-related inputs) the requirement SW-REQ-202 traces to.
+
+**Why the driver-override test checks release, not just activation.**
+`tc_AebDisengagesOnDriverOverride` is exercising a specific failure
+mode class: safety mechanisms that latch. A naive AEB implementation
+that sets a brake-request flag and never re-evaluates the override
+condition on every control loop tick will pass an activation-only test
+but fail this one, because `setSignal(ThrottlePosition_pct, 40.0)`
+only changes the input — it's the ECU's control loop cycle (typically
+10–20ms for a braking-relevant loop) that must re-read the override
+signal and clear its own latched brake-request state. A HIL test plan
+that stops at "does it activate" and never tests "does it also
+correctly de-activate under a competing input" systematically misses
+this entire class of stuck-actuator defects, which is why Section 2
+explicitly gives override its own ASIL C requirement rather than
+folding it into SW-REQ-201.
+
 ## Exercise
 
 1. Write the two "Planned, not yet written" testcases from Section 5

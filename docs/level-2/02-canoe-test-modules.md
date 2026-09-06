@@ -138,6 +138,39 @@ node that logs text" and "a test module."
 | Pass / Fail / Inconclusive / Not run | The four verdict states, not interchangeable |
 | Report (HTML/XML) | Structured, machine-consumable output of a test module run |
 
+## How It Actually Works: `testWaitForTimeout` is a yield, not a sleep
+
+`testWaitForTimeout(ms)` looks like a blocking sleep, but it can't
+literally be one — Level 1 Module 5 established that CAPL's runtime is
+single-threaded, so a real busy-wait would freeze the entire
+measurement, including the CAN reception that the test is waiting to
+observe. What actually happens is that a test case runs as its own
+**test task**, a distinct execution context from the ordinary
+simulation nodes' event handlers, and calling `testWaitForTimeout` (or
+any of CANoe's other `testWaitFor*` family) suspends *that task
+specifically* and hands control back to the measurement's event loop.
+The event loop keeps servicing every other pending event — incoming CAN
+frames, other nodes' timers, sysvar updates — exactly as normal, and the
+suspended test task is resumed either when its timeout elapses or when
+whatever condition it's waiting for becomes true, whichever comes first.
+
+This is precisely why a test case can wait on `SensorValid == 1`
+*inside* a bounded window rather than needing to manually poll: the
+underlying implementation is an event subscription with a race against
+a deadline timer, not a loop checking a variable every few milliseconds.
+It also explains where **Inconclusive** verdicts genuinely come from at
+the mechanism level, not just as a documentation convention: if the test
+task's precondition step (say, "wait for ignition-on") times out before
+its own wait resolves, the test case has no principled way to know
+whether the *actual thing under test* (SensorValid reaching 1) would
+have passed or failed — the precondition's own suspension expired first,
+so the subsequent check never ran at all. A well-written test module
+distinguishes this explicitly, marking the precondition's own timeout
+as Inconclusive rather than letting execution fall through to the real
+check with stale or default signal values, which would silently produce
+a misleading Pass or Fail for a condition that was never actually
+observed under valid preconditions.
+
 ## Exercise
 
 Write two `testcase` functions for a simulated seatbelt-warning ECU:

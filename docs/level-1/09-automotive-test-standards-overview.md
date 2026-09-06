@@ -148,6 +148,45 @@ Test results are primary evidence in that argument, which is why:
 | **Safety case** | The structured, evidence-backed argument that safety goals were met |
 | **Test independence** | Higher ASILs require testers separate from the implementers |
 
+## How It Actually Works: what MC/DC actually forces you to test
+
+"MC/DC" sounds abstract until you compute it for a real decision. Take
+the three-condition example from the exercise below:
+`closingSpeed > threshold && driverBrakeInput == 0 && radarConfidence >= minConfidence`.
+Branch coverage — the ASIL B/C bar — only requires the whole expression
+to evaluate both true and false at least once, which two test cases can
+satisfy trivially (all three conditions true; all three false) without
+ever proving that any *individual* condition actually matters to the
+outcome. A buggy implementation that accidentally ignores
+`radarConfidence` entirely would still pass full branch coverage.
+
+MC/DC's actual rule is stricter and mechanical: for **each** condition,
+there must exist a pair of test cases where (a) that condition's value
+differs, (b) every other condition is held at a value that makes it
+*not* mask the first one's effect, and (c) the overall decision's
+outcome differs as a result. For an `AND` chain like this one, that
+means: to isolate `radarConfidence`, the other two conditions must both
+be held true (so the AND doesn't already fail for another reason) while
+`radarConfidence` flips across its own boundary — an outcome shift you
+can attribute to *that* condition alone. For N independent conditions,
+the well-known minimum is **N+1 test vectors** (versus the theoretical
+2ᴺ for exhaustive condition-combination coverage) — for this
+three-condition decision that's 4 carefully chosen vectors, not 8, but
+each one is doing real, unmaskable work, which is exactly why a coverage
+tool reports "MC/DC: 3/4 pairs satisfied" as a distinct, harder-to-fake
+metric than branch percentage, and why achieving it costs real
+engineering time — you have to *design* the masking-free pairs
+deliberately, not just run whatever inputs happen to reach the code.
+
+This directly explains why an ASIL D function forces MC/DC specifically
+on **complex boolean decisions** (multi-condition `if` statements) and
+not on straight-line code: a straight-line function already gets full
+coverage from branch testing, because there's no condition-masking
+possible when there's only one condition to begin with. MC/DC's cost
+only shows up — and only earns its keep — exactly where multiple
+conditions could hide one another's bugs, which is precisely where a
+safety-critical AND/OR chain like an AEB trigger condition lives.
+
 ## Exercise
 
 A new feature: an automatic emergency braking (AEB) system that applies

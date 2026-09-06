@@ -119,6 +119,50 @@ ODD restriction has two parts:
 | Mitigation side-effects | Always test that a fix for a known-unsafe scenario didn't create a new insufficient-performance gap |
 | ODD boundary testing | The transition/disengagement behavior at an ODD limit is directly testable even when the underlying perception isn't |
 
+## How It Actually Works: why scenario count alone can't measure coverage
+
+This module's closing question — why "10,000 scenarios, zero failures"
+proves less than it sounds like — has a precise, quantitative answer
+rooted in how a scenario space is actually structured, and it's worth
+making that structure explicit rather than treating it as an
+appeal-to-caution platitude.
+
+A driving scenario for an ADAS feature is really a point in a
+**high-dimensional parameter space**: ambient light level, precipitation
+type and intensity, road curvature, target object type and relative
+velocity, sensor occlusion angle, glare direction, and dozens more
+dimensions, each continuous or with many discrete levels. Even a modest
+10-dimensional space with just 10 representative levels per dimension
+contains 10¹⁰ combinations — 10,000 random samples covers roughly
+0.0001% of that combinatorial space, and *uniform random sampling*
+specifically under-covers the sparse, extreme corners (simultaneous
+low sun angle, wet road, and a low-contrast target) where SOTIF's
+hardest failures tend to concentrate, precisely because those
+combinations are individually rare even though their joint occurrence
+is exactly what a real Area 3 hazard often looks like. This is the
+mathematical reason "zero failures in 10,000 runs" is close to
+uninformative on its own: without knowing *which* corners of the
+parameter space those 10,000 points actually sampled, a clean result is
+equally consistent with "the system is robust" and "we got lucky and
+missed the region where it fails."
+
+The two real fixes both work by changing how points are chosen, not by
+adding more of them blindly. **Combinatorial/orthogonal-array sampling**
+deliberately selects a much smaller point set that still guarantees
+every *pairwise* (or higher-order) combination of parameter levels
+appears at least once — catching interaction defects between two
+dimensions with far fewer runs than exhaustive coverage, at the
+acknowledged cost of possibly missing three-way-and-higher interactions.
+**Targeted/adversarial search** (gradient-based or search-guided
+scenario generation, informed by field data on which combinations
+actually occur and which ones a model is known to struggle with) spends
+simulation budget disproportionately in the regions most likely to
+contain Area 3 scenarios, rather than spreading it uniformly across a
+space where most points are uninteresting known-safe territory. A
+credible SOTIF evidence package states which of these sampling
+strategies (or what mix) generated its scenario set — a number without
+that context, however large, doesn't actually bound the risk.
+
 ## Exercise
 
 1. Classify each of the following into one of the four SOTIF areas,

@@ -218,6 +218,45 @@ example.
 | Cyclic sender pattern | `on timer` handler re-arms itself with `setTimer()` at the end |
 | Timeout/watchdog pattern | `on message` cancels+rearms; `on timer` fires only on real silence |
 
+## How It Actually Works: CAPL's cooperative, single-threaded runtime
+
+Every `on start`, `on message`, and `on timer` block you write looks
+like it runs "whenever the event happens," as if they were independent
+threads — but CANoe's CAPL runtime is **single-threaded and
+run-to-completion**: only one event procedure executes at a time, and
+once it starts, it runs to its closing brace before the runtime will
+service the next queued event, no matter what fires in between. This is
+why the two most common CAPL bugs — a `write()` call that never seems to
+appear promptly, and a periodic sender that starts drifting under load —
+both trace back to the same mechanism.
+
+Internally, CANoe maintains a single **event queue**: every received
+message, every timer expiry, every `on key` press gets pushed onto it in
+the order it actually occurred (using the hardware timestamps from
+Module 4), and the runtime pops and executes them strictly one at a
+time. If your `on message SensorNodeStatus` handler happens to take,
+say, 2 ms to run (a `write()` call, a loop, a nested function call), any
+`on timer cycleTimer` event that was due to fire during that 2 ms simply
+waits in the queue — it does not fire late by a scheduled amount, it
+fires as soon as the runtime becomes free, so accumulated handler time
+across many events directly becomes cumulative drift in your "every
+100 ms" cyclic sender. This is precisely why the re-arm pattern in this
+module's cyclic-sender example (`setTimer(cycleTimer, 100)` called
+*inside* the handler, rather than a hypothetical periodic-repeat
+primitive) is honest about what CAPL actually guarantees: each interval
+is "100 ms after this handler happened to run," not "100 ms after the
+previous nominal deadline" — so a chain of slow handlers produces real,
+measurable period drift, not just isolated jitter.
+
+This also answers the exercise's closing question directly: two `on
+timer` handlers both calling `output()` on the same message is not a
+race condition in the multithreaded sense — CAPL's run-to-completion
+model makes that structurally impossible — but it *is* a realistic
+logic bug, because whichever handler's event happened to be queued first
+"wins" deterministically for that instant, silently overwriting whatever
+signal values the other handler had set, with no warning and no
+compiler diagnostic pointing at the conflict.
+
 ## Exercise
 
 Design (in CAPL, following the patterns above — you do not need to run

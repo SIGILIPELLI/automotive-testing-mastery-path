@@ -145,6 +145,41 @@ rows of that example for real.
 | **ASPICE** | Automotive SPICE — a process-maturity standard (Module 9) |
 | **ISO 26262** | The automotive functional-safety standard (Module 9) |
 
+## How It Actually Works: why test levels can't be reordered
+
+The V-model isn't just a planning diagram — it maps directly onto how
+fast an ECU can actually *notice* something is wrong, and that latency
+budget is why the four levels have to be tested in that order, not
+whichever order is convenient.
+
+Take REQ-BCM-014's 500 ms lock deadline. Inside the BCM, "vehicle speed
+exceeds 10 km/h" isn't evaluated continuously — it's evaluated once per
+**task cycle**, typically a 10-20 ms periodic task scheduled by the
+ECU's RTOS. Each cycle the task reads the last-received speed CAN frame
+from a mailbox (already stale by up to the sender's cycle time, often
+10-20 ms itself), compares it against the threshold, and if crossed,
+queues the lock command for the next transmit slot of the door-lock
+message — which itself may be transmitted only every 20-50 ms. Add it
+up: sensor cycle + receive jitter + decision task period + transmit
+cycle + actuator response time can easily consume 100-150 ms before the
+motor even starts moving, leaving a real margin far thinner than "500 ms"
+suggests.
+
+This is exactly why unit tests alone can never validate REQ-BCM-014: a
+unit test calling the decision function with 9.9/10.0/10.1 km/h proves
+the *logic* is correct but says nothing about the **timing chain**
+across mailboxes and bus cycles that only exists once the ECUs are
+wired together — which is precisely what integration test is for. The
+8 A / 50 ms obstruction detection in the exercise below has the same
+structure: the "50 ms sustained" isn't checked with a stopwatch, it's
+implemented as a debounce counter incremented once per current-sense
+sampling cycle (commonly 1-5 ms ADC sampling) that must reach a
+threshold count before the reversal logic fires — so the *actual*
+worst-case detection latency is one full debounce window plus one task
+cycle, not the instant the current crosses 8 A. A tester who doesn't
+know this will write a test that raises current to 8.1 A and checks for
+an instant reaction, and it will "fail" a perfectly correct ECU.
+
 ## Exercise
 
 Take this requirement for a driver-side power window:

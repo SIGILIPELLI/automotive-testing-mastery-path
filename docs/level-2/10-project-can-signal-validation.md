@@ -195,6 +195,39 @@ be a distinct, later phase against real hardware.
 | 7 — Test sequences | `testpreparation`/`testcasefinalization` structure, independent testcases |
 | 8 — Restbus | `export`ed `SetCoolantTemp`/`SetEngineRPM` scenario control |
 
+## How It Actually Works: the DTC maturation test has a hidden assumption worth checking
+
+`tc_CoolantOverheatDtcMaturation` sets `CoolantTemp = 90.0` for only
+50 ms to "simulate a new operation cycle" before triggering the fault
+again. Module 5 established that the DTC status byte's per-cycle bits
+(`testFailedThisOperationCycle`, `testNotCompletedThisOperationCycle`)
+reset on an actual **operation-cycle boundary** — commonly a real
+power-state transition like key-off/key-on — not merely on the
+monitored signal returning briefly to a healthy value. This test only
+works at all if the specific ECU under test happens to define its
+"operation cycle" as something this restbus can actually simulate by
+value alone; if the real ECU's operation-cycle boundary is tied to
+ignition state (a separate signal this suite never touches, like
+`EngineRunning` toggling to 0) or to a genuine power interruption, then
+briefly returning `CoolantTemp` to 90.0 changes nothing about the ECU's
+internal cycle counter, and the second `SetCoolantTemp(135.0)` fires
+within the *same* operation cycle as the first — which, per Module 5's
+debounce-counter mechanism, may or may not reproduce the "2 of 3 cycles"
+maturation behavior depending on whether the debounce counter's
+threshold logic is itself cycle-gated or purely fail/pass-count-gated.
+
+This is exactly the kind of assumption a suite like this needs to make
+explicit rather than silently bake into a `testWaitForTimeout(50)`: the
+test's real precondition is "the DUT's operation-cycle boundary has been
+crossed," and depending on the target ECU's diagnostic spec, satisfying
+that might require toggling `EngineRunning` to 0 and back (simulating
+key-off/key-on) *in addition to* the value dip, not the value dip alone.
+A reviewer signing off on this test case should ask the ECU's diagnostic
+spec author what actually constitutes an operation-cycle boundary for
+this DTC before trusting that a pass here proves the "2 of 3 cycles"
+rule — otherwise a false pass (or false fail) is entirely plausible
+depending on how that specific ECU's software actually defines a cycle.
+
 ## Exercise
 
 1. Fix the `tc_CanFdFrameTagging` DLC bug identified above, and explain

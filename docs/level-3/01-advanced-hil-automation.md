@@ -130,6 +130,44 @@ actually exercised the ECU's control behavior at all.
 | Settle waits | Always wait for transients before asserting or starting the next scenario |
 | Loop-closure sanity check | A standing testcase proving the rig is actually closed-loop |
 
+## How It Actually Works: double-buffering is why parameter writes latch
+
+The "parameter writes are often latched, not applied instantaneously"
+pitfall in this module's table has a specific, deliberate reason: hard
+real-time plant models almost universally use **double-buffered**
+(sometimes called "shadow" or "pending") parameter storage. The
+real-time thread reads only from an **active buffer** while computing
+each fixed timestep's physics, and every `HilSetParameter()` call from
+the non-real-time orchestration layer writes into a separate **pending
+buffer** instead of the active one directly. At a well-defined point —
+the start of the *next* timestep, after the current one's calculation
+has fully completed — the real-time scheduler atomically swaps pending
+into active.
+
+This design exists to preserve the one property a HIL rig cannot ever
+sacrifice: **within a single timestep, every value the physics
+calculation reads must be self-consistent.** If a parameter write from
+the orchestration host (which runs asynchronously, on a
+non-deterministic OS) were allowed to land mid-calculation, the plant
+model could compute using a mix of old and new values that never
+existed at any real instant — for example, updating `RoadFriction_Coefficient`
+partway through the same step that's also computing wheel-slip forces
+derived from the *old* friction value, producing a physically impossible
+transient. Double-buffering makes torn reads/writes across the
+real-time/non-real-time boundary structurally impossible, at the cost of
+exactly the one-step latency this module tells you to wait out.
+
+This mechanism is also precisely why `testWaitForSignal` on a
+model-step-boundary event (rather than a wall-clock poll) is more than
+a style preference: a signal read triggered by the step-boundary event
+is guaranteed to observe the buffer *after* that step's swap has
+completed, while a wall-clock poll can sample in the narrow window
+where the previous step's stale value is still active and the swap
+hasn't yet fired — intermittently reading one step's data late,
+purely as a function of how busy the orchestration host happens to be
+at that instant, which is exactly the flaky-test mechanism this
+module's Exercise 3 is asking you to diagnose.
+
 ## Exercise
 
 1. `RunAbsActivationScenario` above waits a fixed 1000ms for

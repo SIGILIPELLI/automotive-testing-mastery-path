@@ -123,6 +123,45 @@ mode the FMEA identified as needing a detection mechanism.
 | Restore after injecting | Every fault injection needs an explicit undo before the next testcase |
 | Fault matrix | Track signal × fault-type coverage explicitly, tied to the FMEA |
 
+## How It Actually Works: why open and short produce different voltages, not just different labels
+
+The reason electrical faults need real hardware isn't only "CAPL can't
+touch wires" — it's that an ECU's analog front-end circuit is designed
+to make **open circuit** and **short circuit** land at electrically
+distinguishable voltages, and a good safety mechanism is built to
+exploit exactly that separation, which is invisible if you only ever
+manipulate the *decoded* signal value.
+
+A typical analog sensor input includes a **pull-up (or pull-down)
+resistor** on the ECU side, sized so that when the sensor is
+disconnected (open), the ADC input floats to a known rail-referenced
+voltage — often near 0 V or near supply, depending on the pull
+direction — rather than floating to an arbitrary, unpredictable level.
+A **short to ground** pulls the same node hard to 0 V regardless of the
+pull-up's value; a **short to battery voltage** pulls it to roughly
+12-14 V (well above the sensor's normal operating range, and often above
+the ADC's own input protection threshold). A well-designed range check
+(Module 4's safety mechanism table) sets its plausible window
+specifically *inside* the gap those three failure voltages create — for
+example, sensor range 0.5-4.5 V with open-circuit pull-up landing the
+node at 5.0 V and short-to-ground landing it at 0.0 V — so the ECU can
+distinguish "sensor disconnected" from "sensor shorted" from "sensor
+working but reporting a low value" purely from which side of the
+plausible band the voltage lands on, without any extra circuitry beyond
+the resistor and the ADC.
+
+This is exactly why a breakout box's relay bank has to physically
+reproduce these three distinct electrical states (open, short-to-ground,
+short-to-battery) rather than just three abstract "fault codes" — each
+one drives the ECU's front-end to a genuinely different voltage that the
+ECU's own hardware, not its software, is what determines whether the
+result even reaches the microcontroller's ADC as a valid reading versus
+a clamped/protected value, and a fault-injection test that only mimics
+this by writing an out-of-range *signal* value bypasses that entire
+front-end behavior — proving the software's range-check logic works
+without ever proving the actual hardware distinguishes the fault the way
+the design intended.
+
 ## Exercise
 
 1. For `BrakePedalPosition` in the fault matrix, explain why "short to

@@ -130,6 +130,52 @@ the shared root cause first.
 | Failure triage | Group by root cause before fixing individually |
 | Suite health metrics | Pass rate, flake rate, runtime trend, test-to-feature ratio |
 
+## How It Actually Works: why bisection finds the culprit in log₂(N) builds, and why order-dependent flakes cluster around shared CAPL state
+
+Two of this module's practices deserve their actual mechanism rather
+than treatment as folklore.
+
+**Bisection's efficiency is a real algorithmic guarantee, not just
+"try some old builds."** If a regression suite was green at commit A
+and red at commit B, with N commits in between, checking the exact
+midpoint commit and recursing into whichever half still spans
+green→red halves the search space every iteration — the same binary
+search structure underlying `git bisect` — so the number of builds you
+actually need to test is `ceil(log2(N))`, not N. For a 200-commit range,
+that's 8 builds, not 200 — the concrete reason "bisect against recent
+changes" (this module's triage step 4) is tractable even against a
+large commit window, as long as each build/run cycle is itself fast
+enough (which is exactly why the tiering discipline earlier in this
+module matters for triage speed, not just for gating speed).
+
+**Order-dependent flakes have a specific mechanical cause traceable
+back to Level 1 Module 5's event-queue model**: two testcases running
+in the same CANoe measurement share the *same* CAPL global `variables`
+block, the same sysvars, and the same restbus simulation state, all
+living in one process for the whole test module's execution — nothing
+is torn down and recreated between testcases by default. When a
+testcase like `tc_ClosedLoopSanityCheck` (Level 3 Module 1) sets a
+signal or sysvar and doesn't explicitly reset it in
+`testcasefinalization`, that value persists in memory exactly as any
+CAPL global would, and the next testcase's `testpreparation` step
+either does or doesn't re-establish its own expected baseline for that
+same variable. This is precisely why the fix is never "run testcases in
+a fixed safe order" (which just hides the dependency until someone
+reorders the suite) but always "make every testcase's setup
+self-sufficient" — the state genuinely is shared process memory, and
+the only way to make execution order irrelevant is for each testcase to
+overwrite every piece of that shared state it depends on, every time,
+rather than trusting whatever a previous testcase happened to leave.
+
+This mechanism also explains why grouping failures by root cause (triage
+step 2) is more than a time-saving heuristic: dozens of testcases
+failing after one shared setup step breaks look, superficially, like
+independent bugs, but they all trace back to the *same* corrupted shared
+state — a log-message fingerprint clustering heuristic (grouping
+failures whose log excerpts mention the same signal, sysvar, or restbus
+node name) reliably surfaces this because the shared root cause leaves
+the same textual fingerprint across every testcase it poisons.
+
 ## Exercise
 
 1. A 45-minute functional-tier suite has grown to 3 hours over 6

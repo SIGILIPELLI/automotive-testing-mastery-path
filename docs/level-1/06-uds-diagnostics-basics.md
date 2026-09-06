@@ -170,6 +170,48 @@ lifecycle in depth.
 | NRC `0x33`/`0x35` | Security access denied / invalid key |
 | Scaling of DID values | Project-specific, not defined by UDS itself |
 
+## How It Actually Works: ISO-TP segmentation underneath every UDS message
+
+UDS itself only defines *what* the bytes mean — it says nothing about
+how those bytes actually travel inside 8-byte CAN frames. That's the job
+of a separate layer, **ISO 15765-2 (ISO-TP)**, sitting between UDS and
+raw CAN, and every UDS message longer than 7 bytes only works because of
+it. A DTC-read response like the multi-DTC example above can easily
+exceed a single classic-CAN frame's 8-byte payload, so ISO-TP segments
+it using a 1-byte **protocol control information (PCI)** field at the
+start of each CAN frame's data:
+
+```text
+Single Frame   (SF):  0x0L ......         - PCI nibble 0, length L ≤ 7
+First Frame    (FF):  0x1L LL ......      - PCI nibble 1, 12-bit total length, first 6 bytes
+Consecutive Fr (CF):  0x2N ......         - PCI nibble 2, sequence number N (0-15, wraps)
+Flow Control   (FC):  0x3S BS STmin       - PCI nibble 3, flow-status, block size, min separation time
+```
+
+A response too long for one frame starts with a **First Frame**
+announcing the total byte count, and the tester must reply with a **Flow
+Control** frame before the ECU sends any more — this is a real,
+mandatory handshake, not an optimization: the FC frame's **BS (Block
+Size)** tells the sender how many Consecutive Frames to send before
+pausing for another FC, and **STmin** tells it the minimum gap to leave
+between them, so a slow or buffer-limited tester tool can throttle a
+fast ECU's transfer. A test script's ISO-TP layer (invisibly, underneath
+whatever library sends the `0x22`/`0x19` request) is responsible for
+sending that FC promptly — miss the timing window (the standard's
+default **N_Bs** timeout is 1 second, but real tools configure it much
+tighter) and the ECU aborts the transfer, which surfaces to the tester
+as a mysteriously incomplete or timed-out diagnostic read that has
+nothing to do with the UDS service logic itself.
+
+This is exactly why a flaky "reading DTCs sometimes returns truncated
+data" bug is almost always an ISO-TP timing problem — a CAN bus
+momentarily busy with higher-priority arbitration-winning traffic
+(Module 3) delaying a Consecutive Frame past STmin, or a test tool's own
+Flow Control response arriving late — rather than a bug in the ECU's UDS
+service implementation, and why a competent tester debugging it opens a
+CANoe trace and looks at PCI nibbles and inter-frame timing, not just the
+UDS-level bytes.
+
 ## Exercise
 
 You are writing a test plan for an ECU's `0x22` (Read Data By

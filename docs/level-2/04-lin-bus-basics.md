@@ -160,6 +160,41 @@ DBC has no concept of.
 | Checksum types | Single (15-bit CRC) | Classic vs. Enhanced (version-dependent) |
 | CAPL object | `message` | `linFrame` |
 
+## How It Actually Works: how a slave finds the master's baud rate from one byte
+
+LIN slaves are commonly built with cheap, imprecise RC oscillators —
+part of what makes LIN nodes cost less than CAN nodes — so they cannot
+be assumed to already agree with the master's bit rate the way two CAN
+nodes' quartz-driven controllers roughly do. The **sync byte** (`0x55`,
+binary `01010101`) exists specifically to fix this every single frame,
+not just at startup.
+
+`0x55` is deliberately the one byte value that produces a perfectly
+alternating 0-1-0-1 bit pattern. A slave measures the time between the
+falling edges of that byte on the bus — five identical, evenly spaced
+edges — and from that measurement directly computes what one bit-time
+actually is *right now*, on this frame, compensating for its own
+oscillator's drift and temperature-dependent variation in real time.
+This is why LIN can tolerate slave oscillators far less precise than a
+CAN transceiver's clock requirement: each frame carries its own timing
+calibration reference before any data arrives, rather than relying on
+every node's clock staying accurate over the long run the way CAN's
+per-bit resynchronization (Level 1 Module 2) does continuously.
+
+The **protected identifier** immediately following sync applies a
+similar defense to the 6-bit frame ID itself: two parity bits are
+computed as fixed XOR combinations of the ID bits
+(`P0 = ID0⊕ID1⊕ID2⊕ID4`, `P1 = ¬(ID1⊕ID3⊕ID4⊕ID5)`, per the LIN
+specification) and appended, so a single-bit corruption on the wire
+during the ID field itself is very likely to produce a parity mismatch
+a slave can detect *before* deciding whether to respond — since LIN,
+unlike CAN, has no CRC or ACK mechanism protecting frame delivery at the
+bus level, this ID-level parity is the only line of defense against a
+slave mistakenly responding to (or overwriting) the wrong frame slot,
+which is exactly the kind of failure mode a "half the time it drops"
+field report in the exercise below could actually trace back to, if the
+checksum type turns out not to be the cause.
+
 ## Exercise
 
 A body-control LIN network has a `WindowControl` frame owned by the

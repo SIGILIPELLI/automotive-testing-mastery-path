@@ -98,6 +98,59 @@ assumed or approximated by the test team alone.
 | Drift risk | Internal rehearsal scenarios must be sourced from actual regulatory-affairs expertise, not approximated by the test team |
 | Dossier | Traceability and internal test evidence often support, but don't replace, the formal compliance documentation |
 
+## How It Actually Works
+
+**Why a HIL rehearsal can pass while the formal test still fails —
+the specific gap.** `tc_PreHomologation_LeadVehicleDecelerationScenario`
+drives the ECU's software logic against a plant-model-simulated lead
+vehicle and radar signal, exercising exactly the decision-making
+algorithm the regulation cares about. But a formal regulatory AEB test
+uses a physical target vehicle (or a certified soft-target surrogate),
+a real radar/camera sensor suite, and real vehicle dynamics — meaning
+it also exercises sensor-fusion accuracy under real-world radar
+clutter, actual brake-actuator response time and vehicle deceleration
+dynamics, and environmental conditions (weather, target-surface radar
+reflectivity) that a signal-level HIL rehearsal cannot represent at
+all, because those signals were injected directly rather than produced
+by real sensors and physics. A pass in HIL proves the ECU's *decision
+logic* is correct given a specific assumed input; it says nothing
+about whether the *sensors and actuators* feeding that logic will
+behave as assumed in the physical test — which is precisely the
+distinction the module's cheat sheet insists on and Exercise 1 is
+built to surface.
+
+**Why the internal test's pass criteria have to be sourced externally,
+not inferred from the regulation's plain text.** Regulatory AEB test
+procedures typically specify pass criteria as precise, parameterized
+formulas — e.g., a required speed reduction as a function of the
+approach speed and target deceleration profile, evaluated at a
+specific measurement point relative to the target — rather than a
+simple binary "did it brake." A test team approximating this as "brake
+command must assert before an estimated collision point," as the
+worked example's comment flags, can produce a testcase that passes
+reliably in HIL while not actually mirroring the regulation's real
+threshold, because the approximation and the true formula diverge at
+exactly the boundary conditions that matter most. This is a mechanism-
+level instance of a general risk: any pass criterion derived by
+engineering judgment from a regulation's summary, rather than from the
+regulation's actual clause and the regulatory-affairs function's
+interpretation of it, tends to be systematically optimistic precisely
+where the real test is hardest to pass.
+
+**Why traceability links have to point at both an internal requirement
+and an external regulation clause, structurally.** A CAPL testcase
+tagged only with an internal requirement ID (`SW-REQ-201`) gives an
+OEM engineer everything they need to trace coverage internally, but
+gives a regulatory-affairs reviewer building the type-approval
+technical file nothing to cite — that dossier has to reference the
+specific regulation clause number the evidence supports, in the
+regulator's own terminology, not the OEM's internal requirement
+scheme. Carrying both tags on the same testcase (as Exercise 3 asks
+for) means one piece of evidence serves two structurally different
+audiences without requiring a separate parallel test suite, or a
+manual, error-prone remapping exercise every time the dossier is
+assembled.
+
 ## Exercise
 
 1. Explain in your own words why a passing result on

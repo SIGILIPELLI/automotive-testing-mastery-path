@@ -137,6 +137,61 @@ input is a secondary concern.
 | Robustness testing | Looks for graceful degradation under unanticipated stress, not confirmation of one anticipated fault |
 | Robustness assertions | Often "didn't crash/hang," not one single expected end-state |
 
+## How It Actually Works
+
+**Why a single global fault-state variable is such a common real
+defect.** Many embedded fault-management implementations, especially
+ones that grew organically rather than being designed against a
+formal fault taxonomy up front, represent "current fault" as a single
+enum or a small fixed-size fault-code register rather than an
+independent bit or flag per fault source. When `BlockMessage` sets
+`CommTimeoutFault_SteeringAngle` and the wheel-speed plausibility fault
+fires afterward, an implementation using a single "last fault wins"
+register will overwrite the steering-angle fault's record entirely —
+the ECU's diagnostic trouble code (DTC) memory and its runtime fault
+output disagree about what's actually wrong, and depending on which
+one the safety mechanism's logic actually reads, a real second failure
+gets silently dropped from the ECU's active decision-making even
+though it's still sitting correctly in DTC history. This is why
+`tc_CombinedFault_PlausibilityDuringCommTimeout`'s second assertion
+checks the *runtime* signal (`CommTimeoutFault_SteeringAngle`), not
+just the DTC log — the two can diverge in exactly this failure mode.
+
+**Why pairwise coverage specifically targets the interaction, not the
+individual value.** The mathematical property pairwise (all-pairs)
+testing exploits is that most real-world defects triggered by multiple
+input factors are triggered by an interaction between only *two* of
+those factors, not three or more simultaneously — an empirically
+observed pattern from decades of combinatorial-testing research across
+software domains generally, not automotive-specific. A pairwise test
+suite guarantees that for every two fault dimensions, every combination
+of their values appears together in at least one test case, even
+though most individual test cases in the suite combine values from
+*all* dimensions at once (there's no way to test just a pair in
+isolation when the underlying system has more than two fault inputs).
+The practical benefit: for the 3×2×2 = 12-combination example in the
+lesson, a pairwise set can typically cover all pairs in as few as 4-6
+cases rather than all 12, and the gap it deliberately accepts is any
+defect that only manifests when three specific fault values combine
+simultaneously and no pairwise subset of that combination reproduces it.
+
+**Why boundary-flooding specifically stresses debounce logic, and what
+"corruption" actually looks like at the register level.** A
+plausibility-fault debounce is typically implemented as a counter that
+increments on each polling cycle the signal is in a faulted state and
+decrements (or resets) when it isn't, with the fault only latching once
+the counter crosses a threshold (e.g., 5 consecutive faulted cycles).
+Rapid flapping at a rate close to the polling/debounce cycle time
+exercises the increment/decrement logic's edge behavior far more than
+a single steady fault ever would — a debounce counter that isn't
+correctly clamped (allowed to go negative, or that doesn't reset the
+decrement path symmetrically with the increment path) can drift into
+an incorrect steady-state count purely from the oscillation pattern,
+latching or failing to latch a fault based on the flapping history
+rather than the signal's actual final state — which is precisely the
+"well-defined but easy to get wrong" outcome `tc_Robustness_RapidBoundaryFlapping`
+is checking the ECU reaches, rather than asserting one fixed expected count.
+
 ## Exercise
 
 1. `tc_CombinedFault_PlausibilityDuringCommTimeout` tests faults on

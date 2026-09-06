@@ -123,6 +123,54 @@ Test strategy summary:
 | Risk-based allocation | ASIL, new-vs-carryover, and field history should drive where test effort concentrates |
 | Toolchain commitments | Needed for a program-wide traceability/coverage view to be possible at all |
 
+## How It Actually Works
+
+**Why "don't re-test" is a technical decision, not just a scheduling
+one.** When a test strategy says software-level CAPL testing "proves"
+a requirement so system integration doesn't need to re-prove it, that
+claim only holds if the software-level test environment's stimulus is
+representative of what the ECU actually sees in the vehicle. A common
+real defect: a supplier's CAPL testcase stimulates a signal directly
+on the bus (`setSignal(WheelSpeedFL, 60.0)`), but the real vehicle
+signal arrives through a gateway ECU that applies its own scaling,
+rate-limiting, or timestamp translation. If the gateway's behavior
+differs even slightly from a raw bus write, the software-level test
+proved something true of the isolated ECU under idealized stimulus,
+not of the ECU as it behaves inside the actual signal chain — which is
+exactly the gap system integration testing exists to close, and why a
+strategy that eliminates integration testing purely on the strength of
+software-level pass rates is making an unverified representativeness
+assumption.
+
+**Why ASIL-driven allocation isn't just "more tests for higher ASIL."**
+ISO 26262 ties ASIL to specific *techniques*, not merely test volume.
+An ASIL D requirement is expected to show evidence of methods like
+boundary-value analysis, fault injection, and independent test review
+(a second qualified engineer, not the author, confirming test adequacy)
+per ISO 26262-8's confirmation measures. An ASIL QM requirement may be
+adequately covered by a single nominal-path functional test. A test
+strategy document that just says "ASIL D gets 3x as many testcases as
+ASIL B" without specifying *which techniques* those testcases must
+collectively exercise is not actually implementing risk-based
+allocation — it's just spending more effort on the same shallow
+technique repeated, which an assessor reviewing the ISO 26262-8 work
+products will flag as a gap regardless of raw testcase count.
+
+**Why the supplier/OEM evidence exchange format matters mechanically,
+not just administratively.** When a supplier's test report and the
+OEM's traceability tool use different requirement ID schemes or
+different pass/fail terminology, the OEM's program-wide coverage view
+either silently drops the supplier's evidence (a requirement shows as
+"untested" in the OEM's tool even though the supplier tested it) or
+double-counts it against the wrong requirement. This is why the
+tooling-commitment section isn't a bureaucratic nicety — a single
+canonical requirement-ID scheme, referenced identically in the
+supplier's CAPL `testCaseTitle` tags (as Level 3 Module 8 established)
+and the OEM's traceability import, is the only thing that makes
+automated coverage rollup across a multi-supplier program mechanically
+possible rather than a manually reconciled spreadsheet exercise that
+falls out of date the moment a milestone passes.
+
 ## Exercise
 
 1. A supplier and the OEM both ran near-identical CAN-timing

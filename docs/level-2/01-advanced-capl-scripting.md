@@ -177,6 +177,39 @@ testcase TC_CoolantTempInRange()
 | `snprintf(buf, elcount(buf), fmt, ...)` | Safe formatted string building |
 | `testcase`, `testStepPass/Fail` | Entry points for CANoe test modules (Module 2) |
 
+## How It Actually Works: why sysvar updates queue instead of racing
+
+`on sysvar_update` looks like it should behave the same as `on message`
+— an event fires, a handler runs — and structurally it does, because
+Module 5's single-threaded, run-to-completion event queue (Level 1)
+governs sysvars exactly the same way it governs messages and timers.
+But sysvars have one behavior that trips people up precisely because
+they *don't* travel over the bus: **a sysvar write takes effect in
+CANoe's shared variable store immediately and synchronously**, while the
+resulting `on sysvar_update` notification to every other CAPL block
+watching that variable is queued as a separate event, delivered in
+FIFO order alongside every pending message and timer event.
+
+The practical consequence: if your node script and a Panel button both
+write to `Diag::ResetRequested` in the same instant (a human clicking
+the panel while your handler is also about to reset it), there's no
+race in the multithreaded sense — one write happens, then the other,
+strictly in event-queue order — but the *value* a late `on sysvar_update`
+handler reads via `@Diag::ResetRequested` is whatever the variable holds
+**at the moment that specific handler runs**, not at the moment the
+write that triggered it occurred. If a second write lands on the same
+sysvar before the first update notification is processed, only one `on
+sysvar_update` event may end up representing two logical changes (CANoe
+coalesces rapid updates rather than guaranteeing one notification per
+write) — so a script relying on sysvar updates to count discrete events
+(rather than reflect current state) will silently undercount under
+bursty conditions. This is exactly why the reset-request pattern above
+"consumes" the flag by writing it back to 0 inside the handler: it
+converts an edge-triggered assumption into explicit level-based state
+management, sidestepping the coalescing behavior entirely rather than
+depending on one-notification-per-write, which CANoe never actually
+promises.
+
 ## Exercise
 
 Write a CAPL function `bool isValidAliveCounter(byte previous, byte

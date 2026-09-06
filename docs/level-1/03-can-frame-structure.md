@@ -130,6 +130,44 @@ Module 2.
 | Error flag | 6 dominant bits, destroys the frame for everyone, triggers automatic retry |
 | Bit stuffing | One opposite bit inserted after 5 identical bits, to preserve sync |
 
+## How It Actually Works: the CRC polynomial and why stuffing is inside it
+
+The 15-bit CRC isn't a generic checksum — it's computed by every CAN
+controller's hardware using a specific polynomial,
+**x¹⁵ + x¹⁴ + x¹⁰ + x⁸ + x⁷ + x⁴ + x³ + 1** (0x4599), run as a shift
+register over every bit from SOF through the end of the data field,
+*including the stuff bits that bit-stuffing inserted along the way*.
+That ordering detail matters more than it looks: the CRC is computed on
+the stuffed bit stream, then the CRC field itself is transmitted with
+its own independent stuffing applied on top. A receiver reverses this —
+destuff first, then recompute CRC over the destuffed bits — so a
+corrupted stuff bit and a corrupted data bit are indistinguishable from
+the CRC check's point of view; both simply produce a CRC mismatch. This
+is why Module 2/3 error handling treats "CRC error" and "stuffing error"
+as two separate detected-error types rather than one: a receiver can
+tell *which* rule was violated (five-identical-bits-then-no-stuff-bit is
+a stuffing violation, detected independently of CRC) even though both
+ultimately mean "don't trust this frame."
+
+The 15-bit CRC's practical guarantee is what a tester should actually
+rely on: it detects **any burst error up to 15 bits**, all single- and
+double-bit errors, and any odd number of bit errors — with a residual
+undetected-error probability on the order of 2⁻¹⁵ for longer random
+corruption. That number is why CAN is considered adequately safe for
+non-safety-critical signals at the frame level alone, but *not* by
+itself sufficient for the highest ASIL levels (Module 9) — which is why
+safety-relevant signals additionally carry an application-layer rolling
+counter and a data-integrity checksum inside the payload itself (E2E
+protection), independent of the bus-level CRC. When you see a "counter"
+or "CRC" byte inside a DBC-defined signal's payload (Module 6, Level 2's
+Module 6) rather than relying on the CAN frame's own CRC, this dual
+layering is why: the bus CRC catches transmission corruption, the
+payload E2E check catches corruption the bus CRC structurally cannot —
+a bit flip that happens to still produce a valid frame CRC after
+re-stuffing, or corruption introduced *before* the transmitting
+controller ever computed the frame CRC (a stuck sensor register, a
+memory-corruption bug in the sending ECU).
+
 ## Exercise
 
 Two nodes attempt to transmit at the same instant with standard

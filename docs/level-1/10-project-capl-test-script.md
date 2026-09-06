@@ -189,6 +189,43 @@ script and need to move up the V-model to integration test.
 | 8 — Test case design | Boundary value analysis with hysteresis, fully documented test cases, traceability |
 | 9 — Standards | This is exactly the kind of evidence an ASPICE SWE.4 assessment or an ISO 26262 safety case would ask to see |
 
+## How It Actually Works: why the 500 ms step delay isn't arbitrary
+
+Step 2's test script waits 500 ms between driving `fuelLevelPct` and
+checking `warningActive`, and that number is doing real, specific work
+tied directly to Module 5's event-queue mechanics — it isn't a
+convenient round number.
+
+Both CAPL programs (the simulated sensor node and the test script) run
+inside the same CANoe measurement, sharing one event queue and one
+single-threaded runtime. When the test script sets `fuelLevelPct = 9`,
+that variable write takes effect immediately in memory, but it does
+**nothing observable on the bus** until the sensor node's own
+`cycleTimer` next fires — and that timer runs on its own independent
+100 ms schedule, started at `on start` with no relationship to when the
+test script happens to change the variable. In the worst case, the
+variable change lands just *after* a cycle has already fired, meaning
+the sensor node won't transmit the new value for nearly a full 100 ms.
+The test script's `warningActive` check itself only reflects whatever
+the sensor node last computed and transmitted — so checking too early
+reads stale state and produces a **false FAIL**, not because the
+hysteresis logic is wrong, but because the checking script outran the
+system under test's own cycle time.
+
+The 500 ms wait is really "worst-case cycle misalignment (just under
+100 ms) plus several cycles of margin for reliable observation," and
+it's the same reasoning Module 8's fully worked test case used when it
+specified "within one signal update cycle (≤ 100 ms)" as part of the
+expected result rather than an instantaneous check. Generalizing this:
+**any CAPL test script driving a cyclic simulation must wait at least
+one full cycle period past the moment it changes an input**, and a
+robust script does this by explicitly re-arming its own check after the
+DUT's documented cycle time, never by guessing a delay that happens to
+work in one test run — a script using, say, 50 ms here (less than one
+full cycle) would pass or fail nondeterministically depending on exact
+timer phase alignment, which is exactly the kind of flaky, timing-based
+test failure a competent automotive tester learns to recognize on sight.
+
 ## Exercise
 
 Extend this project with one more requirement: **REQ-FUEL-007** — if the

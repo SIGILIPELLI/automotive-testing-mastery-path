@@ -147,6 +147,44 @@ purpose.
 | `CM_` | Often the only place real update-timing/precondition info lives |
 | Bit-map overlap | Not caught by value-only tests — needs an explicit layout review |
 
+## How It Actually Works: the two incompatible bit-numbering schemes hiding behind one "start bit"
+
+The DBC's `16|8@1+` notation looks like a simple offset-and-length pair,
+but the *meaning* of that starting number depends entirely on the `@1`
+vs `@0` byte-order flag, because Intel and Motorola signals use two
+different bit-numbering conventions across the same 64-bit frame — and
+this is the actual mechanism behind the byte-order mistakes this module
+already warns about.
+
+For **Intel (little-endian, `@1`)** signals, bit numbering runs
+naturally: bit 0 is the LSB of byte 0, bit 7 is its MSB, bit 8 is the
+LSB of byte 1, and so on — a signal's bits simply occupy an increasing
+run starting at its declared start bit, byte order matching normal
+memory layout. For **Motorola (big-endian, `@0`)** signals, the DBC
+format numbers bits **within each byte in reverse** and the *start bit
+given is the signal's most significant bit*, not its least: byte 0's
+bits are numbered 7,6,5,4,3,2,1,0 (MSB first), byte 1's are
+15,14,13,12,11,10,9,8, and a multi-byte Motorola signal's remaining bits
+continue by wrapping from a byte's bit 0 down to the *next* byte's bit
+7 — which is why decoding a Motorola signal by "just reading bits
+upward from the start bit," the way you would for Intel, silently
+produces a value with its byte order effectively reversed, yet still
+lands inside a plausible numeric range often enough that a spot-check
+test doesn't catch it.
+
+This is precisely why the review checklist's byte-order consistency
+check and "always decode via a DBC-aware tool" rule aren't just style
+preferences — the two numbering schemes are genuinely different
+coordinate systems laid over the same 64 bits, and a human doing mental
+arithmetic has to consciously switch which direction they're counting
+depending on one flag character. When constructing a deliberately
+malformed frame for negative testing (as this module's closing note
+describes), you must apply this same bit-numbering rule by hand to place
+bits at their true wire positions — getting Motorola bit-ordering wrong
+here doesn't produce an obviously-invalid frame, it produces a
+differently-valid one, which defeats the entire point of a targeted
+negative test.
+
 ## Exercise
 
 Given `SG_ FuelLevel : 32|8@1+ (0.5,0) [0|100] "%" Vector__XXX` in an

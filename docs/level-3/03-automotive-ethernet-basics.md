@@ -113,6 +113,47 @@ setup step (discovery) has its own well-defined failure mode.
 | SOME/IP-SD | Discovery/offer/subscribe sub-protocol — verify separately from eventing |
 | No built-in reliability | SOME/IP over UDP can silently drop events — test for loss explicitly if it matters |
 
+## How It Actually Works: how 100 Mbit/s fits on one wire pair, full duplex
+
+Office 100BASE-TX needs two twisted pairs — one dedicated to each
+direction — specifically because its line coding (MLT-3) can't share a
+wire with simultaneous traffic going the other way without the two
+signals destroying each other. 100BASE-T1 achieves the same 100 Mbit/s
+on a *single* pair, in both directions at once, using two mechanisms
+worth knowing because they explain a whole class of automotive-Ethernet
+signal-integrity faults that don't exist in an office network.
+
+First, **PAM3 (3-level Pulse Amplitude Modulation)** encodes more
+information per symbol than the simple two-level signaling CAN and
+office Ethernet's MLT-3 use — each symbol carries ternary information,
+letting 100BASE-T1 hit its target bit rate at a lower symbol (baud) rate
+than a binary encoding would need, which reduces the electromagnetic
+emissions and reduces sensitivity to the twisted-pair's frequency
+response — both hard constraints in a vehicle harness that must pass
+EMC testing (Level 4 covers EMC/homologation testing) and can't use
+shielded cable everywhere for cost reasons. Second, **hybrid echo
+cancellation**: because both ends transmit on the same pair
+simultaneously, each transceiver's receiver would otherwise hear its
+*own* transmission superimposed on the signal actually coming from the
+far end. A 100BASE-T1 PHY continuously computes what its own outgoing
+signal contributes to the wire (it knows exactly what it just
+transmitted) and subtracts that predicted contribution from what it
+measures, leaving only the far-end signal — a real-time adaptive filter
+running inside the transceiver silicon on every single symbol.
+
+This is precisely why automotive-Ethernet signal-integrity problems have
+a distinct fault signature from CAN's: an out-of-spec cable length,
+connector impedance mismatch, or excessive crosstalk doesn't just add
+noise the way it would on CAN's differential pair — it degrades the echo
+canceller's ability to accurately predict and remove the local
+transmission, producing a rising **symbol error rate** that shows up as
+intermittent frame loss or retransmission-triggering errors at the
+Ethernet MAC layer, well before a CAN-trained eye would recognize it as
+a physical-layer problem rather than an application/SOME-IP bug — which
+is exactly the kind of failure that gets misdiagnosed as "the event
+subscription is unreliable" (this module's Exercise 3 scenario) when the
+real cause is sitting in the PHY.
+
 ## Exercise
 
 1. A test subscribes to an eventgroup and waits 2000ms for an event

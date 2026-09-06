@@ -124,6 +124,46 @@ requirement.
 | Hysteresis check | Test both the "on" and "off" thresholds separately | Prevents missing chatter/flicker defects at a boundary |
 | Environment field | Record ECU build, database version, CANoe config version | A stale DBC or wrong ECU build is a very common false failure |
 
+## How It Actually Works: why the raw integer, not the physical value, decides the boundary
+
+A boundary test like "120.0 °C, then 120.1 °C" is really only meaningful
+once you account for the fact that the ECU never sees 120.0 or 120.1 at
+all — it sees the **raw integer** the signal's scaling formula produces,
+and every DBC/A2L-defined signal is scaled by the same linear
+transform:
+
+```text
+physical = raw × factor + offset
+raw      = (physical − offset) / factor
+```
+
+For `CoolantTemp` at factor 0.1, offset 0 (so `physical = raw × 0.1`),
+120.0 °C is raw `1200` and 120.1 °C is raw `1201` — the *smallest
+possible step* this signal can represent is exactly 0.1 °C, because raw
+is always an integer. This has a real consequence for boundary design:
+if a requirement had instead said the threshold was 120.05 °C, there
+would be **no representable raw value at that exact boundary at all** —
+the signal's resolution can't express it, so "test exactly at the
+boundary" is meaningless and the honest test is the tightest achievable
+pair (1200 vs 1201 raw) bracketing it as closely as the encoding allows.
+This is a real, recurring defect source: a requirements author who
+writes a threshold finer than the signal's actual bit resolution has
+written an untestable requirement, and a careful tester catches this at
+test-design time by converting the threshold to raw units *first*,
+before writing any test steps — exactly as this module's worked example
+does — rather than assuming the physical value can be hit precisely.
+
+The same arithmetic explains something easy to miss about signed and
+rounding behavior: if a scale factor doesn't divide evenly (a `factor`
+of 0.0625, common for finer-resolution signals, or a negative `offset`
+for signals like `CoolantTemp`'s typical −40 °C floor), converting a
+physical requirement value to raw can require **rounding**, and which
+direction you round changes which side of the true boundary your test
+actually lands on. A test case's "test data" field should always show
+the raw value used and the arithmetic that produced it — not just the
+physical number — precisely so a reviewer can catch a rounding error
+that silently shifted a boundary test off its intended edge.
+
 ## Exercise
 
 An ECU has a low-fuel warning requirement: "the low-fuel warning shall

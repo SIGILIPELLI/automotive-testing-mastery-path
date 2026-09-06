@@ -133,6 +133,51 @@ each other.
 | State reset between jobs | Explicit relay/build-verification teardown and setup on every job, not assumed |
 | Feedback tiering | Fast SIL/smoke feedback for developers; thorough nightly regression for full confidence |
 
+## How It Actually Works
+
+**Why `RigPool.reserve` returning `None` has to propagate all the way
+to the CI status, not just the scheduler.** The subtle failure mode in
+naive rig-scheduling code is that a queued job, if implemented as a
+blocking wait inside the same CI worker process, still occupies a CI
+runner slot and eventually times out at the CI system's own job-timeout
+threshold (commonly 30–60 minutes) — at which point most CI platforms
+report that as a generic "Failed" or "Timed out" status indistinguishable
+from a real test failure in the dashboard, even though `RigPool.reserve`
+itself correctly returned `None` rather than a false verdict. Fixing
+this requires the scheduler to actively push a distinct "queued/waiting
+for rig capacity" status back to the CI system's own API (most CI
+platforms support a custom pending/waiting state or an annotation).
+The Python-level distinction between queuing and failing only matters
+if it's threaded all the way through to what a developer actually sees.
+
+**Why build-ID verification via UDS `ReadDataByIdentifier` catches a
+whole class of bug flash-verification checksums don't.** A flash tool
+typically verifies that the bytes written to the ECU's flash memory
+match the intended binary (a CRC/checksum over the image) — but that
+only proves the flash operation itself didn't corrupt data in transit.
+It does not prove the *correct* binary was selected for flashing in
+the first place. `tc_Setup_VerifyCorrectSoftwareBuildFlashed` closes
+that gap by reading back an application-level build identifier (DID
+`0xF1F0` or a similar manufacturer-defined data identifier, populated
+by the build process itself, often from a version-control commit hash
+or build-system tag) that only exists if the intended source binary
+was compiled and flashed — catching the class of defect where a stale
+or wrong-variant image passed its own flash-integrity check perfectly
+but was simply the wrong file.
+
+**Why relay teardown has to be verified, not just commanded.** Sending
+a "restore relay to nominal" command to a HIL fault-injection matrix
+and trusting it succeeded silently reintroduces exactly the state-leak
+risk the mitigation is meant to prevent — a relay can fail to
+de-energize due to a stuck contact, a driver-board fault, or a command
+that arrived while the rig's control bus was momentarily busy. A
+teardown step is only a real mitigation if it reads back each relay's
+actual state (via the rig controller's own status query, not an
+assumption that the command succeeded) and fails the job loudly if any
+relay didn't return to nominal — otherwise job N+1 inherits a silently
+faulted rig and produces confusing, unrelated-looking failures that
+look like software regressions.
+
 ## Exercise
 
 1. A CI dashboard shows a job as "Failed" but the actual cause was no

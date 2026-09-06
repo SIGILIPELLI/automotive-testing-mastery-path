@@ -131,6 +131,43 @@ part of the deliverable, not an afterthought to it.
 | Stale links | The most common real failure mode — requirement changed, test didn't |
 | Audit readiness | The traceability artifact itself is often literally what an assessor asks to see |
 
+## How It Actually Works: traceability as a bipartite graph, and where the regex approach breaks
+
+The `build_coverage_matrix` function above is doing something worth
+naming precisely: it's constructing a **bipartite graph** — one node
+set for requirements, one for testcases, an edge for every `[SW-REQ-###]`
+tag found — and every coverage question this module asks is really a
+graph-traversal query over that structure. "Forward traceability" is
+following edges from a requirement node outward; "backward
+traceability" is following them from a testcase node back; an "orphan"
+requirement (no test cases at all) is simply a requirement node with
+**degree zero** — no edges — trivially detectable by one pass over the
+graph without any special-casing. This is why a graph representation,
+even an informal one built from regex-extracted tags, scales far better
+than a spreadsheet: spreadsheet-based traceability tends to represent
+only one direction explicitly (a "requirement → test IDs" column) and
+leaves the reverse direction to manual cross-referencing, which is
+exactly where staleness and orphaned links first go unnoticed.
+
+But the regex-tagging approach has a real, mechanical blind spot worth
+naming: `REQ_PATTERN.findall(title)` can only discover an edge that
+someone remembered to type into a `testCaseTitle()` string. If
+SW-REQ-042's debounce value changes from 100 ms to 150 ms and a
+developer edits the CAPL assertion but never touches the title string,
+the graph edge stays exactly as it was — the parser has no way to know
+the *assertion content* underneath that edge drifted out of sync with
+the requirement, because it never reads assertion values, only title
+text. This is the concrete, structural reason this module's second
+staleness-catching practice ("include the requirement's specific
+numeric value in the title itself, not just the ID") works where a
+periodic manual audit alone is unreliable: putting `150ms` in the title
+string turns a value that would otherwise be invisible to the
+graph-extraction tooling into another parseable token — a reviewer (or
+even an automated diff against the requirements document's own stated
+value) can now catch a title that says `100ms` next to a requirement
+document that says `150ms`, entirely mechanically, without executing the
+test or reading the CAPL body at all.
+
 ## Exercise
 
 1. `tc_DtcSetsAfterPersistentFault` asserts a 100ms debounce time.

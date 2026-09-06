@@ -155,6 +155,51 @@ Test cases for `0x14` should include:
 | `0x14` | ClearDiagnosticInformation — test clearing under an active fault, not just a resolved one |
 | Snapshot data | Freeze-frame values must reflect the actual fault moment, not stale cache |
 
+## How It Actually Works: the debounce counter underneath "pending" vs. "confirmed"
+
+The status byte's bits look like a clean state machine, but inside the
+ECU they're driven by a much more mechanical piece of code: a signed
+**debounce counter**, usually incremented on each diagnostic-test fail
+and decremented on each pass, checked against two thresholds. A typical
+implementation looks roughly like:
+
+```text
+on each diagnostic test result:
+    if failed:  counter = min(counter + failStep,  matureThreshold)
+    if passed:  counter = max(counter - healStep,  healThreshold)
+
+    pendingDTC   = (counter > 0)
+    confirmedDTC = (counter >= matureThreshold)
+```
+
+The "2 of 3 cycles" rule in the exercise below is a direct consequence
+of choosing `failStep`, `healStep`, and `matureThreshold` values — for
+instance `matureThreshold = 2`, `failStep = 1`, `healStep = 1` produces
+exactly "confirmed once two net failures have accumulated, tolerating
+one intervening pass," which behaves differently from a naive
+"confirmed after 2 *consecutive* failures" implementation the moment a
+pass appears between two failures: the counter-based version keeps its
+accumulated progress (net count stays at 1 after fail-pass, then reaches
+2 on the next fail), while a consecutive-counter implementation resets
+to zero on any pass and needs two failures *in a row* afterward. This is
+precisely the difference this module's exercise asks you to design a
+test sequence to expose — and it's why the right test sequence is
+fail → pass → fail (three cycles, two failures, one pass in between),
+not fail → fail (which both implementations would confirm identically
+and therefore proves nothing about which rule is actually implemented).
+
+The **operation cycle** boundary that resets `testFailedThisOperationCycle`
+and `testNotCompletedThisOperationCycle` (bits 1 and 6) is itself just
+an ECU power-state transition, not a fixed calendar concept — commonly
+key-off-to-key-on, sometimes engine-off-to-running specifically for
+powertrain DTCs per SAE J1979/J2012 conventions. A test that "power
+cycles the ECU" (as this module's worked test case does at step 2) is
+really forcing exactly this transition so the debounce counter's
+per-cycle bits reset while its cross-cycle maturation counter — bits 2
+and 3 — deliberately does not, which is the whole mechanical reason
+pending/confirmed state can survive a power cycle while the "this
+cycle" bits cannot.
+
 ## Exercise
 
 An OEM spec states: a DTC matures to confirmed after failing on 2 of

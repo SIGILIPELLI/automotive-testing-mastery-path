@@ -149,6 +149,60 @@ points of failure on the BMS-specific rig.
 | Honest gap disclosure | Level 3 Module 10's pattern, applied program-wide |
 | Team structure | Level 4 Module 6 |
 
+## How It Actually Works
+
+**Why the placeholder `1 == 1` in `tc_SafetyDisconnectPrioritizedDuringAuthFailure`
+is a genuinely dangerous thing to leave in a real test suite, not just
+an incomplete exercise.** A CAPL testcase that reaches
+`testWaitForSignal(ContactorState, 0, 200)` and then asserts a tautology
+reports a Passed verdict in every test-report rollup, traceability
+matrix, and CI dashboard exactly as if a real, meaningful check had
+been performed — there is nothing in the tooling that distinguishes a
+placeholder assertion from a genuine one; both simply resolve to `1`.
+This means a fault-priority regression (security-handshake processing
+load pushing the contactor-disconnect path past 200ms) can be
+introduced later and this testcase will keep reporting green
+indefinitely, giving the program false confidence on precisely the
+ASIL D requirement (SW-REQ-501) that matters most. The fix isn't just
+"replace 1==1 with something real" — it's capturing `t0` before setting
+`CellVoltage_mV` and `t1` after `testWaitForSignal` returns, then
+asserting `(t1 - t0) <= 200` exactly as `tc_ContactorDisconnectsWithinSpec`
+does, so the combined-fault case actually measures the same timing
+budget under contention that the isolated case measures without it.
+
+**Why testing "safety disconnect during auth failure" specifically
+targets a scheduler-priority bug class.** On a real ECU, both the
+contactor-disconnect logic and the charging-authentication handshake
+typically run as tasks or interrupt handlers on a shared processor,
+arbitrated by an RTOS scheduler with configured task priorities. If
+the safety-critical disconnect path and the security/authentication
+path are not correctly prioritized relative to each other — say, both
+assigned similar priority, or the authentication handshake runs in a
+long, non-preemptible critical section — a genuinely correct-looking
+disconnect implementation (proven correct in isolation by
+`tc_ContactorDisconnectsWithinSpec`) can still miss its 200ms budget
+the moment it has to compete for CPU time with an in-progress
+authentication attempt. This is precisely why Level 4 Module 3's
+combined-fault discipline treats "safety mechanism A works" and
+"safety mechanism A works while B is also active" as two structurally
+different claims requiring two different tests — task-priority bugs
+are invisible to single-condition testing by construction.
+
+**Why the configuration baseline's DBC/A2L/build triplet is what makes
+Gap 1 and Gap 2 actionable rather than just noted.** When Section 7
+flags that electrical fault injection is missing for the cell-voltage
+sensor wiring, that gap statement is only useful to a future engineer
+if it's unambiguous which exact software behavior it applies to — a
+gap noted against "the BMS" in general, without the
+`BMS-v1.0.0-rc1-baseline` tag pinning the exact DBC/A2L/build tuple,
+becomes ambiguous the moment the software is revised: does the gap
+still apply to `v1.0.1`, or was it incidentally closed by an unrelated
+change? Tagging every gap and every passing test result against the
+same baseline identifier (Level 4 Module 5) is what lets a safety
+assessor, months later, answer "is this specific, previously-accepted
+risk still open against the software we're about to ship" with a
+lookup rather than a fresh investigation.
+
 ## Exercise
 
 1. `tc_SafetyDisconnectPrioritizedDuringAuthFailure` contains a

@@ -130,6 +130,43 @@ result from that run.
 | **Closed-loop test** | ECU outputs feed back into the simulation live |
 | Why HIL matters | Vehicle-realistic, fully repeatable, safe to fault-inject, cheaper/faster than real vehicles |
 
+## How It Actually Works: how a wheel-speed sensor voltage becomes a number, twice
+
+The obstruction-detection scenario above glossed over one mechanism
+worth making explicit, because it's the same one underlying nearly every
+analog HIL signal: **how a plant-model number becomes a real voltage,
+and how that voltage becomes a number again inside the ECU** — with two
+independent quantization steps in between that a tester needs to
+account for.
+
+On the HIL side, the I/O interface's **DAC (digital-to-analog
+converter)** takes the plant model's floating-point current value and
+outputs the nearest representable voltage step — a 16-bit DAC over a
+0-10 V range resolves to steps of about 0.15 mV, effectively continuous
+for this purpose, but a cheaper 12-bit channel (≈2.4 mV steps) on an
+older or lower-cost I/O card can matter when a threshold sits close to a
+step boundary. That analog signal then crosses to the ECU's own input
+circuit, which digitizes it *again* with its own **ADC**, at its own
+resolution and its own sampling rate — commonly 10-bit or 12-bit,
+sampled every 1-5 ms by a periodic task exactly like the one described
+in Module 1. The 8 A / 50 ms obstruction threshold is checked against
+*this* second, ECU-side digitized value, not against the plant model's
+"true" simulated 9 A — so the real test isn't "did I output 9 A," it's
+"did the ECU's own ADC, at its own sample times, see enough consecutive
+above-threshold samples to satisfy its debounce counter."
+
+This is exactly why the test script holds the fault "for exactly 60 ms"
+rather than the bare minimum 51 ms: it needs enough margin to guarantee
+that at least the required number of the ECU's own ADC sampling
+instants — whose phase relative to the HIL's DAC update is not
+generally synchronized — land inside the fault window. A HIL test
+written with only 51 ms of margin can flap between pass and fail purely
+from ADC sampling-phase alignment, with nothing wrong in either the ECU
+or the test script — a class of flaky-test bug specific to physical-signal
+HIL that a pure CAN-message CANoe test (Module 4) structurally cannot
+produce, because there's no ADC/DAC pair involved when you inject a
+signal value directly as a CAN payload.
+
 ## Exercise
 
 Design a HIL test scenario (in words, not code) for an anti-lock braking

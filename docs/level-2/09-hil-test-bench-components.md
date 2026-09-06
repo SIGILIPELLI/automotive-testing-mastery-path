@@ -123,6 +123,49 @@ scripts.
 | Fault-injection unit | New — real electrical faults, not simulated bad values |
 | Closed loop | The defining property distinguishing HIL from open-loop bench testing |
 
+## How It Actually Works: how a pulse train becomes a position, and a "load" becomes real current
+
+Two of this module's I/O categories deserve their actual encoding
+mechanism, because "simulated motor position feedback" and "load
+emulation" are two of the most frequently misunderstood pieces of a HIL
+rig.
+
+**Quadrature pulse-train feedback**: a real motor position sensor
+(commonly a Hall-effect or optical encoder) outputs two square waves,
+A and B, 90° out of phase with each other. The *count* of pulses gives
+position, and — critically — the **phase relationship** (whether A
+leads or lags B) gives direction: an ECU's position-decoding hardware
+watches which channel transitions first on every edge to determine
+whether the motor is turning forward or backward, not just how far. A
+HIL I/O card simulating this feedback must generate both channels with
+correct relative phase, at a pulse rate matching the plant model's
+simulated motor speed in real time — get the phase relationship
+backwards and the ECU's own decoder reports the motor spinning the
+wrong direction while the pulse *count* still looks numerically
+plausible, exactly the kind of "passes a naive value check, fails the
+real requirement" defect this course keeps surfacing. This is precisely
+why the steering-rack closed-loop requirement in the exercise below
+can't be faked with an open-loop pulse generator: the assist motor's
+actual commanded direction has to determine which channel leads, live,
+every cycle.
+
+**Load emulation** is not simply "a resistor sized to draw the right
+current." A real electronic load on a HIL rig is an active circuit
+(commonly a controlled MOSFET bank in a feedback loop) that continuously
+adjusts its own resistance to track a *target current or power profile*
+supplied by the plant model, regardless of the ECU's actual output
+voltage — because a real actuator's current draw depends on its own
+back-EMF and mechanical load, which changes dynamically as the plant
+model's physics evolve. A fixed resistor would only reproduce the right
+current at one specific voltage; an electronic load reproduces the
+*behavior* of a stalled motor, a freely spinning one, or one meeting
+resistance, by actively regulating itself in the same closed loop this
+module's diagram describes — which is exactly the property the exercise
+below is really asking you to verify before trusting a millisecond-level
+latency measurement: does the load emulation's own control loop settle
+fast enough, relative to the ECU's control-loop bandwidth, that it isn't
+itself the slowest link in the chain being measured?
+
 ## Exercise
 
 You're scoping a HIL rig to test an electronic power-steering ECU. The

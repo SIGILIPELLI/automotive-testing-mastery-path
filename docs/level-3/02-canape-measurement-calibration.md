@@ -142,6 +142,46 @@ subsequent test in the same session, session run, or shared rig.
 | DAQ list | Configure once, stream many samples — avoid per-address polling |
 | XCP master/slave | Tool is master, ECU is slave; CONNECT/DAQ/DISCONNECT lifecycle |
 
+## How It Actually Works: how a DAQ list actually packs bytes onto the bus
+
+A DAQ list isn't a magic subscription — it's a real, bandwidth-limited
+packing problem, and understanding the packing explains both why DAQ
+beats polling and why the exercise's 200-address/1ms scenario actually
+saturates a link.
+
+XCP organizes a DAQ list into one or more **ODTs (Object Descriptor
+Tables)**, each ODT being a fixed-size set of measurement entries that
+fit into a *single* CAN frame's payload (up to 8 bytes classic, 64 on
+CAN-FD, minus a 1-byte packet identifier). If `EngineSpeed_rpm` is a
+2-byte `UWORD` and you want six such 2-byte measurements sampled
+together, they need 12 bytes — more than one classic-CAN frame can
+hold — so XCP splits them across two ODTs, each transmitted as its own
+CAN frame every DAQ cycle, tagged with a **DAQ list number and ODT
+number** in the leading byte so the master can reassemble which values
+belong to which sample instant on receipt. This is the concrete reason
+`SET_DAQ_PTR`/`WRITE_DAQ` configuration isn't just "list the addresses
+you want" — the master (CANape, or CANoe's XCP driver) has to solve a
+real bin-packing problem across ODTs before the ECU can even start
+streaming, and a poorly packed list (measurements added in an order
+that wastes bytes at ODT boundaries) can silently need more CAN frames
+per cycle than a well-packed one carrying the same data.
+
+This is also exactly why 200 addresses at 1 ms saturates a slow link:
+each 1 ms cycle needs however many ODT frames the packing required,
+each competing for arbitration and bus bandwidth (Level 1 Module 3)
+alongside the vehicle's normal functional CAN traffic — at, say, 4 ODT
+frames per cycle on a 500 kbit/s bus already carrying 60% functional
+load, the DAQ traffic alone can exceed what's left. The two genuine
+fixes follow directly from the mechanism: **reduce the DAQ rate for
+measurements that don't need 1 ms resolution** (a slowly-changing
+coolant temperature gains nothing from 1 kHz sampling, freeing ODT slots
+for what actually needs them), or **split the measurements across
+multiple DAQ lists at different rates**, rather than forcing every
+address into one list at the fastest rate any single measurement
+requires — which is precisely the kind of DAQ-list design work that
+distinguishes an efficient measurement setup from one that silently
+starves the bus of headroom it needs for actual vehicle traffic.
+
 ## Exercise
 
 1. Explain concretely what goes wrong if a test suite runs against an

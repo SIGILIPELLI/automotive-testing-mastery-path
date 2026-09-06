@@ -150,6 +150,43 @@ simulation can't reproduce by definition).
 | Timing fidelity | Critical specifically for timeout/failsafe tests — verify via trace |
 | Restbus vs. real hardware | Restbus for fast/frequent logic tests; real ECUs for integration fidelity |
 
+## How It Actually Works: why "roughly every 10ms" drifts, mechanically
+
+This module's timing-fidelity warning has a precise cause worth
+understanding rather than just respecting. Unlike a real ECU's cyclic
+sender, which runs on a hardware timer inside a real-time microcontroller
+with true periodic interrupts, a CAPL restbus node running on a
+Windows-hosted CANoe measurement is scheduled by the same
+run-to-completion event queue introduced in Level 1 Module 5 — and
+`setTimer(txEngine, 10)` re-armed at the *end* of the handler measures
+its next 10 ms starting from **whenever that handler actually finished
+executing**, not from the timer's original nominal deadline.
+
+If the event queue has other work pending at that instant — another
+node's handler mid-execution, a burst of received frames all needing
+processing, a `write()` call flushing to the log window — the runtime
+services all of it before returning control, and the next
+`txEngine`/`txBrake` cycle is pushed back by exactly that amount. Under
+light load this is sub-millisecond and invisible; under a busy
+simulation with five wheel-speed signals at 5 ms cycles plus a UDS
+diagnostic exchange happening concurrently (the exercise below's
+scenario), each node's handler execution time competes for the same
+single-threaded runtime, and the *accumulated* scheduling delay across
+many closely-timed cyclic senders can genuinely exceed a few
+milliseconds — enough to matter against a 500 ms failsafe-timeout
+assertion only in the aggregate, but easily enough to matter against a
+50 ms wheel-speed-freeze detection window if several restbus nodes are
+fighting for the same runtime slice at once.
+
+This is exactly why the worked test case insists on verifying via bus
+trace that `EngineStatus` really was arriving every 10 ms *before*
+trusting the timeout result: the trace captures the interface hardware's
+own timestamps (Level 1 Module 4), which reflect the true wire timing
+independent of whatever scheduling jitter the CAPL runtime introduced —
+it's the only ground truth available for confirming the restbus
+delivered what it was supposed to, rather than what it happened to
+manage under that run's particular event-queue load.
+
 ## Exercise
 
 You're testing an ABS ECU that requires `VehicleSpeed`, `WheelSpeedFL`,

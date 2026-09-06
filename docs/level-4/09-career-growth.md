@@ -89,6 +89,54 @@ interview for this field.
 | Portfolio over resume lines | Strategy documents, honest gap-stated fault matrices, working CI regression suites, traceability matrices |
 | Certifications | Useful door-openers, not substitutes for demonstrated reasoning |
 
+## How It Actually Works
+
+**Why "independently designs a fault-injection matrix" is a specific,
+checkable behavior, not a vague maturity claim.** The readiness signal
+from Test Engineer to Senior Test Engineer isn't measured by asking
+someone to self-assess — it's demonstrated by artifacts a reviewer can
+actually inspect: does the engineer's fault matrix (Level 3 Module 6
+style) name specific fault types tied to specific FMEA entries, does
+it call out coverage gaps explicitly rather than looking complete by
+omission (the Level 3 Module 10 habit), and does it hold up when
+challenged with "why this fault and not that one." An engineer who has
+only ever executed testcases someone else designed typically can't
+answer that last question with reasoning — they can describe what the
+test does, not why that specific fault was chosen over alternatives —
+which is the concrete, observable difference a promotion conversation
+should actually be testing for, rather than years of tenure.
+
+**Why a portfolio's fault-injection matrix should show gaps, not hide
+them, and why interviewers specifically probe for this.** A candidate
+who presents a fault matrix with every cell filled in is statistically
+more likely to have either scoped the matrix too narrowly (only
+including faults they knew how to test) or omitted known-hard cases
+than a candidate whose matrix has visible, dated, reasoned "not yet
+covered" entries. An interviewer experienced in this domain knows a
+completely full-looking matrix from a junior candidate is a red flag
+for exactly this reason — real programs almost always have honest
+gaps (electrical fault injection needing hardware not yet available,
+combined-fault cases not yet extended, as the Level 3 Module 10 and
+capstone examples show), so a portfolio piece that mirrors that honest
+incompleteness reads as more credible, not less, to someone who has
+actually run a real test program.
+
+**Why vendor tool certifications open doors but don't predict on-the-
+job performance the way a working CI-integrated suite does.** A CANoe
+or CANape certification exam typically tests tool feature knowledge —
+which menu configures a diagnostic profile, how to set up a panel —
+under conditions the candidate controls and can study for directly. A
+working regression suite artifact instead demonstrates something a
+certification structurally cannot: that the candidate made real design
+trade-offs under constraints (what to run in SIL versus HIL, how to
+tier smoke versus full regression per Level 4 Module 2, how to handle
+a flaky result per Level 3 Module 7) and that the resulting system
+actually runs end to end. This is why the module ranks certifications
+as door-openers rather than differentiators — they screen for baseline
+vocabulary an interviewer would otherwise have to establish from
+scratch, but they cannot substitute for evidence of judgment under
+real trade-offs.
+
 ## Exercise
 
 1. Pick one of the five paths in the table and write a concrete

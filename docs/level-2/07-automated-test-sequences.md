@@ -154,6 +154,45 @@ a failed nightly run debuggable without re-running it locally first.
 | `testCaseInconclusive` | On unmet preconditions | Keeps skipped tests out of pass/fail stats |
 | Fail-fast vs. fail-forward | Test Configuration level | Smoke vs. full regression strategy |
 
+## How It Actually Works: why one slow testcase doesn't stall the whole module
+
+Module 2 established that a `testcase` runs as its own suspendable test
+task, yielding back to the measurement's event loop during
+`testWaitForTimeout`. Test sequences depend on one more layer built on
+top of that: **the test module runner itself schedules testcases
+sequentially, but each one still owns the full event loop while it
+runs** — which is exactly why the fail-fast/fail-forward choice in this
+module's exercise is a real architectural decision, not just a report
+filter.
+
+Concretely, `tc_CoolantOverheatBoundary`'s two `testWaitForTimeout(150)`
+calls block *that testcase's task* for up to 300 ms of wall-clock time
+combined, during which the module runner does not start
+`tc_LowFuelHysteresis` — testcases in one module execute strictly one at
+a time, in sequence, each getting exclusive use of the shared bus
+simulation between its own setup and `testcasefinalization`. This is why
+independence (each testcase establishing its own preconditions rather
+than relying on a predecessor's leftover state) isn't just good hygiene
+for readability — it's the only thing that makes "run a fail-forward
+config" and "run a single testcase in isolation for debugging" produce
+identical results for testcase N: both execute against exactly the state
+`testpreparation` and testcase N's own setup created, never against
+whatever `tc_{N-1}` happened to leave behind, because the runner gives
+you no *guaranteed* ordering-independent isolation beyond what
+`testpreparation`/`testcasefinalization` explicitly provide.
+
+The fail-fast/fail-forward distinction operates one level up, at the
+**Test Configuration**, which sequences whole *modules* rather than
+individual testcases — a module that hard-fails under a fail-fast
+configuration causes the configuration to skip starting the next
+module's `testpreparation` entirely, which is why `DTCLifecycleSuite`'s
+hardware-unavailability problem in the exercise below has to be solved
+inside its own testcases via `testCaseInconclusive`, not by reordering
+modules: even a perfectly-ordered fail-forward sequence still needs each
+individual testcase to correctly distinguish "the bench wasn't there"
+from "the DUT actually failed," because the module-level scheduler has
+no visibility into *why* a testcase didn't pass, only that it didn't.
+
 ## Exercise
 
 You're assembling a nightly sequence with three existing test modules:

@@ -147,6 +147,41 @@ to the same visibility developers already expect.
 | Data-driven testing | Keep scenario data in external files, not hardcoded in test logic |
 | JUnit XML | Common bridge from rig-level verdicts to CI dashboards |
 
+## How It Actually Works: why the busy-wait loop is worse than just slow
+
+`while test_module.IsRunning: pass` looks merely wasteful, but it can
+actually break CANoe's own COM interface, for a reason rooted in how
+COM automation works under the hood. CANoe's COM server runs as an
+**STA (Single-Threaded Apartment)** object — a COM threading model that
+requires every call into the object to be marshaled through a Windows
+message queue and dispatched serially, one at a time, from the thread
+that created it. When your Python script calls `test_module.IsRunning`,
+that call doesn't execute "in Python's process" directly — it's
+marshaled as a Windows message to CANoe's STA thread, which must be
+actively pumping its message loop to receive, process, and return the
+call.
+
+A tight `while ...: pass` loop issuing that same property-get call as
+fast as possible floods the marshaling channel with requests, and on a
+loaded system this can start to starve or measurably delay CANoe's own
+internal message processing — the same STA thread is also responsible
+for driving CANoe's UI updates and, on some configurations, cooperating
+with the measurement's own event handling. This is precisely why a real
+framework polls with a sleep interval and a timeout rather than a bare
+loop: `time.sleep(0.1)` between polls isn't just being polite to the
+CPU, it's giving the STA message pump room to actually flush its queue
+between calls, avoiding a pathological case where polling itself
+measurably slows down the very test module it's trying to observe.
+
+The timeout half of the fix matters for a different, unrelated reason:
+without one, a test module that genuinely hangs (a `testWaitForTimeout`
+call waiting on a signal that will never arrive because the rig lost
+power, say) leaves the polling loop spinning forever, and a CI runner
+with no external watchdog will simply never return — turning one stuck
+rig into a permanently red, unrecoverable pipeline stage rather than a
+single reported failure with a clear "test module exceeded its maximum
+allotted run time" verdict.
+
 ## Exercise
 
 1. Rewrite the busy-wait `while test_module.IsRunning: pass` loop

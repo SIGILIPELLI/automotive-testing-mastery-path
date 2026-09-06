@@ -118,6 +118,59 @@ loose result files cannot realistically provide.
 | Checksum verification | Cheap, automatable guard against accidental artifact substitution |
 | Asymmetric retention | Keep failure evidence rich and long; passing-test raw traces can be pruned aggressively |
 
+## How It Actually Works
+
+**Why a DBC checksum mismatch has to block the run, not just log a
+warning.** CANoe (and most CAN tools) load a DBC by parsing its
+message/signal definitions into an internal symbolic table used at
+runtime to translate raw CAN payload bytes into named signals your
+CAPL testcase reads and writes (`getSignal(AEB_BrakeCommand)`, etc.).
+If a slightly different DBC revision is silently loaded — say, one
+where `ForwardDistance_m`'s scaling factor changed from a prior
+calibration round — every `setSignal`/`getSignal` call in the test
+suite still executes without error, but is now writing or reading a
+physically different value than the test author intended, because the
+raw-to-physical conversion table changed underneath the test. There is
+no runtime exception to catch here — the test appears to run and
+report a verdict normally, just against the wrong physical scale. This
+is precisely why the checksum check in Level 3 Module 5's orchestration
+script has to be a hard pre-flight gate rather than a log line: by the
+time a human would notice something's off (an oddly-scaled trace, or a
+verdict that doesn't match physical intuition), potentially thousands
+of test executions have already produced quietly mis-scaled results.
+
+**Why A2L/software-build pairing failures are worse than DBC ones, and
+harder to detect.** An A2L file maps CHARACTERISTIC and MEASUREMENT
+names to fixed memory addresses in a *specific compiled binary*
+(Level 3 Module 2). If the software build is rebuilt — even with zero
+functional code changes, just a different compiler version or a
+reordered source file — the linker can place variables at different
+addresses, silently invalidating every address in the old A2L. Unlike
+a DBC mismatch, which at least produces a wrong-but-plausible physical
+value, an A2L/build mismatch used over XCP can read or write to an
+address that in the new binary holds a completely unrelated variable
+or unallocated memory — at best producing garbage calibration reads,
+at worst corrupting unrelated ECU state during a CHARACTERISTIC write.
+This is why the baseline record pins the A2L to an exact build ID, not
+just a version number: two builds tagged with the "same" human-readable
+version can still have diverged addresses if either was rebuilt.
+
+**Why raw-trace retention asymmetry is a real engineering trade-off,
+not just cost-cutting.** A full CAN/Ethernet bus trace captures every
+frame on the bus for the test's duration — for a modern domain
+controller's Ethernet/SOME-IP traffic this can run into gigabytes per
+hour of test time. Retaining that at full fidelity for every one of
+thousands of passing nightly-regression runs is not merely expensive
+storage — it also makes the results database itself slow to query at
+scale, since large binary trace blobs sitting alongside the
+lightweight pass/fail row (as in the `test_result` schema) bloat
+backups, replication, and any full-table scan. The asymmetric policy
+— rich traces for failures, summary-only for passes — mirrors why
+production systems keep verbose logs briefly but retain structured
+metrics indefinitely: the artifact needed for deep debugging and the
+artifact needed for long-term audit trail have fundamentally different
+size/value profiles and should be stored accordingly.
+
 ## Exercise
 
 1. A test run six months ago is cited in a safety audit, but the DBC

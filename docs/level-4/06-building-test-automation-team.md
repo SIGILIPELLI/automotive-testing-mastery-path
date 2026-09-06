@@ -102,6 +102,54 @@ spreadsheet itself, it's that the risk stops being invisible.
 | Career ladder | Map directly to this course's Level 1→4 skill progression to make growth legible |
 | Team-health metrics | Bus-factor count, onboarding time, new-vs-rework ratio, cross-training matrix |
 
+## How It Actually Works
+
+**Why "rig wiring as code" is a specific, checkable artifact, not a
+metaphor.** A HIL rig's fault-injection capability (Level 3 Module 6)
+depends on a physical mapping: relay channel 7 on the fault-injection
+matrix is wired to the ForwardDistance_m sensor line's power rail,
+relay channel 12 to its signal line, and so on. When that mapping only
+exists as a hand-drawn wiring diagram or one engineer's memory, a new
+CAPL testcase written against the wrong assumed channel number will
+run without any error — `InjectFault(channel=7)` executes successfully
+regardless of what it's actually wired to — and silently produce a
+result for the wrong fault entirely. Turning that mapping into a
+versioned config file (a YAML/JSON table of `signal_name ->
+relay_channel`, checked into the same repo as the baseline in Module
+5) makes it something a test framework can load and validate
+programmatically: the orchestration layer can assert the config file's
+channel-to-signal mapping matches what the rig controller itself
+reports as wired, at job setup time, turning a silent, undetectable
+wrong-fault bug into a loud pre-flight failure.
+
+**Why pairing on ASIL C/D work transfers knowledge as a side effect,
+mechanically.** ISO 26262-8's independent review requirement for
+high-ASIL work mandates that someone other than the author confirms
+the test's adequacy before it counts as a valid confirmation measure.
+The mechanical knowledge-transfer effect comes from what that review
+actually has to inspect to be a real review rather than a rubber
+stamp: the reviewer has to trace the CAPL testcase back to its
+requirement ID, understand which fault-injection channels and rig
+capabilities it depends on, and judge whether the assertions actually
+prove the safety mechanism works — which requires the reviewer to
+build enough of the same rig/requirement/CAPL mental model the author
+has. A team that treats this review as a formality (a quick glance and
+a sign-off) gets the compliance checkbox but none of the bus-factor
+benefit; a team that treats it as a genuine technical walkthrough gets
+both, for the same mandated review step.
+
+**Why the cross-training matrix is a leading indicator, not a lagging
+one.** Suite-health metrics (pass rate, flake rate, from Level 3
+Module 7) tell you about test quality after the fact — they can't warn
+you a rig is one resignation away from being unusable. The
+cross-training matrix is structurally different: it measures
+*capability distribution*, which changes slowly and predictably (an
+engineer leaving is usually knowable weeks or months in advance, unlike
+a sudden flaky-test regression), which is exactly why it functions as
+an early-warning signal a team can act on — reassign RigC time to pair
+Engineer 4 with Engineer 3 — before the single point of failure
+actually manifests as a program-stalling gap, rather than after.
+
 ## Exercise
 
 1. Using the cross-training matrix template, identify what concrete
