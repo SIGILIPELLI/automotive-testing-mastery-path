@@ -1025,6 +1025,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-why-the-500-ms-step-delay-isnt-arbitrary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: why the 500 ms step delay isn't arbitrary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2261,6 +2272,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-why-the-500-ms-step-delay-isnt-arbitrary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: why the 500 ms step delay isn't arbitrary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2569,6 +2591,39 @@ script and need to move up the V-model to integration test.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-why-the-500-ms-step-delay-isnt-arbitrary">How It Actually Works: why the 500 ms step delay isn't arbitrary<a class="headerlink" href="#how-it-actually-works-why-the-500-ms-step-delay-isnt-arbitrary" title="Permanent link">&para;</a></h2>
+<p>Step 2's test script waits 500 ms between driving <code>fuelLevelPct</code> and
+checking <code>warningActive</code>, and that number is doing real, specific work
+tied directly to Module 5's event-queue mechanics — it isn't a
+convenient round number.</p>
+<p>Both CAPL programs (the simulated sensor node and the test script) run
+inside the same CANoe measurement, sharing one event queue and one
+single-threaded runtime. When the test script sets <code>fuelLevelPct = 9</code>,
+that variable write takes effect immediately in memory, but it does
+<strong>nothing observable on the bus</strong> until the sensor node's own
+<code>cycleTimer</code> next fires — and that timer runs on its own independent
+100 ms schedule, started at <code>on start</code> with no relationship to when the
+test script happens to change the variable. In the worst case, the
+variable change lands just <em>after</em> a cycle has already fired, meaning
+the sensor node won't transmit the new value for nearly a full 100 ms.
+The test script's <code>warningActive</code> check itself only reflects whatever
+the sensor node last computed and transmitted — so checking too early
+reads stale state and produces a <strong>false FAIL</strong>, not because the
+hysteresis logic is wrong, but because the checking script outran the
+system under test's own cycle time.</p>
+<p>The 500 ms wait is really "worst-case cycle misalignment (just under
+100 ms) plus several cycles of margin for reliable observation," and
+it's the same reasoning Module 8's fully worked test case used when it
+specified "within one signal update cycle (≤ 100 ms)" as part of the
+expected result rather than an instantaneous check. Generalizing this:
+<strong>any CAPL test script driving a cyclic simulation must wait at least
+one full cycle period past the moment it changes an input</strong>, and a
+robust script does this by explicitly re-arming its own check after the
+DUT's documented cycle time, never by guessing a delay that happens to
+work in one test run — a script using, say, 50 ms here (less than one
+full cycle) would pass or fail nondeterministically depending on exact
+timer phase alignment, which is exactly the kind of flaky, timing-based
+test failure a competent automotive tester learns to recognize on sight.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Extend this project with one more requirement: <strong>REQ-FUEL-007</strong> — if the
 sensor node's <code>FuelLevelStatus</code> frame stops arriving for more than

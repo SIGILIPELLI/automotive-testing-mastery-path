@@ -1434,6 +1434,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-the-dtc-maturation-test-has-a-hidden-assumption-worth-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: the DTC maturation test has a hidden assumption worth checking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-the-dtc-maturation-test-has-a-hidden-assumption-worth-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: the DTC maturation test has a hidden assumption worth checking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2550,6 +2572,36 @@ be a distinct, later phase against real hardware.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-the-dtc-maturation-test-has-a-hidden-assumption-worth-checking">How It Actually Works: the DTC maturation test has a hidden assumption worth checking<a class="headerlink" href="#how-it-actually-works-the-dtc-maturation-test-has-a-hidden-assumption-worth-checking" title="Permanent link">&para;</a></h2>
+<p><code>tc_CoolantOverheatDtcMaturation</code> sets <code>CoolantTemp = 90.0</code> for only
+50 ms to "simulate a new operation cycle" before triggering the fault
+again. Module 5 established that the DTC status byte's per-cycle bits
+(<code>testFailedThisOperationCycle</code>, <code>testNotCompletedThisOperationCycle</code>)
+reset on an actual <strong>operation-cycle boundary</strong> — commonly a real
+power-state transition like key-off/key-on — not merely on the
+monitored signal returning briefly to a healthy value. This test only
+works at all if the specific ECU under test happens to define its
+"operation cycle" as something this restbus can actually simulate by
+value alone; if the real ECU's operation-cycle boundary is tied to
+ignition state (a separate signal this suite never touches, like
+<code>EngineRunning</code> toggling to 0) or to a genuine power interruption, then
+briefly returning <code>CoolantTemp</code> to 90.0 changes nothing about the ECU's
+internal cycle counter, and the second <code>SetCoolantTemp(135.0)</code> fires
+within the <em>same</em> operation cycle as the first — which, per Module 5's
+debounce-counter mechanism, may or may not reproduce the "2 of 3 cycles"
+maturation behavior depending on whether the debounce counter's
+threshold logic is itself cycle-gated or purely fail/pass-count-gated.</p>
+<p>This is exactly the kind of assumption a suite like this needs to make
+explicit rather than silently bake into a <code>testWaitForTimeout(50)</code>: the
+test's real precondition is "the DUT's operation-cycle boundary has been
+crossed," and depending on the target ECU's diagnostic spec, satisfying
+that might require toggling <code>EngineRunning</code> to 0 and back (simulating
+key-off/key-on) <em>in addition to</em> the value dip, not the value dip alone.
+A reviewer signing off on this test case should ask the ECU's diagnostic
+spec author what actually constitutes an operation-cycle boundary for
+this DTC before trusting that a pass here proves the "2 of 3 cycles"
+rule — otherwise a false pass (or false fail) is entirely plausible
+depending on how that specific ECU's software actually defines a cycle.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Fix the <code>tc_CanFdFrameTagging</code> DLC bug identified above, and explain

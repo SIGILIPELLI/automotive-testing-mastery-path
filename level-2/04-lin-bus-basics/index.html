@@ -1261,6 +1261,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-how-a-slave-finds-the-masters-baud-rate-from-one-byte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: how a slave finds the master's baud rate from one byte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2317,6 +2328,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-how-a-slave-finds-the-masters-baud-rate-from-one-byte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: how a slave finds the master's baud rate from one byte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2581,6 +2603,37 @@ DBC has no concept of.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-how-a-slave-finds-the-masters-baud-rate-from-one-byte">How It Actually Works: how a slave finds the master's baud rate from one byte<a class="headerlink" href="#how-it-actually-works-how-a-slave-finds-the-masters-baud-rate-from-one-byte" title="Permanent link">&para;</a></h2>
+<p>LIN slaves are commonly built with cheap, imprecise RC oscillators —
+part of what makes LIN nodes cost less than CAN nodes — so they cannot
+be assumed to already agree with the master's bit rate the way two CAN
+nodes' quartz-driven controllers roughly do. The <strong>sync byte</strong> (<code>0x55</code>,
+binary <code>01010101</code>) exists specifically to fix this every single frame,
+not just at startup.</p>
+<p><code>0x55</code> is deliberately the one byte value that produces a perfectly
+alternating 0-1-0-1 bit pattern. A slave measures the time between the
+falling edges of that byte on the bus — five identical, evenly spaced
+edges — and from that measurement directly computes what one bit-time
+actually is <em>right now</em>, on this frame, compensating for its own
+oscillator's drift and temperature-dependent variation in real time.
+This is why LIN can tolerate slave oscillators far less precise than a
+CAN transceiver's clock requirement: each frame carries its own timing
+calibration reference before any data arrives, rather than relying on
+every node's clock staying accurate over the long run the way CAN's
+per-bit resynchronization (Level 1 Module 2) does continuously.</p>
+<p>The <strong>protected identifier</strong> immediately following sync applies a
+similar defense to the 6-bit frame ID itself: two parity bits are
+computed as fixed XOR combinations of the ID bits
+(<code>P0 = ID0⊕ID1⊕ID2⊕ID4</code>, <code>P1 = ¬(ID1⊕ID3⊕ID4⊕ID5)</code>, per the LIN
+specification) and appended, so a single-bit corruption on the wire
+during the ID field itself is very likely to produce a parity mismatch
+a slave can detect <em>before</em> deciding whether to respond — since LIN,
+unlike CAN, has no CRC or ACK mechanism protecting frame delivery at the
+bus level, this ID-level parity is the only line of defense against a
+slave mistakenly responding to (or overwriting) the wrong frame slot,
+which is exactly the kind of failure mode a "half the time it drops"
+field report in the exercise below could actually trace back to, if the
+checksum type turns out not to be the cause.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>A body-control LIN network has a <code>WindowControl</code> frame owned by the
 <code>WindowMotor</code> slave, LIN 2.1 enhanced checksum, on a 10 ms schedule

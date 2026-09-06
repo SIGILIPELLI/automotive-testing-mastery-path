@@ -1564,6 +1564,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-how-a-daq-list-actually-packs-bytes-onto-the-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: how a DAQ list actually packs bytes onto the bus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-how-a-daq-list-actually-packs-bytes-onto-the-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: how a DAQ list actually packs bytes onto the bus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2533,6 +2555,42 @@ subsequent test in the same session, session run, or shared rig.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-how-a-daq-list-actually-packs-bytes-onto-the-bus">How It Actually Works: how a DAQ list actually packs bytes onto the bus<a class="headerlink" href="#how-it-actually-works-how-a-daq-list-actually-packs-bytes-onto-the-bus" title="Permanent link">&para;</a></h2>
+<p>A DAQ list isn't a magic subscription — it's a real, bandwidth-limited
+packing problem, and understanding the packing explains both why DAQ
+beats polling and why the exercise's 200-address/1ms scenario actually
+saturates a link.</p>
+<p>XCP organizes a DAQ list into one or more <strong>ODTs (Object Descriptor
+Tables)</strong>, each ODT being a fixed-size set of measurement entries that
+fit into a <em>single</em> CAN frame's payload (up to 8 bytes classic, 64 on
+CAN-FD, minus a 1-byte packet identifier). If <code>EngineSpeed_rpm</code> is a
+2-byte <code>UWORD</code> and you want six such 2-byte measurements sampled
+together, they need 12 bytes — more than one classic-CAN frame can
+hold — so XCP splits them across two ODTs, each transmitted as its own
+CAN frame every DAQ cycle, tagged with a <strong>DAQ list number and ODT
+number</strong> in the leading byte so the master can reassemble which values
+belong to which sample instant on receipt. This is the concrete reason
+<code>SET_DAQ_PTR</code>/<code>WRITE_DAQ</code> configuration isn't just "list the addresses
+you want" — the master (CANape, or CANoe's XCP driver) has to solve a
+real bin-packing problem across ODTs before the ECU can even start
+streaming, and a poorly packed list (measurements added in an order
+that wastes bytes at ODT boundaries) can silently need more CAN frames
+per cycle than a well-packed one carrying the same data.</p>
+<p>This is also exactly why 200 addresses at 1 ms saturates a slow link:
+each 1 ms cycle needs however many ODT frames the packing required,
+each competing for arbitration and bus bandwidth (Level 1 Module 3)
+alongside the vehicle's normal functional CAN traffic — at, say, 4 ODT
+frames per cycle on a 500 kbit/s bus already carrying 60% functional
+load, the DAQ traffic alone can exceed what's left. The two genuine
+fixes follow directly from the mechanism: <strong>reduce the DAQ rate for
+measurements that don't need 1 ms resolution</strong> (a slowly-changing
+coolant temperature gains nothing from 1 kHz sampling, freeing ODT slots
+for what actually needs them), or <strong>split the measurements across
+multiple DAQ lists at different rates</strong>, rather than forcing every
+address into one list at the fastest rate any single measurement
+requires — which is precisely the kind of DAQ-list design work that
+distinguishes an efficient measurement setup from one that silently
+starves the bus of headroom it needs for actual vehicle traffic.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Explain concretely what goes wrong if a test suite runs against an

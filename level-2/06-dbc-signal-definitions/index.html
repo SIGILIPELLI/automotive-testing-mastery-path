@@ -1317,6 +1317,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-the-two-incompatible-bit-numbering-schemes-hiding-behind-one-start-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: the two incompatible bit-numbering schemes hiding behind one "start bit"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2317,6 +2328,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-the-two-incompatible-bit-numbering-schemes-hiding-behind-one-start-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: the two incompatible bit-numbering schemes hiding behind one "start bit"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2591,6 +2613,40 @@ purpose.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-the-two-incompatible-bit-numbering-schemes-hiding-behind-one-start-bit">How It Actually Works: the two incompatible bit-numbering schemes hiding behind one "start bit"<a class="headerlink" href="#how-it-actually-works-the-two-incompatible-bit-numbering-schemes-hiding-behind-one-start-bit" title="Permanent link">&para;</a></h2>
+<p>The DBC's <code>16|8@1+</code> notation looks like a simple offset-and-length pair,
+but the <em>meaning</em> of that starting number depends entirely on the <code>@1</code>
+vs <code>@0</code> byte-order flag, because Intel and Motorola signals use two
+different bit-numbering conventions across the same 64-bit frame — and
+this is the actual mechanism behind the byte-order mistakes this module
+already warns about.</p>
+<p>For <strong>Intel (little-endian, <code>@1</code>)</strong> signals, bit numbering runs
+naturally: bit 0 is the LSB of byte 0, bit 7 is its MSB, bit 8 is the
+LSB of byte 1, and so on — a signal's bits simply occupy an increasing
+run starting at its declared start bit, byte order matching normal
+memory layout. For <strong>Motorola (big-endian, <code>@0</code>)</strong> signals, the DBC
+format numbers bits <strong>within each byte in reverse</strong> and the <em>start bit
+given is the signal's most significant bit</em>, not its least: byte 0's
+bits are numbered 7,6,5,4,3,2,1,0 (MSB first), byte 1's are
+15,14,13,12,11,10,9,8, and a multi-byte Motorola signal's remaining bits
+continue by wrapping from a byte's bit 0 down to the <em>next</em> byte's bit
+7 — which is why decoding a Motorola signal by "just reading bits
+upward from the start bit," the way you would for Intel, silently
+produces a value with its byte order effectively reversed, yet still
+lands inside a plausible numeric range often enough that a spot-check
+test doesn't catch it.</p>
+<p>This is precisely why the review checklist's byte-order consistency
+check and "always decode via a DBC-aware tool" rule aren't just style
+preferences — the two numbering schemes are genuinely different
+coordinate systems laid over the same 64 bits, and a human doing mental
+arithmetic has to consciously switch which direction they're counting
+depending on one flag character. When constructing a deliberately
+malformed frame for negative testing (as this module's closing note
+describes), you must apply this same bit-numbering rule by hand to place
+bits at their true wire positions — getting Motorola bit-ordering wrong
+here doesn't produce an obviously-invalid frame, it produces a
+differently-valid one, which defeats the entire point of a targeted
+negative test.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Given <code>SG_ FuelLevel : 32|8@1+ (0.5,0) [0|100] "%" Vector__XXX</code> in an
 8-byte message:</p>

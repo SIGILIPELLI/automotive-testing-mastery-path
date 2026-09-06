@@ -1053,6 +1053,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-what-mcdc-actually-forces-you-to-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: what MC/DC actually forces you to test
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2373,6 +2384,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-what-mcdc-actually-forces-you-to-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: what MC/DC actually forces you to test
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2715,6 +2737,41 @@ Test results are primary evidence in that argument, which is why:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-what-mcdc-actually-forces-you-to-test">How It Actually Works: what MC/DC actually forces you to test<a class="headerlink" href="#how-it-actually-works-what-mcdc-actually-forces-you-to-test" title="Permanent link">&para;</a></h2>
+<p>"MC/DC" sounds abstract until you compute it for a real decision. Take
+the three-condition example from the exercise below:
+<code>closingSpeed &gt; threshold &amp;&amp; driverBrakeInput == 0 &amp;&amp; radarConfidence &gt;= minConfidence</code>.
+Branch coverage — the ASIL B/C bar — only requires the whole expression
+to evaluate both true and false at least once, which two test cases can
+satisfy trivially (all three conditions true; all three false) without
+ever proving that any <em>individual</em> condition actually matters to the
+outcome. A buggy implementation that accidentally ignores
+<code>radarConfidence</code> entirely would still pass full branch coverage.</p>
+<p>MC/DC's actual rule is stricter and mechanical: for <strong>each</strong> condition,
+there must exist a pair of test cases where (a) that condition's value
+differs, (b) every other condition is held at a value that makes it
+<em>not</em> mask the first one's effect, and (c) the overall decision's
+outcome differs as a result. For an <code>AND</code> chain like this one, that
+means: to isolate <code>radarConfidence</code>, the other two conditions must both
+be held true (so the AND doesn't already fail for another reason) while
+<code>radarConfidence</code> flips across its own boundary — an outcome shift you
+can attribute to <em>that</em> condition alone. For N independent conditions,
+the well-known minimum is <strong>N+1 test vectors</strong> (versus the theoretical
+2ᴺ for exhaustive condition-combination coverage) — for this
+three-condition decision that's 4 carefully chosen vectors, not 8, but
+each one is doing real, unmaskable work, which is exactly why a coverage
+tool reports "MC/DC: 3/4 pairs satisfied" as a distinct, harder-to-fake
+metric than branch percentage, and why achieving it costs real
+engineering time — you have to <em>design</em> the masking-free pairs
+deliberately, not just run whatever inputs happen to reach the code.</p>
+<p>This directly explains why an ASIL D function forces MC/DC specifically
+on <strong>complex boolean decisions</strong> (multi-condition <code>if</code> statements) and
+not on straight-line code: a straight-line function already gets full
+coverage from branch testing, because there's no condition-masking
+possible when there's only one condition to begin with. MC/DC's cost
+only shows up — and only earns its keep — exactly where multiple
+conditions could hide one another's bugs, which is precisely where a
+safety-critical AND/OR chain like an AEB trigger condition lives.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>A new feature: an automatic emergency braking (AEB) system that applies
 the brakes if a forward collision is imminent and the driver hasn't

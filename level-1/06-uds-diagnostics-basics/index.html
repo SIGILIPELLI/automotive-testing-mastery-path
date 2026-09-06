@@ -952,6 +952,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-iso-tp-segmentation-underneath-every-uds-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: ISO-TP segmentation underneath every UDS message
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2339,6 +2350,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-iso-tp-segmentation-underneath-every-uds-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: ISO-TP segmentation underneath every UDS message
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2645,6 +2667,42 @@ lifecycle in depth.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-iso-tp-segmentation-underneath-every-uds-message">How It Actually Works: ISO-TP segmentation underneath every UDS message<a class="headerlink" href="#how-it-actually-works-iso-tp-segmentation-underneath-every-uds-message" title="Permanent link">&para;</a></h2>
+<p>UDS itself only defines <em>what</em> the bytes mean — it says nothing about
+how those bytes actually travel inside 8-byte CAN frames. That's the job
+of a separate layer, <strong>ISO 15765-2 (ISO-TP)</strong>, sitting between UDS and
+raw CAN, and every UDS message longer than 7 bytes only works because of
+it. A DTC-read response like the multi-DTC example above can easily
+exceed a single classic-CAN frame's 8-byte payload, so ISO-TP segments
+it using a 1-byte <strong>protocol control information (PCI)</strong> field at the
+start of each CAN frame's data:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Single Frame   (SF):  0x0L ......         - PCI nibble 0, length L ≤ 7
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>First Frame    (FF):  0x1L LL ......      - PCI nibble 1, 12-bit total length, first 6 bytes
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Consecutive Fr (CF):  0x2N ......         - PCI nibble 2, sequence number N (0-15, wraps)
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Flow Control   (FC):  0x3S BS STmin       - PCI nibble 3, flow-status, block size, min separation time
+</code></pre></div>
+<p>A response too long for one frame starts with a <strong>First Frame</strong>
+announcing the total byte count, and the tester must reply with a <strong>Flow
+Control</strong> frame before the ECU sends any more — this is a real,
+mandatory handshake, not an optimization: the FC frame's <strong>BS (Block
+Size)</strong> tells the sender how many Consecutive Frames to send before
+pausing for another FC, and <strong>STmin</strong> tells it the minimum gap to leave
+between them, so a slow or buffer-limited tester tool can throttle a
+fast ECU's transfer. A test script's ISO-TP layer (invisibly, underneath
+whatever library sends the <code>0x22</code>/<code>0x19</code> request) is responsible for
+sending that FC promptly — miss the timing window (the standard's
+default <strong>N_Bs</strong> timeout is 1 second, but real tools configure it much
+tighter) and the ECU aborts the transfer, which surfaces to the tester
+as a mysteriously incomplete or timed-out diagnostic read that has
+nothing to do with the UDS service logic itself.</p>
+<p>This is exactly why a flaky "reading DTCs sometimes returns truncated
+data" bug is almost always an ISO-TP timing problem — a CAN bus
+momentarily busy with higher-priority arbitration-winning traffic
+(Module 3) delaying a Consecutive Frame past STmin, or a test tool's own
+Flow Control response arriving late — rather than a bug in the ECU's UDS
+service implementation, and why a competent tester debugging it opens a
+CANoe trace and looks at PCI nibbles and inter-frame timing, not just the
+UDS-level bytes.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>You are writing a test plan for an ECU's <code>0x22</code> (Read Data By
 Identifier) support on DID <code>0x4A10</code> ("battery state of charge, 0-100%,

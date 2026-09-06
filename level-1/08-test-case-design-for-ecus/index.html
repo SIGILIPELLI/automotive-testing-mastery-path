@@ -986,6 +986,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-why-the-raw-integer-not-the-physical-value-decides-the-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: why the raw integer, not the physical value, decides the boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2295,6 +2306,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-why-the-raw-integer-not-the-physical-value-decides-the-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: why the raw integer, not the physical value, decides the boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2618,6 +2640,40 @@ requirement.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-why-the-raw-integer-not-the-physical-value-decides-the-boundary">How It Actually Works: why the raw integer, not the physical value, decides the boundary<a class="headerlink" href="#how-it-actually-works-why-the-raw-integer-not-the-physical-value-decides-the-boundary" title="Permanent link">&para;</a></h2>
+<p>A boundary test like "120.0 °C, then 120.1 °C" is really only meaningful
+once you account for the fact that the ECU never sees 120.0 or 120.1 at
+all — it sees the <strong>raw integer</strong> the signal's scaling formula produces,
+and every DBC/A2L-defined signal is scaled by the same linear
+transform:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>physical = raw × factor + offset
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>raw      = (physical − offset) / factor
+</code></pre></div>
+<p>For <code>CoolantTemp</code> at factor 0.1, offset 0 (so <code>physical = raw × 0.1</code>),
+120.0 °C is raw <code>1200</code> and 120.1 °C is raw <code>1201</code> — the <em>smallest
+possible step</em> this signal can represent is exactly 0.1 °C, because raw
+is always an integer. This has a real consequence for boundary design:
+if a requirement had instead said the threshold was 120.05 °C, there
+would be <strong>no representable raw value at that exact boundary at all</strong> —
+the signal's resolution can't express it, so "test exactly at the
+boundary" is meaningless and the honest test is the tightest achievable
+pair (1200 vs 1201 raw) bracketing it as closely as the encoding allows.
+This is a real, recurring defect source: a requirements author who
+writes a threshold finer than the signal's actual bit resolution has
+written an untestable requirement, and a careful tester catches this at
+test-design time by converting the threshold to raw units <em>first</em>,
+before writing any test steps — exactly as this module's worked example
+does — rather than assuming the physical value can be hit precisely.</p>
+<p>The same arithmetic explains something easy to miss about signed and
+rounding behavior: if a scale factor doesn't divide evenly (a <code>factor</code>
+of 0.0625, common for finer-resolution signals, or a negative <code>offset</code>
+for signals like <code>CoolantTemp</code>'s typical −40 °C floor), converting a
+physical requirement value to raw can require <strong>rounding</strong>, and which
+direction you round changes which side of the true boundary your test
+actually lands on. A test case's "test data" field should always show
+the raw value used and the arithmetic that produced it — not just the
+physical number — precisely so a reviewer can catch a rounding error
+that silently shifted a boundary test off its intended edge.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>An ECU has a low-fuel warning requirement: "the low-fuel warning shall
 activate when fuel level drops below 10%, and shall deactivate only once

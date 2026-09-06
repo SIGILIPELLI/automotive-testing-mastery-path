@@ -846,6 +846,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-the-crc-polynomial-and-why-stuffing-is-inside-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: the CRC polynomial and why stuffing is inside it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2295,6 +2306,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-the-crc-polynomial-and-why-stuffing-is-inside-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: the CRC polynomial and why stuffing is inside it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2525,6 +2547,41 @@ Module 2.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-the-crc-polynomial-and-why-stuffing-is-inside-it">How It Actually Works: the CRC polynomial and why stuffing is inside it<a class="headerlink" href="#how-it-actually-works-the-crc-polynomial-and-why-stuffing-is-inside-it" title="Permanent link">&para;</a></h2>
+<p>The 15-bit CRC isn't a generic checksum — it's computed by every CAN
+controller's hardware using a specific polynomial,
+<strong>x¹⁵ + x¹⁴ + x¹⁰ + x⁸ + x⁷ + x⁴ + x³ + 1</strong> (0x4599), run as a shift
+register over every bit from SOF through the end of the data field,
+<em>including the stuff bits that bit-stuffing inserted along the way</em>.
+That ordering detail matters more than it looks: the CRC is computed on
+the stuffed bit stream, then the CRC field itself is transmitted with
+its own independent stuffing applied on top. A receiver reverses this —
+destuff first, then recompute CRC over the destuffed bits — so a
+corrupted stuff bit and a corrupted data bit are indistinguishable from
+the CRC check's point of view; both simply produce a CRC mismatch. This
+is why Module 2/3 error handling treats "CRC error" and "stuffing error"
+as two separate detected-error types rather than one: a receiver can
+tell <em>which</em> rule was violated (five-identical-bits-then-no-stuff-bit is
+a stuffing violation, detected independently of CRC) even though both
+ultimately mean "don't trust this frame."</p>
+<p>The 15-bit CRC's practical guarantee is what a tester should actually
+rely on: it detects <strong>any burst error up to 15 bits</strong>, all single- and
+double-bit errors, and any odd number of bit errors — with a residual
+undetected-error probability on the order of 2⁻¹⁵ for longer random
+corruption. That number is why CAN is considered adequately safe for
+non-safety-critical signals at the frame level alone, but <em>not</em> by
+itself sufficient for the highest ASIL levels (Module 9) — which is why
+safety-relevant signals additionally carry an application-layer rolling
+counter and a data-integrity checksum inside the payload itself (E2E
+protection), independent of the bus-level CRC. When you see a "counter"
+or "CRC" byte inside a DBC-defined signal's payload (Module 6, Level 2's
+Module 6) rather than relying on the CAN frame's own CRC, this dual
+layering is why: the bus CRC catches transmission corruption, the
+payload E2E check catches corruption the bus CRC structurally cannot —
+a bit flip that happens to still produce a valid frame CRC after
+re-stuffing, or corruption introduced <em>before</em> the transmitting
+controller ever computed the frame CRC (a stuck sensor register, a
+memory-corruption bug in the sending ECU).</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Two nodes attempt to transmit at the same instant with standard
 (11-bit) IDs <code>0x1A3</code> and <code>0x1A1</code>.</p>

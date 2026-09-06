@@ -1171,6 +1171,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-why-sysvar-updates-queue-instead-of-racing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: why sysvar updates queue instead of racing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-why-sysvar-updates-queue-instead-of-racing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: why sysvar updates queue instead of racing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2532,6 +2554,36 @@ full; the shape to recognize now:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-why-sysvar-updates-queue-instead-of-racing">How It Actually Works: why sysvar updates queue instead of racing<a class="headerlink" href="#how-it-actually-works-why-sysvar-updates-queue-instead-of-racing" title="Permanent link">&para;</a></h2>
+<p><code>on sysvar_update</code> looks like it should behave the same as <code>on message</code>
+— an event fires, a handler runs — and structurally it does, because
+Module 5's single-threaded, run-to-completion event queue (Level 1)
+governs sysvars exactly the same way it governs messages and timers.
+But sysvars have one behavior that trips people up precisely because
+they <em>don't</em> travel over the bus: <strong>a sysvar write takes effect in
+CANoe's shared variable store immediately and synchronously</strong>, while the
+resulting <code>on sysvar_update</code> notification to every other CAPL block
+watching that variable is queued as a separate event, delivered in
+FIFO order alongside every pending message and timer event.</p>
+<p>The practical consequence: if your node script and a Panel button both
+write to <code>Diag::ResetRequested</code> in the same instant (a human clicking
+the panel while your handler is also about to reset it), there's no
+race in the multithreaded sense — one write happens, then the other,
+strictly in event-queue order — but the <em>value</em> a late <code>on sysvar_update</code>
+handler reads via <code>@Diag::ResetRequested</code> is whatever the variable holds
+<strong>at the moment that specific handler runs</strong>, not at the moment the
+write that triggered it occurred. If a second write lands on the same
+sysvar before the first update notification is processed, only one <code>on
+sysvar_update</code> event may end up representing two logical changes (CANoe
+coalesces rapid updates rather than guaranteeing one notification per
+write) — so a script relying on sysvar updates to count discrete events
+(rather than reflect current state) will silently undercount under
+bursty conditions. This is exactly why the reset-request pattern above
+"consumes" the flag by writing it back to 0 inside the handler: it
+converts an edge-triggered assumption into explicit level-based state
+management, sidestepping the coalescing behavior entirely rather than
+depending on one-notification-per-write, which CANoe never actually
+promises.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a CAPL function <code>bool isValidAliveCounter(byte previous, byte
 current)</code> that returns true if <code>current</code> is exactly <code>previous + 1</code>

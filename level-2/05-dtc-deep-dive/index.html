@@ -1300,6 +1300,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-the-debounce-counter-underneath-pending-vs-confirmed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: the debounce counter underneath "pending" vs. "confirmed"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2339,6 +2350,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-the-debounce-counter-underneath-pending-vs-confirmed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: the debounce counter underneath "pending" vs. "confirmed"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2612,6 +2634,45 @@ is a real defect class.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-the-debounce-counter-underneath-pending-vs-confirmed">How It Actually Works: the debounce counter underneath "pending" vs. "confirmed"<a class="headerlink" href="#how-it-actually-works-the-debounce-counter-underneath-pending-vs-confirmed" title="Permanent link">&para;</a></h2>
+<p>The status byte's bits look like a clean state machine, but inside the
+ECU they're driven by a much more mechanical piece of code: a signed
+<strong>debounce counter</strong>, usually incremented on each diagnostic-test fail
+and decremented on each pass, checked against two thresholds. A typical
+implementation looks roughly like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>on each diagnostic test result:
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    if failed:  counter = min(counter + failStep,  matureThreshold)
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    if passed:  counter = max(counter - healStep,  healThreshold)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    pendingDTC   = (counter &gt; 0)
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    confirmedDTC = (counter &gt;= matureThreshold)
+</code></pre></div>
+<p>The "2 of 3 cycles" rule in the exercise below is a direct consequence
+of choosing <code>failStep</code>, <code>healStep</code>, and <code>matureThreshold</code> values — for
+instance <code>matureThreshold = 2</code>, <code>failStep = 1</code>, <code>healStep = 1</code> produces
+exactly "confirmed once two net failures have accumulated, tolerating
+one intervening pass," which behaves differently from a naive
+"confirmed after 2 <em>consecutive</em> failures" implementation the moment a
+pass appears between two failures: the counter-based version keeps its
+accumulated progress (net count stays at 1 after fail-pass, then reaches
+2 on the next fail), while a consecutive-counter implementation resets
+to zero on any pass and needs two failures <em>in a row</em> afterward. This is
+precisely the difference this module's exercise asks you to design a
+test sequence to expose — and it's why the right test sequence is
+fail → pass → fail (three cycles, two failures, one pass in between),
+not fail → fail (which both implementations would confirm identically
+and therefore proves nothing about which rule is actually implemented).</p>
+<p>The <strong>operation cycle</strong> boundary that resets <code>testFailedThisOperationCycle</code>
+and <code>testNotCompletedThisOperationCycle</code> (bits 1 and 6) is itself just
+an ECU power-state transition, not a fixed calendar concept — commonly
+key-off-to-key-on, sometimes engine-off-to-running specifically for
+powertrain DTCs per SAE J1979/J2012 conventions. A test that "power
+cycles the ECU" (as this module's worked test case does at step 2) is
+really forcing exactly this transition so the debounce counter's
+per-cycle bits reset while its cross-cycle maturation counter — bits 2
+and 3 — deliberately does not, which is the whole mechanical reason
+pending/confirmed state can survive a power cycle while the "this
+cycle" bits cannot.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>An OEM spec states: a DTC matures to confirmed after failing on 2 of
 the last 3 operation cycles, and the MIL turns off after 3 consecutive

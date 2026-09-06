@@ -1996,6 +1996,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2504,6 +2526,57 @@ scenario discovery.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why the seed can't just be a fixed value, and what "pseudo-random"
+actually has to mean here.</strong> If <code>DiagSecurityAccessRequestSeed</code>
+returned the same seed every time (or a seed following a predictable
+sequence, like an incrementing counter), an attacker could compute the
+key once — by any means, including a single successful legitimate
+unlock captured off the bus — and replay that exact key indefinitely
+without ever needing to know the underlying key-derivation algorithm.
+A correctly implemented UDS <code>0x27</code> seed generator uses a
+cryptographically adequate random or pseudo-random source (commonly
+seeded from a hardware RNG or a counter mixed with an unpredictable
+runtime value) specifically so that observing N successful seed/key
+exchanges gives an attacker no useful information for predicting the
+N+1th seed. <code>tc_SecurityAccess_CorrectKeyUnlocks</code> as written only
+proves the happy path works with one valid seed/key pair — it does
+not, by itself, prove seed unpredictability, which is why a real
+security test plan adds a dedicated statistical or repeated-sampling
+check on seed values (comparing many captured seeds for detectable
+patterns) as a separate testcase from the functional unlock check.</p>
+<p><strong>Why the lockout has to be measured in ECU-persistent time, not
+session time.</strong> A naive lockout implementation might track failed
+attempts in RAM and reset the counter on any ECU reset or power cycle
+— which defeats the mechanism against exactly the attacker model it
+exists for, since an attacker with physical or network access to
+power-cycle the ECU (or trigger a reset via an unrelated diagnostic
+service) gets unlimited retry attempts, just three at a time. A
+correct implementation persists the failed-attempt count and the
+lockout-expiry timestamp in non-volatile memory (EEPROM/flash) or
+derives the delay from a monotonic counter unaffected by reset, so the
+required time delay (UDS NRC <code>0x37</code>, "requiredTimeDelayNotExpired")
+continues counting across a reset. This is exactly the mechanism
+Exercise 1 is pointing at — the lockout test is incomplete without
+a reset-survival check, because a lockout that survives inspection but
+not a power cycle looks identical to a correct one in the base test.</p>
+<p><strong>Why TARA's attack-path column is the thing that actually drives
+which ECU gets deep security testing.</strong> A naive risk model might rate
+an ECU's cybersecurity test depth purely by what that ECU itself
+controls (a braking ECU gets deep testing, an infotainment unit
+doesn't). But ISO 21434's attack-path concept means an asset's actual
+exposure depends on everything reachable <em>before</em> it in the network
+topology — the TARA example's attack path (infotainment → gateway →
+braking ECU) means the infotainment unit's own security testing
+depth should be driven partly by what it can reach downstream, not
+just by its own low intrinsic asset value, because a gateway that
+fails to enforce message-origin segmentation turns a low-value,
+externally-reachable ECU into the practical entry point for
+compromising a high-CAL one. This is the mechanical reason gateway
+segmentation testing (confirming the gateway actually drops or
+rejects out-of-profile messages from the infotainment side rather
+than merely relaying everything) is one of the highest-leverage single
+tests in a vehicle network's whole cybersecurity test suite.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li><code>tc_SecurityAccess_LockoutAfterRepeatedFailures</code> checks a 4th

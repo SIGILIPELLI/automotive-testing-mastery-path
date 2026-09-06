@@ -2097,6 +2097,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2254,6 +2265,17 @@
     <span class="md-ellipsis">
       
         Cheat sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2465,6 +2487,55 @@ assumed or approximated by the test team alone.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why a HIL rehearsal can pass while the formal test still fails —
+the specific gap.</strong> <code>tc_PreHomologation_LeadVehicleDecelerationScenario</code>
+drives the ECU's software logic against a plant-model-simulated lead
+vehicle and radar signal, exercising exactly the decision-making
+algorithm the regulation cares about. But a formal regulatory AEB test
+uses a physical target vehicle (or a certified soft-target surrogate),
+a real radar/camera sensor suite, and real vehicle dynamics — meaning
+it also exercises sensor-fusion accuracy under real-world radar
+clutter, actual brake-actuator response time and vehicle deceleration
+dynamics, and environmental conditions (weather, target-surface radar
+reflectivity) that a signal-level HIL rehearsal cannot represent at
+all, because those signals were injected directly rather than produced
+by real sensors and physics. A pass in HIL proves the ECU's <em>decision
+logic</em> is correct given a specific assumed input; it says nothing
+about whether the <em>sensors and actuators</em> feeding that logic will
+behave as assumed in the physical test — which is precisely the
+distinction the module's cheat sheet insists on and Exercise 1 is
+built to surface.</p>
+<p><strong>Why the internal test's pass criteria have to be sourced externally,
+not inferred from the regulation's plain text.</strong> Regulatory AEB test
+procedures typically specify pass criteria as precise, parameterized
+formulas — e.g., a required speed reduction as a function of the
+approach speed and target deceleration profile, evaluated at a
+specific measurement point relative to the target — rather than a
+simple binary "did it brake." A test team approximating this as "brake
+command must assert before an estimated collision point," as the
+worked example's comment flags, can produce a testcase that passes
+reliably in HIL while not actually mirroring the regulation's real
+threshold, because the approximation and the true formula diverge at
+exactly the boundary conditions that matter most. This is a mechanism-
+level instance of a general risk: any pass criterion derived by
+engineering judgment from a regulation's summary, rather than from the
+regulation's actual clause and the regulatory-affairs function's
+interpretation of it, tends to be systematically optimistic precisely
+where the real test is hardest to pass.</p>
+<p><strong>Why traceability links have to point at both an internal requirement
+and an external regulation clause, structurally.</strong> A CAPL testcase
+tagged only with an internal requirement ID (<code>SW-REQ-201</code>) gives an
+OEM engineer everything they need to trace coverage internally, but
+gives a regulatory-affairs reviewer building the type-approval
+technical file nothing to cite — that dossier has to reference the
+specific regulation clause number the evidence supports, in the
+regulator's own terminology, not the OEM's internal requirement
+scheme. Carrying both tags on the same testcase (as Exercise 3 asks
+for) means one piece of evidence serves two structurally different
+audiences without requiring a separate parallel test suite, or a
+manual, error-prone remapping exercise every time the dossier is
+assembled.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Explain in your own words why a passing result on

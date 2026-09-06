@@ -896,6 +896,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-capls-cooperative-single-threaded-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: CAPL's cooperative, single-threaded runtime
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-capls-cooperative-single-threaded-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: CAPL's cooperative, single-threaded runtime
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2550,6 +2572,41 @@ example.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-capls-cooperative-single-threaded-runtime">How It Actually Works: CAPL's cooperative, single-threaded runtime<a class="headerlink" href="#how-it-actually-works-capls-cooperative-single-threaded-runtime" title="Permanent link">&para;</a></h2>
+<p>Every <code>on start</code>, <code>on message</code>, and <code>on timer</code> block you write looks
+like it runs "whenever the event happens," as if they were independent
+threads — but CANoe's CAPL runtime is <strong>single-threaded and
+run-to-completion</strong>: only one event procedure executes at a time, and
+once it starts, it runs to its closing brace before the runtime will
+service the next queued event, no matter what fires in between. This is
+why the two most common CAPL bugs — a <code>write()</code> call that never seems to
+appear promptly, and a periodic sender that starts drifting under load —
+both trace back to the same mechanism.</p>
+<p>Internally, CANoe maintains a single <strong>event queue</strong>: every received
+message, every timer expiry, every <code>on key</code> press gets pushed onto it in
+the order it actually occurred (using the hardware timestamps from
+Module 4), and the runtime pops and executes them strictly one at a
+time. If your <code>on message SensorNodeStatus</code> handler happens to take,
+say, 2 ms to run (a <code>write()</code> call, a loop, a nested function call), any
+<code>on timer cycleTimer</code> event that was due to fire during that 2 ms simply
+waits in the queue — it does not fire late by a scheduled amount, it
+fires as soon as the runtime becomes free, so accumulated handler time
+across many events directly becomes cumulative drift in your "every
+100 ms" cyclic sender. This is precisely why the re-arm pattern in this
+module's cyclic-sender example (<code>setTimer(cycleTimer, 100)</code> called
+<em>inside</em> the handler, rather than a hypothetical periodic-repeat
+primitive) is honest about what CAPL actually guarantees: each interval
+is "100 ms after this handler happened to run," not "100 ms after the
+previous nominal deadline" — so a chain of slow handlers produces real,
+measurable period drift, not just isolated jitter.</p>
+<p>This also answers the exercise's closing question directly: two <code>on
+timer</code> handlers both calling <code>output()</code> on the same message is not a
+race condition in the multithreaded sense — CAPL's run-to-completion
+model makes that structurally impossible — but it <em>is</em> a realistic
+logic bug, because whichever handler's event happened to be queued first
+"wins" deterministically for that instant, silently overwriting whatever
+signal values the other handler had set, with no warning and no
+compiler diagnostic pointing at the conflict.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Design (in CAPL, following the patterns above — you do not need to run
 it) a script for a simulated <strong>wheel speed sensor node</strong> that:</p>

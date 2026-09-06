@@ -1328,6 +1328,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-why-one-slow-testcase-doesnt-stall-the-whole-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: why one slow testcase doesn't stall the whole module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-why-one-slow-testcase-doesnt-stall-the-whole-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: why one slow testcase doesn't stall the whole module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2527,6 +2549,41 @@ a failed nightly run debuggable without re-running it locally first.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-why-one-slow-testcase-doesnt-stall-the-whole-module">How It Actually Works: why one slow testcase doesn't stall the whole module<a class="headerlink" href="#how-it-actually-works-why-one-slow-testcase-doesnt-stall-the-whole-module" title="Permanent link">&para;</a></h2>
+<p>Module 2 established that a <code>testcase</code> runs as its own suspendable test
+task, yielding back to the measurement's event loop during
+<code>testWaitForTimeout</code>. Test sequences depend on one more layer built on
+top of that: <strong>the test module runner itself schedules testcases
+sequentially, but each one still owns the full event loop while it
+runs</strong> — which is exactly why the fail-fast/fail-forward choice in this
+module's exercise is a real architectural decision, not just a report
+filter.</p>
+<p>Concretely, <code>tc_CoolantOverheatBoundary</code>'s two <code>testWaitForTimeout(150)</code>
+calls block <em>that testcase's task</em> for up to 300 ms of wall-clock time
+combined, during which the module runner does not start
+<code>tc_LowFuelHysteresis</code> — testcases in one module execute strictly one at
+a time, in sequence, each getting exclusive use of the shared bus
+simulation between its own setup and <code>testcasefinalization</code>. This is why
+independence (each testcase establishing its own preconditions rather
+than relying on a predecessor's leftover state) isn't just good hygiene
+for readability — it's the only thing that makes "run a fail-forward
+config" and "run a single testcase in isolation for debugging" produce
+identical results for testcase N: both execute against exactly the state
+<code>testpreparation</code> and testcase N's own setup created, never against
+whatever <code>tc_{N-1}</code> happened to leave behind, because the runner gives
+you no <em>guaranteed</em> ordering-independent isolation beyond what
+<code>testpreparation</code>/<code>testcasefinalization</code> explicitly provide.</p>
+<p>The fail-fast/fail-forward distinction operates one level up, at the
+<strong>Test Configuration</strong>, which sequences whole <em>modules</em> rather than
+individual testcases — a module that hard-fails under a fail-fast
+configuration causes the configuration to skip starting the next
+module's <code>testpreparation</code> entirely, which is why <code>DTCLifecycleSuite</code>'s
+hardware-unavailability problem in the exercise below has to be solved
+inside its own testcases via <code>testCaseInconclusive</code>, not by reordering
+modules: even a perfectly-ordered fail-forward sequence still needs each
+individual testcase to correctly distinguish "the bench wasn't there"
+from "the DUT actually failed," because the module-level scheduler has
+no visibility into <em>why</em> a testcase didn't pass, only that it didn't.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>You're assembling a nightly sequence with three existing test modules:
 <code>SmokeTests</code> (5 basic sanity testcases, ~1 minute), <code>CANSignalSuite</code>

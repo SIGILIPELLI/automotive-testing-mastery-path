@@ -1188,6 +1188,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-testwaitfortimeout-is-a-yield-not-a-sleep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: testWaitForTimeout is a yield, not a sleep
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-testwaitfortimeout-is-a-yield-not-a-sleep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: testWaitForTimeout is a yield, not a sleep
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2483,6 +2505,36 @@ node that logs text" and "a test module."</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-testwaitfortimeout-is-a-yield-not-a-sleep">How It Actually Works: <code>testWaitForTimeout</code> is a yield, not a sleep<a class="headerlink" href="#how-it-actually-works-testwaitfortimeout-is-a-yield-not-a-sleep" title="Permanent link">&para;</a></h2>
+<p><code>testWaitForTimeout(ms)</code> looks like a blocking sleep, but it can't
+literally be one — Level 1 Module 5 established that CAPL's runtime is
+single-threaded, so a real busy-wait would freeze the entire
+measurement, including the CAN reception that the test is waiting to
+observe. What actually happens is that a test case runs as its own
+<strong>test task</strong>, a distinct execution context from the ordinary
+simulation nodes' event handlers, and calling <code>testWaitForTimeout</code> (or
+any of CANoe's other <code>testWaitFor*</code> family) suspends <em>that task
+specifically</em> and hands control back to the measurement's event loop.
+The event loop keeps servicing every other pending event — incoming CAN
+frames, other nodes' timers, sysvar updates — exactly as normal, and the
+suspended test task is resumed either when its timeout elapses or when
+whatever condition it's waiting for becomes true, whichever comes first.</p>
+<p>This is precisely why a test case can wait on <code>SensorValid == 1</code>
+<em>inside</em> a bounded window rather than needing to manually poll: the
+underlying implementation is an event subscription with a race against
+a deadline timer, not a loop checking a variable every few milliseconds.
+It also explains where <strong>Inconclusive</strong> verdicts genuinely come from at
+the mechanism level, not just as a documentation convention: if the test
+task's precondition step (say, "wait for ignition-on") times out before
+its own wait resolves, the test case has no principled way to know
+whether the <em>actual thing under test</em> (SensorValid reaching 1) would
+have passed or failed — the precondition's own suspension expired first,
+so the subsequent check never ran at all. A well-written test module
+distinguishes this explicitly, marking the precondition's own timeout
+as Inconclusive rather than letting execution fall through to the real
+check with stale or default signal values, which would silently produce
+a misleading Pass or Fail for a condition that was never actually
+observed under valid preconditions.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write two <code>testcase</code> functions for a simulated seatbelt-warning ECU:</p>
 <ol>

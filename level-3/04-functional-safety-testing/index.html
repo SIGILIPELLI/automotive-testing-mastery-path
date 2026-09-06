@@ -1620,6 +1620,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-the-fmeda-math-a-tests-passfail-actually-feeds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: the FMEDA math a test's pass/fail actually feeds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works-the-fmeda-math-a-tests-passfail-actually-feeds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works: the FMEDA math a test's pass/fail actually feeds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2523,6 +2545,46 @@ ASIL.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works-the-fmeda-math-a-tests-passfail-actually-feeds">How It Actually Works: the FMEDA math a test's pass/fail actually feeds<a class="headerlink" href="#how-it-actually-works-the-fmeda-math-a-tests-passfail-actually-feeds" title="Permanent link">&para;</a></h2>
+<p>ISO 26262's ASIL-specific rigor isn't just a documentation requirement —
+it traces to actual numeric metrics computed in a <strong>FMEDA</strong> (Failure
+Modes, Effects, and Diagnostic Analysis) that a safety case must satisfy
+with concrete thresholds per ASIL, and every fault-injection test in
+this module is generating one of the inputs to that calculation.</p>
+<p>The core metric relevant here is <strong>diagnostic coverage (DC)</strong> for a
+given failure mode:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>DC = (failure rate of faults detected by a safety mechanism)
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>     / (total failure rate of that failure mode)
+</code></pre></div>
+<p>When <code>tc_WheelSpeedPlausibilityFaultDetected</code> proves the plausibility
+checker fires within 500 ms for a wheel-speed divergence, it is
+supplying empirical evidence toward the <em>numerator</em> of this ratio for
+the "wheel speed sensor gives an implausible reading" failure mode — the
+safety case cites this kind of test result (or a statistical sample of
+many injected fault variants, not just one) as justification for the
+DC percentage claimed for that mechanism. ISO 26262 sets minimum DC
+targets per ASIL for the <strong>Single-Point Fault Metric (SPFM)</strong> and
+<strong>Latent Fault Metric (LFM)</strong> — roughly, ASIL D targets require ≥99%
+coverage of single-point faults and ≥90% of latent faults, ASIL C/B
+progressively less — which is the concrete, numeric reason ASIL D
+testing must be far more exhaustive across fault <em>variants</em> (not just
+one clean divergence value, but boundary-adjacent divergences, slowly
+drifting divergences, intermittent ones) than a QM-level function ever
+needs: each additional fault variant tested (or formally analyzed, when
+exhaustive testing is impractical) either supports or undermines the DC
+percentage the safety case is claiming.</p>
+<p>This also explains precisely why the latent-fault row in this module's
+table is qualitatively different work: a latent fault, by definition,
+doesn't get detected by the mechanism under normal operation — proving
+its coverage requires either a dedicated self-test the ECU runs
+periodically (whose own execution needs to be tested independently,
+since a self-test that silently stops running is itself a latent fault
+one level up) or an argued analysis rather than a single fault-injection
+testcase, which is why "test the checker's own comparator" can't be
+satisfied the same way <code>tc_WheelSpeedPlausibilityFaultDetected</code> satisfies
+single-point coverage — there's no external signal to watch that proves
+the checker itself is still alive without instrumenting the checker's
+self-test path directly.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Classify a brake-pedal-position sensor failing to a fixed
