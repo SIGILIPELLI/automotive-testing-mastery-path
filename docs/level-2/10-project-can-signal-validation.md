@@ -232,6 +232,11 @@ this DTC before trusting that a pass here proves the "2 of 3 cycles"
 rule — otherwise a false pass (or false fail) is entirely plausible
 depending on how that specific ECU's software actually defines a cycle.
 
+## 🔀 Related lessons on other tracks
+
+- [Java Testing — 10 · Project — Manual Test Plan + Automated Suite](https://sigilipelli.github.io/java-testing-mastery-path/level-1/10-project-test-plan-suite/)
+- [Python Testing — 10 · Project — Test Plan + Automated Suite](https://sigilipelli.github.io/python-testing-mastery-path/level-1/10-project-test-suite/)
+
 ## Exercise
 
 1. Fix the `tc_CanFdFrameTagging` DLC bug identified above, and explain

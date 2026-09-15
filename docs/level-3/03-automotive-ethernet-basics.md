@@ -158,6 +158,10 @@ is exactly the kind of failure that gets misdiagnosed as "the event
 subscription is unreliable" (this module's Exercise 3 scenario) when the
 real cause is sitting in the PHY.
 
+## 🔀 Related lessons on other tracks
+
+- [S32K Automotive — Automotive Ethernet & Gateways](https://sigilipelli.github.io/s32k-mastery-path/level-3/08-automotive-ethernet-gateways/)
+
 ## Exercise
 
 1. A test subscribes to an eventgroup and waits 2000ms for an event

@@ -220,6 +220,12 @@ this entire class of stuck-actuator defects, which is why Section 2
 explicitly gives override its own ASIL C requirement rather than
 folding it into SW-REQ-201.
 
+## 🔀 Related lessons on other tracks
+
+- [Product Manager — 10 · Project — GTM Plan for a Feature Launch](https://sigilipelli.github.io/product-manager-mastery-path/level-2/10-project-gtm-plan/)
+- [Cpp Testing — 10 · Project — Test Plan & GoogleTest Suite](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/10-project-test-plan-and-suite/)
+- [Java Testing — 10 · Project — Manual Test Plan + Automated Suite](https://sigilipelli.github.io/java-testing-mastery-path/level-1/10-project-test-plan-suite/)
+
 ## Exercise
 
 1. Write the two "Planned, not yet written" testcases from Section 5

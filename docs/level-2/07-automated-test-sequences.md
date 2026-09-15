@@ -197,6 +197,11 @@ individual testcase to correctly distinguish "the bench wasn't there"
 from "the DUT actually failed," because the module-level scheduler has
 no visibility into *why* a testcase didn't pass, only that it didn't.
 
+## 🔀 Related lessons on other tracks
+
+- [Java Testing — 10 · Project — Manual Test Plan + Automated Suite](https://sigilipelli.github.io/java-testing-mastery-path/level-1/10-project-test-plan-suite/)
+- [Python Testing — 10 · Project — Test Plan + Automated Suite](https://sigilipelli.github.io/python-testing-mastery-path/level-1/10-project-test-suite/)
+
 ## Exercise
 
 You're assembling a nightly sequence with three existing test modules:

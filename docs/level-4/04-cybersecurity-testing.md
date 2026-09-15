@@ -205,6 +205,10 @@ rejects out-of-profile messages from the infotainment side rather
 than merely relaying everything) is one of the highest-leverage single
 tests in a vehicle network's whole cybersecurity test suite.
 
+## 🔀 Related lessons on other tracks
+
+- [S32K Automotive — Cybersecurity — ISO/SAE 21434 & SecOC](https://sigilipelli.github.io/s32k-mastery-path/level-4/05-cybersecurity-secoc/)
+
 ## Exercise
 
 1. `tc_SecurityAccess_LockoutAfterRepeatedFailures` checks a 4th

@@ -230,6 +230,12 @@ full cycle) would pass or fail nondeterministically depending on exact
 timer phase alignment, which is exactly the kind of flaky, timing-based
 test failure a competent automotive tester learns to recognize on sight.
 
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/02-test-case-design-documentation/)
+- [Java Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/java-testing-mastery-path/level-1/02-test-case-design/)
+- [Python Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/python-testing-mastery-path/level-1/02-test-case-design/)
+
 ## Exercise
 
 Extend this project with one more requirement: **REQ-FUEL-007** — if the

@@ -182,6 +182,11 @@ relay didn't return to nominal — otherwise job N+1 inherits a silently
 faulted rig and produces confusing, unrelated-looking failures that
 look like software regressions.
 
+## 🔀 Related lessons on other tracks
+
+- [Java Testing — 02 · Shift-Left & Continuous Testing](https://sigilipelli.github.io/java-testing-mastery-path/level-4/02-shift-left-continuous-testing/)
+- [Python Testing — 02 · Shift-Left & Continuous Testing](https://sigilipelli.github.io/python-testing-mastery-path/level-4/02-shift-left-continuous-testing/)
+
 ## Exercise
 
 1. A CI dashboard shows a job as "Failed" but the actual cause was no

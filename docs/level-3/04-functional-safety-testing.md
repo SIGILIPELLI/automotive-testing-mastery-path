@@ -191,6 +191,12 @@ single-point coverage — there's no external signal to watch that proves
 the checker itself is still alive without instrumenting the checker's
 self-test path directly.
 
+## 🔀 Related lessons on other tracks
+
+- [Freertos — Certification Workflows (IEC 61508 / ISO 26262)](https://sigilipelli.github.io/freertos-mastery-path/level-4/04-certification-workflows/)
+- [Embedded — Functional Safety & MISRA](https://sigilipelli.github.io/embedded-mastery-path/level-4/06-functional-safety-misra/)
+- [Cpp Testing — 02 · Safety-Critical Testing Standards](https://sigilipelli.github.io/cpp-testing-mastery-path/level-4/02-safety-critical-standards/)
+
 ## Exercise
 
 1. Classify a brake-pedal-position sensor failing to a fixed

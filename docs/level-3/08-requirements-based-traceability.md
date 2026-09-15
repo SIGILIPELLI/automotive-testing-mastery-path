@@ -172,6 +172,11 @@ value) can now catch a title that says `100ms` next to a requirement
 document that says `150ms`, entirely mechanically, without executing the
 test or reading the CAPL body at all.
 
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 03 · Requirements-Based Testing & Traceability](https://sigilipelli.github.io/cpp-testing-mastery-path/level-4/03-requirements-based-testing/)
+- [S32K Automotive — Manufacturing, EOL Test & Traceability](https://sigilipelli.github.io/s32k-mastery-path/level-4/09-manufacturing-eol-test/)
+
 ## Exercise
 
 1. `tc_DtcSetsAfterPersistentFault` asserts a 100ms debounce time.

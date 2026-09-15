@@ -175,6 +175,12 @@ metrics indefinitely: the artifact needed for deep debugging and the
 artifact needed for long-term audit trail have fundamentally different
 size/value profiles and should be stored accordingly.
 
+## 🔀 Related lessons on other tracks
+
+- [Java Testing — 05 · Test Data Management](https://sigilipelli.github.io/java-testing-mastery-path/level-2/05-test-data-management/)
+- [Playwright — 08 · Environment & Test Data Management](https://sigilipelli.github.io/playwright-mastery-path/level-2/08-env-test-data/)
+- [Python Testing — 05 · Test Data Management & Factories](https://sigilipelli.github.io/python-testing-mastery-path/level-2/05-test-data-management/)
+
 ## Exercise
 
 1. A test run six months ago is cited in a safety audit, but the DBC

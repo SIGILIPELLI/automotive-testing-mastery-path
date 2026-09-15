@@ -216,6 +216,10 @@ service implementation, and why a competent tester debugging it opens a
 CANoe trace and looks at PCI nibbles and inter-frame timing, not just the
 UDS-level bytes.
 
+## 🔀 Related lessons on other tracks
+
+- [S32K Automotive — UDS Diagnostics Intro (ISO 14229)](https://sigilipelli.github.io/s32k-mastery-path/level-2/09-uds-diagnostics/)
+
 ## Exercise
 
 You are writing a test plan for an ECU's `0x22` (Read Data By

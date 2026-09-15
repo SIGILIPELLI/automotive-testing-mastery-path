@@ -186,6 +186,10 @@ requires — which is precisely the kind of DAQ-list design work that
 distinguishes an efficient measurement setup from one that silently
 starves the bus of headroom it needs for actual vehicle traffic.
 
+## 🔀 Related lessons on other tracks
+
+- [S32K Automotive — Measurement & Calibration (XCP)](https://sigilipelli.github.io/s32k-mastery-path/level-3/09-xcp-measurement-calibration/)
+
 ## Exercise
 
 1. Explain concretely what goes wrong if a test suite runs against an

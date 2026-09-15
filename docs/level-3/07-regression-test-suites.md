@@ -180,6 +180,10 @@ failures whose log excerpts mention the same signal, sysvar, or restbus
 node name) reliably surfaces this because the shared root cause leaves
 the same textual fingerprint across every testcase it poisons.
 
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 09 · Test Builds & Running Suites](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/09-test-builds-running-suites/)
+
 ## Exercise
 
 1. A 45-minute functional-tier suite has grown to 3 hours over 6

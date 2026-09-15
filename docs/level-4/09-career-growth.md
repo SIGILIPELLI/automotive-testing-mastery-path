@@ -141,6 +141,12 @@ vocabulary an interviewer would otherwise have to establish from
 scratch, but they cannot substitute for evidence of judgment under
 real trade-offs.
 
+## 🔀 Related lessons on other tracks
+
+- [Data Engineering — 09 · Career Growth in Data Engineering](https://sigilipelli.github.io/data-engineering-mastery-path/level-4/09-career-growth/)
+- [Agile — 09 · Career Growth: Scrum Master to Agile Coach/Director](https://sigilipelli.github.io/agile-mastery-path/level-4/09-career-growth-scrum-master-to-coach/)
+- [AI Manager — 09 · Career Growth: AI Manager to Chief AI Officer](https://sigilipelli.github.io/ai-manager-mastery-path/level-4/09-career-growth-ai-manager-to-caio/)
+
 ## Exercise
 
 1. Pick one of the five paths in the table and write a concrete

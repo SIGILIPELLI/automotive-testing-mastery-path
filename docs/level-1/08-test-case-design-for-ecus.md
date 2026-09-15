@@ -168,6 +168,12 @@ the raw value used and the arithmetic that produced it — not just the
 physical number — precisely so a reviewer can catch a rounding error
 that silently shifted a boundary test off its intended edge.
 
+## 🔀 Related lessons on other tracks
+
+- [Cpp Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/02-test-case-design-documentation/)
+- [Java Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/java-testing-mastery-path/level-1/02-test-case-design/)
+- [Python Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/python-testing-mastery-path/level-1/02-test-case-design/)
+
 ## Exercise
 
 An ECU has a low-fuel warning requirement: "the low-fuel warning shall

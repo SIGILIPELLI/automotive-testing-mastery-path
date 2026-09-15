@@ -171,6 +171,11 @@ HIL that a pure CAN-message CANoe test (Module 4) structurally cannot
 produce, because there's no ADC/DAC pair involved when you inject a
 signal value directly as a CAN payload.
 
+## 🔀 Related lessons on other tracks
+
+- [Embedded — HIL Testing & CI for Firmware](https://sigilipelli.github.io/embedded-mastery-path/level-4/05-hil-testing-ci/)
+- [S32K Automotive — HIL Testing & CI for ECU Firmware](https://sigilipelli.github.io/s32k-mastery-path/level-4/07-hil-testing-ci/)
+
 ## Exercise
 
 Design a HIL test scenario (in words, not code) for an anti-lock braking

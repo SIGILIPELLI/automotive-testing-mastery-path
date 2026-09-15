@@ -186,6 +186,10 @@ rig into a permanently red, unrecoverable pipeline stage rather than a
 single reported failure with a clear "test module exceeded its maximum
 allotted run time" verdict.
 
+## 🔀 Related lessons on other tracks
+
+- [S32K Automotive — HIL Testing & CI for ECU Firmware](https://sigilipelli.github.io/s32k-mastery-path/level-4/07-hil-testing-ci/)
+
 ## Exercise
 
 1. Rewrite the busy-wait `while test_module.IsRunning: pass` loop
