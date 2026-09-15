@@ -1,3 +1,7 @@
+---
+description: "What Is Automotive Testing? — Automotive testing is software and systems testing applied to electronic control units (ECUs) — the 70-150+ small computers…"
+---
+
 # 01 · What Is Automotive Testing?
 
 Automotive testing is software and systems testing applied to **electronic

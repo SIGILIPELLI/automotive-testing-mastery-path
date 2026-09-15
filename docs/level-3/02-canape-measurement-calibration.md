@@ -1,3 +1,7 @@
+---
+description: "CANape & Measurement/Calibration Basics — CANoe validates bus behavior and diagnostics; CANape does something adjacent but different — it measures and…"
+---
+
 # 02 · CANape & Measurement/Calibration Basics
 
 CANoe validates bus behavior and diagnostics; CANape does something

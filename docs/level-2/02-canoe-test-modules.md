@@ -1,3 +1,7 @@
+---
+description: "CANoe Test Modules & Test Cases — A plain CAPL simulation node can call write() when something looks wrong, but 'wrong' is just text in a log — there is…"
+---
+
 # 02 · CANoe Test Modules & Test Cases
 
 Everything in Level 1 was a **simulation** — CAPL nodes that send,

@@ -1,3 +1,7 @@
+---
+description: "Test Automation Frameworks for ECU Testing — Every CAPL testcase built so far lives inside CANoe's own test module system. At scale — hundreds of…"
+---
+
 # 05 · Test Automation Frameworks for ECU Testing
 
 Every CAPL testcase built so far lives inside CANoe's own test module

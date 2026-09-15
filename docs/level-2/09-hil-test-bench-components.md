@@ -1,3 +1,7 @@
+---
+description: "Basic HIL Test Bench Components — Everything through Module 8 has run against pure bus simulation — no physical ECU, no real wiring, all CAPL and CANoe.…"
+---
+
 # 09 · Basic HIL Test Bench Components
 
 Everything through Module 8 has run against pure bus simulation — no

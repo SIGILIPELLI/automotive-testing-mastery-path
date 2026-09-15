@@ -1,3 +1,7 @@
+---
+description: "Introduction to HIL Testing — By the time Modules 4-6 gave you CANoe, CAPL, and UDS, you already have a powerful way to test an ECU's network behavior on…"
+---
+
 # 07 · Introduction to HIL Testing
 
 **Hardware-in-the-Loop (HIL) testing** connects a real, physical ECU to a

@@ -1,3 +1,7 @@
+---
+description: "Advanced HIL Test Automation — Level 2 Module 9 mapped the physical components of a HIL rig. This module covers how you actually automate test execution…"
+---
+
 # 01 · Advanced HIL Test Automation
 
 Level 2 Module 9 mapped the physical components of a HIL rig. This

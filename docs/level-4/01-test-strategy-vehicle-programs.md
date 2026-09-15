@@ -1,3 +1,7 @@
+---
+description: "Test Strategy for Vehicle Programs — Everything through Level 3 operated at the scale of one ECU, one feature, one rig. A vehicle program test strategy…"
+---
+
 # 01 · Test Strategy for Vehicle Programs
 
 Everything through Level 3 operated at the scale of one ECU, one

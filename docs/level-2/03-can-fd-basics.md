@@ -1,3 +1,7 @@
+---
+description: "CAN-FD Basics — Classic CAN (Level 1) tops out at 1 Mbit/s and 8-byte payloads — fine for most body and chassis signals, tight for the sensor-fusion and…"
+---
+
 # 03 · CAN-FD Basics
 
 Classic CAN (Level 1) tops out at 1 Mbit/s and 8-byte payloads — fine for

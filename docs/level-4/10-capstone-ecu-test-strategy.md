@@ -1,3 +1,7 @@
+---
+description: "Capstone — Full Test Strategy for a New ECU Program — This capstone integrates every module across all four levels into one deliverable: a program-level…"
+---
+
 # 10 · Capstone — Full Test Strategy for a New ECU Program
 
 This capstone integrates every module across all four levels into one

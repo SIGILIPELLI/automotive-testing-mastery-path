@@ -1,3 +1,7 @@
+---
+description: "Functional Safety Testing (ISO 26262) — Everything so far has tested whether an ECU does the right thing. ISO 26262 asks a different, harder question…"
+---
+
 # 04 · Functional Safety Testing (ISO 26262)
 
 Everything so far has tested *whether an ECU does the right thing*.

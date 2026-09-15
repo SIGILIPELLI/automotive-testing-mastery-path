@@ -1,3 +1,7 @@
+---
+description: "SOTIF & Testing for Autonomous Features — ISO 26262 (Module 4) covers hazards caused by system malfunction — something broke. ISO 21448, SOTIF (Safety Of…"
+---
+
 # 09 · SOTIF & Testing for Autonomous Features
 
 ISO 26262 (Module 4) covers hazards caused by *system malfunction* —

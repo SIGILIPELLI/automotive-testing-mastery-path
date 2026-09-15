@@ -1,3 +1,7 @@
+---
+description: "Database Files (DBC) & Signal Definitions — Every module so far has referenced 'the DBC' as the source of truth for signal names, scaling, and ranges…"
+---
+
 # 06 · Database Files (DBC) & Signal Definitions
 
 Every module so far has referenced "the DBC" as the source of truth for

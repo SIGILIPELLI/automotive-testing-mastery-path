@@ -1,3 +1,7 @@
+---
+description: "Regression Test Suites for Automotive Software — Every module so far has built individual testcases. This module covers what happens once you have…"
+---
+
 # 07 · Regression Test Suites for Automotive Software
 
 Every module so far has built individual testcases. This module

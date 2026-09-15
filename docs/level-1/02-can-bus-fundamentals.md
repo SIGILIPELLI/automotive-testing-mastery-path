@@ -1,3 +1,7 @@
+---
+description: "CAN Bus Fundamentals — A modern vehicle has 70-150+ ECUs. Wiring every pair that needs to talk directly would need a harness thicker than your arm and…"
+---
+
 # 02 · CAN Bus Fundamentals
 
 **CAN** (Controller Area Network), developed by Bosch in the 1980s, is the

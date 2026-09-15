@@ -1,3 +1,7 @@
+---
+description: "Advanced Fault Injection & Robustness Testing — Level 3 Module 6 built the fault taxonomy and single-fault CAPL patterns. This module goes further…"
+---
+
 # 03 · Advanced Fault Injection & Robustness Testing
 
 Level 3 Module 6 built the fault taxonomy and single-fault CAPL

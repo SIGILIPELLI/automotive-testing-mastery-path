@@ -1,3 +1,7 @@
+---
+description: "Project — HIL Test Plan for an ECU Feature — This project pulls together every Level 3 module into one deliverable: a real, structured HIL test plan for a…"
+---
+
 # 10 · Project — HIL Test Plan for an ECU Feature
 
 This project pulls together every Level 3 module into one deliverable:

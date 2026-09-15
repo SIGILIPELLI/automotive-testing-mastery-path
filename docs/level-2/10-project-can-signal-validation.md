@@ -1,3 +1,7 @@
+---
+description: "Project — Automated CAN Signal Validation Suite — This project pulls together every module in Level 2 into one working deliverable: an automated CAPL test…"
+---
+
 # 10 · Project — Automated CAN Signal Validation Suite
 
 This project pulls together every module in Level 2 into one working

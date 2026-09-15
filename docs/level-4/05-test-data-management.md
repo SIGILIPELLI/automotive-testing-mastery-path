@@ -1,3 +1,7 @@
+---
+description: "Test Data Management at Scale — A single test suite has a handful of DBC files, one A2L, and a spreadsheet of scenario data. A vehicle program has dozens…"
+---
+
 # 05 · Test Data Management at Scale
 
 A single test suite has a handful of DBC files, one A2L, and a

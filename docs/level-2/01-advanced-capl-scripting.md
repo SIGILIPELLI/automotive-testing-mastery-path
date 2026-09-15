@@ -1,3 +1,7 @@
+---
+description: "Advanced CAPL Scripting — Level 1 Module 5 covered CAPL's event model — on start, on message, on timer, output(). This module builds on that with the…"
+---
+
 # 01 · Advanced CAPL Scripting
 
 Level 1 Module 5 covered CAPL's event model — `on start`, `on message`,

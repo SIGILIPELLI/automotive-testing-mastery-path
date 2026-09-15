@@ -1,3 +1,7 @@
+---
+description: "Requirements-Based Test Traceability — A test suite that isn't linked back to requirements can't answer the one question every audit, safety assessment…"
+---
+
 # 08 · Requirements-Based Test Traceability
 
 A test suite that isn't linked back to requirements can't answer the

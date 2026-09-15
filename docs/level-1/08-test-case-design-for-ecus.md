@@ -1,3 +1,7 @@
+---
+description: "Test Case Design for ECUs — The general test-design techniques you'd learn in any software testing course — equivalence partitioning, boundary value…"
+---
+
 # 08 · Test Case Design for ECUs
 
 The general test-design techniques you'd learn in any software testing

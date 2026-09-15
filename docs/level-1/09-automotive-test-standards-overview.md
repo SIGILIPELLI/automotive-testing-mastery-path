@@ -1,3 +1,7 @@
+---
+description: "Automotive Test Standards Overview — Automotive testing doesn't just happen to be rigorous — much of that rigor is a direct, traceable consequence of two…"
+---
+
 # 09 · Automotive Test Standards Overview
 
 Automotive testing doesn't just happen to be rigorous — much of that

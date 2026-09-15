@@ -1,3 +1,7 @@
+---
+description: "Project — Design a CAPL Test Script for a Simulated ECU Signal — This capstone pulls together every Level 1 module into one deliverable: a CAPL script…"
+---
+
 # 10 · Project — Design a CAPL Test Script for a Simulated ECU Signal
 
 This capstone pulls together every Level 1 module into one deliverable:

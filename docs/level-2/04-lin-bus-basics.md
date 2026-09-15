@@ -1,3 +1,7 @@
+---
+description: "LIN Bus Basics — Not every signal in a car needs CAN's arbitration, error handling, or wiring cost. Window lifters, mirror motors, seat controllers, rain…"
+---
+
 # 04 · LIN Bus Basics
 
 Not every signal in a car needs CAN's arbitration, error handling, or

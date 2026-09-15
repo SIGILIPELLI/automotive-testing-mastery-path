@@ -1,3 +1,7 @@
+---
+description: "Automated Test Sequences in CANoe — Module 2 introduced CANoe's Test Module structure (testcase, testfunction) for individual checks. Real suites chain…"
+---
+
 # 07 · Automated Test Sequences in CANoe
 
 Module 2 introduced CANoe's Test Module structure (`testcase`,

@@ -1,3 +1,7 @@
+---
+description: "Introduction to Vector CANoe — Note the ID names ('SensorNodeStatus' instead of raw 0x310) — that decoding only happens once a database file is loaded…"
+---
+
 # 04 · Introduction to Vector CANoe
 
 **CANoe**, made by Vector Informatik, is the industry-standard tool for

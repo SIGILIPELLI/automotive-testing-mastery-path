@@ -1,3 +1,7 @@
+---
+description: "Restbus Simulation — Testing a single ECU on a bench almost never means that ECU is alone on the bus in the real vehicle. It expects dozens of other…"
+---
+
 # 08 · Restbus Simulation
 
 Testing a single ECU on a bench almost never means that ECU is alone on

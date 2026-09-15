@@ -1,3 +1,7 @@
+---
+description: "Diagnostic Trouble Codes (DTCs) Deep Dive — Level 1 introduced UDS services and touched DTCs as 'the thing that sets when something fails.' Real ECU test…"
+---
+
 # 05 · Diagnostic Trouble Codes (DTCs) Deep Dive
 
 Level 1 introduced UDS services and touched DTCs as "the thing that

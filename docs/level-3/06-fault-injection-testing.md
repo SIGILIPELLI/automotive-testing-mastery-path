@@ -1,3 +1,7 @@
+---
+description: "Fault Injection Testing — Module 4 tested safety mechanisms by manipulating signal values on the bus — a valid technique, but it can't reach every fault…"
+---
+
 # 06 · Fault Injection Testing
 
 Module 4 tested safety mechanisms by manipulating signal *values* on

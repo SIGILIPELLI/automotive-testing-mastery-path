@@ -1,3 +1,7 @@
+---
+description: "Ethernet/Automotive Ethernet Basics — Modern ECUs — ADAS domain controllers, infotainment head units, gateways — increasingly carry Ethernet alongside or…"
+---
+
 # 03 · Ethernet/Automotive Ethernet Basics
 
 Modern ECUs — ADAS domain controllers, infotainment head units,

@@ -1,3 +1,7 @@
+---
+description: "Continuous Testing in Automotive — Level 3 Module 5 built a framework wrapping CAPL/CANoe for orchestration; Level 3 Module 7 built a tiered regression…"
+---
+
 # 02 · Continuous Testing in Automotive
 
 Level 3 Module 5 built a framework wrapping CAPL/CANoe for

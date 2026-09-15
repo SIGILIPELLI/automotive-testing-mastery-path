@@ -1,3 +1,7 @@
+---
+description: "Homologation & Compliance Testing Overview — Everything so far validated that an ECU meets an OEM's own requirements. Homologation is a different gate…"
+---
+
 # 08 · Homologation & Compliance Testing Overview
 
 Everything so far validated that an ECU meets an OEM's own

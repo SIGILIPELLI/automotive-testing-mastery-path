@@ -1,3 +1,7 @@
+---
+description: "UDS Diagnostics Basics — UDS is strictly client-server: a tester (client — a diagnostic tool, or a CAPL script acting as one) sends a request, and the ECU…"
+---
+
 # 06 · UDS Diagnostics Basics
 
 **UDS** (Unified Diagnostic Services, standardized as **ISO 14229**) is

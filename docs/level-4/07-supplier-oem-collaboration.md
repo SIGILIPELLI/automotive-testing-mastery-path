@@ -1,3 +1,7 @@
+---
+description: "Supplier & OEM Test Collaboration Models — Level 4 Module 1 flagged the supplier/OEM split as a core test strategy decision. This module goes deeper into…"
+---
+
 # 07 · Supplier & OEM Test Collaboration Models
 
 Level 4 Module 1 flagged the supplier/OEM split as a core test

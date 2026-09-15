@@ -1,3 +1,7 @@
+---
+description: "CAPL Scripting Basics — Other common handlers: on key (keyboard input, useful for manual test panels), on preStart/on stopMeasurement (setup/teardown…"
+---
+
 # 05 · CAPL Scripting Basics
 
 **CAPL** (Communication Access Programming Language) is Vector CANoe's

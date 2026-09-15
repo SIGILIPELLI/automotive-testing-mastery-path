@@ -1,3 +1,7 @@
+---
+description: "Career Growth in Automotive Test Engineering — Level 4 Module 6 covered building a career ladder from a team lead's perspective. This module flips the…"
+---
+
 # 09 · Career Growth in Automotive Test Engineering
 
 Level 4 Module 6 covered building a career ladder from a team lead's

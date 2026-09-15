@@ -1,3 +1,7 @@
+---
+description: "Cybersecurity Testing for Vehicles (ISO 21434) — Connected ECUs — telematics units, Ethernet-based domain controllers, anything reachable from outside the…"
+---
+
 # 04 · Cybersecurity Testing for Vehicles (ISO 21434)
 
 Connected ECUs — telematics units, Ethernet-based domain controllers,

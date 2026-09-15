@@ -1,3 +1,7 @@
+---
+description: "CAN Frame Structure — Module 2 gave you the physical and electrical picture. This module opens up the frame itself — the bit-level structure every CAN…"
+---
+
 # 03 · CAN Frame Structure
 
 Module 2 gave you the physical and electrical picture. This module opens

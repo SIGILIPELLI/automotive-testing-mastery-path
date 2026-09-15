@@ -1,3 +1,7 @@
+---
+description: "Building a Test Automation Team/Practice — Every technical module so far assumed someone capable was already writing the CAPL, building the framework…"
+---
+
 # 06 · Building a Test Automation Team/Practice
 
 Every technical module so far assumed someone capable was already
