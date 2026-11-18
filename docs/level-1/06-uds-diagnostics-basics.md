@@ -218,7 +218,7 @@ UDS-level bytes.
 
 ## 🔀 Related lessons on other tracks
 
-- [S32K Automotive — UDS Diagnostics Intro (ISO 14229)](https://sigilipelli.github.io/s32k-mastery-path/level-2/09-uds-diagnostics/)
+- [S32K Automotive — UDS Diagnostics Intro (ISO 14229)](https://learnmasterypath.com/s32k-mastery-path/level-2/09-uds-diagnostics/)
 
 ## Exercise
 

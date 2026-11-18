@@ -143,9 +143,9 @@ real trade-offs.
 
 ## 🔀 Related lessons on other tracks
 
-- [Data Engineering — 09 · Career Growth in Data Engineering](https://sigilipelli.github.io/data-engineering-mastery-path/level-4/09-career-growth/)
-- [Agile — 09 · Career Growth: Scrum Master to Agile Coach/Director](https://sigilipelli.github.io/agile-mastery-path/level-4/09-career-growth-scrum-master-to-coach/)
-- [AI Manager — 09 · Career Growth: AI Manager to Chief AI Officer](https://sigilipelli.github.io/ai-manager-mastery-path/level-4/09-career-growth-ai-manager-to-caio/)
+- [Data Engineering — 09 · Career Growth in Data Engineering](https://learnmasterypath.com/data-engineering-mastery-path/level-4/09-career-growth/)
+- [Agile — 09 · Career Growth: Scrum Master to Agile Coach/Director](https://learnmasterypath.com/agile-mastery-path/level-4/09-career-growth-scrum-master-to-coach/)
+- [AI Manager — 09 · Career Growth: AI Manager to Chief AI Officer](https://learnmasterypath.com/ai-manager-mastery-path/level-4/09-career-growth-ai-manager-to-caio/)
 
 ## Exercise
 

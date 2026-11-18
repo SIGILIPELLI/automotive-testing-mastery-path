@@ -8,7 +8,7 @@ ECU/HIL benches that cannot be executed on a general-purpose machine —
 content is written for technical accuracy against genuinely documented
 CAN/CAPL/UDS conventions rather than live execution.
 
-**Live site:** https://sigilipelli.github.io/automotive-testing-mastery-path/
+**Live site:** https://learnmasterypath.com/automotive-testing-mastery-path/
 
 ## Contents
 
@@ -27,7 +27,7 @@ python3 -m venv .venv
 
 ## Related
 
-- [S32K Automotive Embedded Mastery Path](https://sigilipelli.github.io/s32k-mastery-path/)
-- [Embedded Systems Mastery Path](https://sigilipelli.github.io/embedded-mastery-path/)
-- [C/C++ Testing Mastery Path](https://sigilipelli.github.io/cpp-testing-mastery-path/)
-- [FreeRTOS Mastery Path](https://sigilipelli.github.io/freertos-mastery-path/)
+- [S32K Automotive Embedded Mastery Path](https://learnmasterypath.com/s32k-mastery-path/)
+- [Embedded Systems Mastery Path](https://learnmasterypath.com/embedded-mastery-path/)
+- [C/C++ Testing Mastery Path](https://learnmasterypath.com/cpp-testing-mastery-path/)
+- [FreeRTOS Mastery Path](https://learnmasterypath.com/freertos-mastery-path/)

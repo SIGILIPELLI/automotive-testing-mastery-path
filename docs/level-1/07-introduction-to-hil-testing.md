@@ -173,8 +173,8 @@ signal value directly as a CAN payload.
 
 ## 🔀 Related lessons on other tracks
 
-- [Embedded — HIL Testing & CI for Firmware](https://sigilipelli.github.io/embedded-mastery-path/level-4/05-hil-testing-ci/)
-- [S32K Automotive — HIL Testing & CI for ECU Firmware](https://sigilipelli.github.io/s32k-mastery-path/level-4/07-hil-testing-ci/)
+- [Embedded — HIL Testing & CI for Firmware](https://learnmasterypath.com/embedded-mastery-path/level-4/05-hil-testing-ci/)
+- [S32K Automotive — HIL Testing & CI for ECU Firmware](https://learnmasterypath.com/s32k-mastery-path/level-4/07-hil-testing-ci/)
 
 ## Exercise
 

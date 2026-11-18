@@ -199,8 +199,8 @@ no visibility into *why* a testcase didn't pass, only that it didn't.
 
 ## 🔀 Related lessons on other tracks
 
-- [Java Testing — 10 · Project — Manual Test Plan + Automated Suite](https://sigilipelli.github.io/java-testing-mastery-path/level-1/10-project-test-plan-suite/)
-- [Python Testing — 10 · Project — Test Plan + Automated Suite](https://sigilipelli.github.io/python-testing-mastery-path/level-1/10-project-test-suite/)
+- [Java Testing — 10 · Project — Manual Test Plan + Automated Suite](https://learnmasterypath.com/java-testing-mastery-path/level-1/10-project-test-plan-suite/)
+- [Python Testing — 10 · Project — Test Plan + Automated Suite](https://learnmasterypath.com/python-testing-mastery-path/level-1/10-project-test-suite/)
 
 ## Exercise
 

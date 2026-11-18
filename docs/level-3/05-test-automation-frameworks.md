@@ -188,7 +188,7 @@ allotted run time" verdict.
 
 ## 🔀 Related lessons on other tracks
 
-- [S32K Automotive — HIL Testing & CI for ECU Firmware](https://sigilipelli.github.io/s32k-mastery-path/level-4/07-hil-testing-ci/)
+- [S32K Automotive — HIL Testing & CI for ECU Firmware](https://learnmasterypath.com/s32k-mastery-path/level-4/07-hil-testing-ci/)
 
 ## Exercise
 

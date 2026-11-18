@@ -184,8 +184,8 @@ look like software regressions.
 
 ## 🔀 Related lessons on other tracks
 
-- [Java Testing — 02 · Shift-Left & Continuous Testing](https://sigilipelli.github.io/java-testing-mastery-path/level-4/02-shift-left-continuous-testing/)
-- [Python Testing — 02 · Shift-Left & Continuous Testing](https://sigilipelli.github.io/python-testing-mastery-path/level-4/02-shift-left-continuous-testing/)
+- [Java Testing — 02 · Shift-Left & Continuous Testing](https://learnmasterypath.com/java-testing-mastery-path/level-4/02-shift-left-continuous-testing/)
+- [Python Testing — 02 · Shift-Left & Continuous Testing](https://learnmasterypath.com/python-testing-mastery-path/level-4/02-shift-left-continuous-testing/)
 
 ## Exercise
 

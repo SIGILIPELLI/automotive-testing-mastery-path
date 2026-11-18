@@ -222,9 +222,9 @@ folding it into SW-REQ-201.
 
 ## 🔀 Related lessons on other tracks
 
-- [Product Manager — 10 · Project — GTM Plan for a Feature Launch](https://sigilipelli.github.io/product-manager-mastery-path/level-2/10-project-gtm-plan/)
-- [Cpp Testing — 10 · Project — Test Plan & GoogleTest Suite](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/10-project-test-plan-and-suite/)
-- [Java Testing — 10 · Project — Manual Test Plan + Automated Suite](https://sigilipelli.github.io/java-testing-mastery-path/level-1/10-project-test-plan-suite/)
+- [Product Manager — 10 · Project — GTM Plan for a Feature Launch](https://learnmasterypath.com/product-manager-mastery-path/level-2/10-project-gtm-plan/)
+- [Cpp Testing — 10 · Project — Test Plan & GoogleTest Suite](https://learnmasterypath.com/cpp-testing-mastery-path/level-1/10-project-test-plan-and-suite/)
+- [Java Testing — 10 · Project — Manual Test Plan + Automated Suite](https://learnmasterypath.com/java-testing-mastery-path/level-1/10-project-test-plan-suite/)
 
 ## Exercise
 

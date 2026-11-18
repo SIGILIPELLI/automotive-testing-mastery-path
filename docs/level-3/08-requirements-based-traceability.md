@@ -174,8 +174,8 @@ test or reading the CAPL body at all.
 
 ## 🔀 Related lessons on other tracks
 
-- [Cpp Testing — 03 · Requirements-Based Testing & Traceability](https://sigilipelli.github.io/cpp-testing-mastery-path/level-4/03-requirements-based-testing/)
-- [S32K Automotive — Manufacturing, EOL Test & Traceability](https://sigilipelli.github.io/s32k-mastery-path/level-4/09-manufacturing-eol-test/)
+- [Cpp Testing — 03 · Requirements-Based Testing & Traceability](https://learnmasterypath.com/cpp-testing-mastery-path/level-4/03-requirements-based-testing/)
+- [S32K Automotive — Manufacturing, EOL Test & Traceability](https://learnmasterypath.com/s32k-mastery-path/level-4/09-manufacturing-eol-test/)
 
 ## Exercise
 

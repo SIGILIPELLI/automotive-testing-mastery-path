@@ -232,9 +232,9 @@ test failure a competent automotive tester learns to recognize on sight.
 
 ## 🔀 Related lessons on other tracks
 
-- [Cpp Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/02-test-case-design-documentation/)
-- [Java Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/java-testing-mastery-path/level-1/02-test-case-design/)
-- [Python Testing — 02 · Test Case Design & Documentation](https://sigilipelli.github.io/python-testing-mastery-path/level-1/02-test-case-design/)
+- [Cpp Testing — 02 · Test Case Design & Documentation](https://learnmasterypath.com/cpp-testing-mastery-path/level-1/02-test-case-design-documentation/)
+- [Java Testing — 02 · Test Case Design & Documentation](https://learnmasterypath.com/java-testing-mastery-path/level-1/02-test-case-design/)
+- [Python Testing — 02 · Test Case Design & Documentation](https://learnmasterypath.com/python-testing-mastery-path/level-1/02-test-case-design/)
 
 ## Exercise
 

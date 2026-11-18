@@ -193,9 +193,9 @@ self-test path directly.
 
 ## 🔀 Related lessons on other tracks
 
-- [Freertos — Certification Workflows (IEC 61508 / ISO 26262)](https://sigilipelli.github.io/freertos-mastery-path/level-4/04-certification-workflows/)
-- [Embedded — Functional Safety & MISRA](https://sigilipelli.github.io/embedded-mastery-path/level-4/06-functional-safety-misra/)
-- [Cpp Testing — 02 · Safety-Critical Testing Standards](https://sigilipelli.github.io/cpp-testing-mastery-path/level-4/02-safety-critical-standards/)
+- [Freertos — Certification Workflows (IEC 61508 / ISO 26262)](https://learnmasterypath.com/freertos-mastery-path/level-4/04-certification-workflows/)
+- [Embedded — Functional Safety & MISRA](https://learnmasterypath.com/embedded-mastery-path/level-4/06-functional-safety-misra/)
+- [Cpp Testing — 02 · Safety-Critical Testing Standards](https://learnmasterypath.com/cpp-testing-mastery-path/level-4/02-safety-critical-standards/)
 
 ## Exercise
 

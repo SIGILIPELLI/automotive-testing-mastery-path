@@ -160,7 +160,7 @@ real cause is sitting in the PHY.
 
 ## 🔀 Related lessons on other tracks
 
-- [S32K Automotive — Automotive Ethernet & Gateways](https://sigilipelli.github.io/s32k-mastery-path/level-3/08-automotive-ethernet-gateways/)
+- [S32K Automotive — Automotive Ethernet & Gateways](https://learnmasterypath.com/s32k-mastery-path/level-3/08-automotive-ethernet-gateways/)
 
 ## Exercise
 

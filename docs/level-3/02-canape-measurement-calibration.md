@@ -188,7 +188,7 @@ starves the bus of headroom it needs for actual vehicle traffic.
 
 ## 🔀 Related lessons on other tracks
 
-- [S32K Automotive — Measurement & Calibration (XCP)](https://sigilipelli.github.io/s32k-mastery-path/level-3/09-xcp-measurement-calibration/)
+- [S32K Automotive — Measurement & Calibration (XCP)](https://learnmasterypath.com/s32k-mastery-path/level-3/09-xcp-measurement-calibration/)
 
 ## Exercise
 

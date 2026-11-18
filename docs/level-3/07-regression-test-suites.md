@@ -182,7 +182,7 @@ the same textual fingerprint across every testcase it poisons.
 
 ## 🔀 Related lessons on other tracks
 
-- [Cpp Testing — 09 · Test Builds & Running Suites](https://sigilipelli.github.io/cpp-testing-mastery-path/level-1/09-test-builds-running-suites/)
+- [Cpp Testing — 09 · Test Builds & Running Suites](https://learnmasterypath.com/cpp-testing-mastery-path/level-1/09-test-builds-running-suites/)
 
 ## Exercise
 
