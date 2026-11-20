@@ -1,3 +1,7 @@
+---
+description: "Level 2 (Intermediate) of the free Automotive Testing Mastery Path. Go from basic CAPL scripting and CAN fundamentals to building real automated test suites…"
+---
+
 # Level 2 · Intermediate <span class="level-badge">Intermediate</span>
 
 Goal: go from basic CAPL scripting and CAN fundamentals to building real

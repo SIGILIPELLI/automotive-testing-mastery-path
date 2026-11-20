@@ -1,3 +1,7 @@
+---
+description: "Level 3 (Advanced) of the free Automotive Testing Mastery Path. Move into full HIL test automation, measurement/calibration with CANape, automotive…"
+---
+
 # Level 3 · Advanced <span class="level-badge">Advanced</span>
 
 Goal: move into full HIL test automation, measurement/calibration with

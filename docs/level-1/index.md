@@ -1,3 +1,7 @@
+---
+description: "Level 1 (Entry) of the free Automotive Testing Mastery Path. Understand what makes automotive ECU testing different from general software testing, get…"
+---
+
 # Level 1 · Entry <span class="level-badge">Foundations</span>
 
 Goal: understand what makes automotive ECU testing different from general

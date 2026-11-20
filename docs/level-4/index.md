@@ -1,3 +1,7 @@
+---
+description: "Level 4 (Master) of the free Automotive Testing Mastery Path. Operate at program level — test strategy across a whole vehicle program, continuous testing…"
+---
+
 # Level 4 · Master <span class="level-badge">Master</span>
 
 Goal: operate at program level — test strategy across a whole vehicle

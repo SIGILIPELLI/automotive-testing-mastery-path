@@ -1,6 +1,6 @@
 ---
 title: "Learn Automotive Testing Free: CAN, CANoe & HIL — Beginner to Master"
-description: "Free automotive ECU testing course: CAN bus, Vector CANoe, CAPL scripting, UDS diagnostics and Hardware-in-the-Loop testing, beginner to master. Part of a 40-course free learning library."
+description: "Free automotive ECU testing course: CAN bus, Vector CANoe, CAPL scripting, UDS diagnostics and Hardware-in-the-Loop testing, beginner to master. Part of a 100+ course free learning library."
 ---
 
 # Automotive Testing Mastery Path
