@@ -83,8 +83,8 @@ not_in_nav: |
 
 nav:
   - Home: index.md
-  - "💼 Interview Questions": interview-questions.md
-  - "📋 Cheat Sheet": cheat-sheet.md
+  - Interview Questions: interview-questions.md
+  - Cheat Sheet: cheat-sheet.md
   - "Level 1 · Entry":
       - Overview: level-1/index.md
       - "01 · What Is Automotive Testing?": level-1/01-what-is-automotive-testing.md
@@ -133,5 +133,5 @@ nav:
       - "Homologation & Compliance Testing Overview": level-4/08-homologation-compliance-testing.md
       - "Career Growth in Automotive Test Engineering": level-4/09-career-growth.md
       - "Capstone — Full Test Strategy for a New ECU Program": level-4/10-capstone-ecu-test-strategy.md
-  - "🎯 Final Quiz": quiz.md
+  - Final Quiz: quiz.md
 
