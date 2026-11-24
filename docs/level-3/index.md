@@ -22,8 +22,3 @@ under SOTIF.
 8. [Requirements-Based Test Traceability](08-requirements-based-traceability.md)
 9. [SOTIF & Testing for Autonomous Features](09-sotif-autonomous-testing.md)
 10. [Project — HIL Test Plan for an ECU Feature](10-project-hil-test-plan.md)
-
-!!! info "Content status"
-    Level 3 module content is being written — every page below has its
-    scope defined and will be filled in next. [Level 2](../level-2/index.md)
-    is the prerequisite for everything here.

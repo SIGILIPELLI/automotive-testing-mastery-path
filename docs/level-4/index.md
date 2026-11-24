@@ -23,8 +23,3 @@ finishing with a capstone test strategy for a new ECU program.
 8. [Homologation & Compliance Testing Overview](08-homologation-compliance-testing.md)
 9. [Career Growth in Automotive Test Engineering](09-career-growth.md)
 10. [Capstone — Full Test Strategy for a New ECU Program](10-capstone-ecu-test-strategy.md)
-
-!!! info "Content status"
-    Level 4 module content is being written — every page below has its
-    scope defined and will be filled in next. [Level 3](../level-3/index.md)
-    is the prerequisite for everything here.

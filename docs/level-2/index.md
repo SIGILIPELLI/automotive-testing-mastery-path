@@ -22,8 +22,3 @@ HIL test bench.
 8. [Restbus Simulation](08-restbus-simulation.md)
 9. [Basic HIL Test Bench Components](09-hil-test-bench-components.md)
 10. [Project — Automated CAN Signal Validation Suite](10-project-can-signal-validation.md)
-
-!!! info "Content status"
-    Level 2 module content is being written — every page below has its
-    scope defined and will be filled in next. [Level 1](../level-1/index.md)
-    is complete and is the prerequisite for everything here.
