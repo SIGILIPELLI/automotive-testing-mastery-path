@@ -33,8 +33,7 @@ concepts in every module.
 - Work through each level in order — later modules assume earlier ones.
 - Code examples use real **CAPL** syntax and real **CAN/UDS** conventions,
   labeled clearly wherever a concept is tool-specific to Vector CANoe.
-- Each level ends with a project that combines everything learned in that
-  level.
+- Levels 1–3 each end with a project that combines everything learned in that level, and Level 4 ends with the course capstone.
 - Use the search bar (top of the page) to jump straight to a topic.
 
 New to CAN and automotive embedded systems generally? The
